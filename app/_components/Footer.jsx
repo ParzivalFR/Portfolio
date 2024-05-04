@@ -1,18 +1,13 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Link from "next/link";
+import VercelIcon from "../icons/VercelIcon";
 
 const Footer = () => {
   const currentDate = new Date().getFullYear();
 
   return (
-    <footer className="relative bg-foreground/10">
+    <footer className="relative bg-foreground/5 mt-auto">
       <div className="flex justify-center p-5">
-        <Link href="/">
-          <Avatar className="h-16 w-16">
-            <AvatarImage src="/logoP.jpg" alt="Logo professionnel" />
-            <AvatarFallback>P</AvatarFallback>
-          </Avatar>
-        </Link>
+        <VercelIcon size={150} />
       </div>
       <div>
         <p className="text-center text-sm text-foreground/70 pb-5">

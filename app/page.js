@@ -1,7 +1,9 @@
+import { Divider } from "@nextui-org/divider";
 import Badges from "./_components/Badges";
 import CursorLight from "./_components/CursorLight";
 import Footer from "./_components/Footer";
 import Header from "./_components/Header";
+import ScrollToTop from "./_components/ScrollToTop";
 import SectionHome from "./_components/SectionHome";
 import Spacing from "./_components/Spacing";
 
@@ -11,10 +13,13 @@ export default function Home() {
       <CursorLight>
         <Header />
         <Badges />
-        <Spacing size={50} />
+        <Spacing size={40} />
         <SectionHome />
+        <Spacing size={40} />
+        <Divider className="w-2/3 h-px m-auto bg-current rounded" />
         <Spacing size={50} />
         <Footer />
+        <ScrollToTop />
       </CursorLight>
     </>
   );
