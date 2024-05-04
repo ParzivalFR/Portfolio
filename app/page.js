@@ -4,7 +4,6 @@ import Footer from "./_components/Footer";
 import Header from "./_components/Header";
 import SectionHome from "./_components/SectionHome";
 import Spacing from "./_components/Spacing";
-import Wave from "./icons/Wave";
 
 export default function Home() {
   return (
