@@ -18,10 +18,8 @@ export default function CursorLight({ children }) {
 
   const spotlightStyle = {
     position: "absolute",
-    width: "100%",
-    height: "100%",
     background: `radial-gradient(400px at ${position.x}px ${position.y}px, rgba(29, 78, 216, 0.15), transparent 90%)`,
-    zIndex: 1000,
+    zIndex: 40,
   };
 
   return <div style={spotlightStyle}>{children}</div>;
