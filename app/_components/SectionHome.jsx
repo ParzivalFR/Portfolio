@@ -11,7 +11,7 @@ const SectionHome = () => {
           src="/logo2.jpg"
           width={150}
           height={150}
-          className="z-0 animate-pulse m-auto rounded-tl-[70px] rounded-br-[70px] rounded-bl-sm rounded-tr-sm shadow-pxl shadow-zinc-50 drop-shadow-md md:w-48 md:h-48 transform duration-500 ease-in-out hover:scale-105"
+          className="z-0 animate-pulse m-auto rounded-tl-[70px] rounded-br-[70px] rounded-bl-sm rounded-tr-sm shadow-pxl shadow-zinc-50 drop-shadow-md md:w-48 md:h-48 hover:scale-105 transform hover:duration-1000 ease-in-out "
         />
         <quote className="text-justify">
           Je suis passé du pétrin à la programmation, de la farine aux lignes de
