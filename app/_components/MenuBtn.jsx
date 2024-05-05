@@ -14,6 +14,7 @@ import { Switch } from "@/components/ui/switch";
 import Link from "next/link";
 import * as React from "react";
 import { useTheme } from "../hooks/ThemeContext";
+import FormContact from "./FormContact";
 
 export function DropdownMenuRadioGroupDemo() {
   const [position, setPosition] = React.useState("bottom");
@@ -39,11 +40,11 @@ export function DropdownMenuRadioGroupDemo() {
               Projects
             </DropdownMenuRadioItem>
           </Link>
-          <Link href="/contact">
-            <DropdownMenuRadioItem value="Contact">
-              Contact
-            </DropdownMenuRadioItem>
-          </Link>
+          <DropdownMenuSeparator />
+          <div className="flex justify-center">
+            <FormContact />
+          </div>
+          <DropdownMenuSeparator />
           <div className="flex justify-evenly">
             <div className="flex items-center gap-2">
               🎨 <Switch checked={checked} onClick={toggleTheme} />

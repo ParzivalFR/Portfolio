@@ -18,7 +18,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <ThemeProvider>
-        <body className={`${roboto.className} min-h-dvh`}>{children}</body>
+        <body className={`${roboto.className} min-h-dvh `}>{children}</body>
       </ThemeProvider>
     </html>
   );
