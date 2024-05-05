@@ -1,9 +1,8 @@
-const Nextjs = ({ width, height, className }) => {
+const Nextjs = ({ width, height }) => {
   return (
     <svg
       width={width}
       height={height}
-      className={className}
       viewBox="0 0 512 104"
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"

@@ -74,7 +74,7 @@ module.exports = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "slide-left": "slide-left 8s linear infinite",
+        "slide-left": "slide-left 50s linear infinite",
       },
       boxShadow: { pxl: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px" },
       zIndex: {

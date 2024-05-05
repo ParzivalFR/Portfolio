@@ -1,9 +1,8 @@
-const GithubIcon = ({ size, className }) => {
+const GithubIcon = ({ size }) => {
   return (
     <svg
       width={size}
       height={size}
-      className={className}
       viewBox="0 0 256 250"
       version="1.1"
       preserveAspectRatio="xMidYMid"

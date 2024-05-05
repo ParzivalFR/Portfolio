@@ -21,6 +21,8 @@ export default function Home() {
         <Spacing size={100} />
         <InfiniFloat />
         <Spacing size={100} />
+        <Divider className="w-2/3 h-[0.5px] m-auto bg-current rounded" />
+        <Spacing size={40} />
         <Footer />
         <ScrollToTop />
       </CursorLight>
