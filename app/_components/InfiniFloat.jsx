@@ -16,9 +16,9 @@ import VercelIcon from "../icons/VercelIcon";
 const InfiniFloat = () => {
   return (
     <>
-      <section class="bg-foreground/10 overflow-hidden rotate-3 w-dvw">
-        <div class="logos group items-center relative overflow-hidden whitespace-nowrap py-0 [mask-image:_linear-gradient(to_right,_transparent_0,_white_128px,white_calc(100%-128px),_transparent_100%)] flex gap-20">
-          <div class="animate-slide-left items-center py-2 inline-flex w-max gap-20">
+      <section className="bg-foreground/10 overflow-hidden rotate-3 w-dvw">
+        <div className="logos group items-center relative overflow-hidden whitespace-nowrap py-0 [mask-image:_linear-gradient(to_right,_transparent_0,_white_128px,white_calc(100%-128px),_transparent_100%)] flex gap-20">
+          <div className="animate-slide-left items-center py-2 inline-flex w-max gap-20">
             <Html size={64} />
             <Css size={64} />
             <Javascript size={64} />
@@ -35,7 +35,7 @@ const InfiniFloat = () => {
             <Tailwind width="250" />
           </div>
 
-          <div class="animate-slide-left items-center py-2 inline-flex w-max gap-20">
+          <div className="animate-slide-left items-center py-2 inline-flex w-max gap-20">
             <Html size={64} />
             <Css size={64} />
             <Javascript size={64} />

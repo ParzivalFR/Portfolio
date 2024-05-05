@@ -9,9 +9,10 @@ const SectionHome = () => {
         </h1>
         <Image
           src="/logo2.jpg"
+          alt="Logo de l'auteur"
           width={150}
           height={150}
-          className="z-0 animate-pulse m-auto rounded-tl-[70px] rounded-br-[70px] rounded-bl-sm rounded-tr-sm shadow-pxl shadow-zinc-50 drop-shadow-md md:w-48 md:h-48 hover:scale-105 hover:rotate-2 transition-transform transform duration-1000 ease-in-out "
+          className="z-0 animate- m-auto rounded-tl-[70px] rounded-br-[70px] rounded-bl-sm rounded-tr-sm shadow-pxl shadow-foreground drop-shadow-md md:w-48 md:h-48"
         />
         <quote className="text-justify">
           Je suis passé du pétrin à la programmation, de la farine aux lignes de

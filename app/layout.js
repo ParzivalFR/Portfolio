@@ -1,8 +1,14 @@
-import { Roboto } from "next/font/google";
+import { Poppins, Roboto } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "./hooks/ThemeContext";
 
 const roboto = Roboto({
+  weight: "400",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const poppins = Poppins({
   weight: "400",
   subsets: ["latin"],
   display: "swap",
@@ -18,7 +24,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <ThemeProvider>
-        <body className={`${roboto.className} min-h-dvh`}>{children}</body>
+        <body className={`${poppins.className} min-h-dvh`}>{children}</body>
       </ThemeProvider>
     </html>
   );
