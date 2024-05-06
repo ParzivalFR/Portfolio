@@ -4,11 +4,11 @@ import { RocketIcon } from "@radix-ui/react-icons";
 const AlertHome = () => {
   return (
     <Alert className="shadow-pxl">
-      <RocketIcon className="h-4 w-4" />
-      <AlertTitle className="font-bold text-base underline leading-tight">
+      <RocketIcon className="h-3 w-3 md:h-4 md:w-4" />
+      <AlertTitle className="font-bold text-xs underline md:text-base">
         Bonjour !
       </AlertTitle>
-      <AlertDescription className="text-xs italic md:text-sm">
+      <AlertDescription className=" text-[10px] leading-tight md:text-sm">
         Mon code est mon sortilège, mon café ma potion magique et les jeux vidéo
         mon aventure épique.
       </AlertDescription>

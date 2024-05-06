@@ -14,8 +14,6 @@ export default function Home() {
       <CursorLight>
         <Header />
         <Spacing size={40} />
-
-        {/* <Badges /> */}
         <AlertHome />
         <Spacing size={40} />
         <SectionHome />

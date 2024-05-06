@@ -1,19 +1,13 @@
-import Image from "next/image";
+import Blob from "../icons/Blob";
 
 const SectionHome = () => {
   return (
-    <section className="flex flex-col-reverse gap-5 cursor-default">
-      <div className="w-4/5 m-auto px-10 py-4 rounded-md flex flex-col items-center gap-10">
+    <section className="flex flex-col-reverse cursor-default">
+      <div className="w-4/5 m-auto px-10 py-4 rounded-md flex flex-col items-center gap-5">
         <h1 className="text-3xl font-bold text-center">
-          “Codeur Farfelu, Ancien Boulanger”
+          Codeur Farfelu, Ancien Boulanger
         </h1>
-        <Image
-          src="/logo2.jpg"
-          alt="Logo de l'auteur"
-          width={150}
-          height={150}
-          className="z-0 animate- m-auto rounded-tl-[70px] rounded-br-[70px] rounded-bl-sm rounded-tr-sm shadow-pxl shadow-foreground drop-shadow-md md:w-48 md:h-48"
-        />
+        <Blob className={"w-52 md:w-96"}></Blob>
         <quote className="text-justify">
           Je suis passé du pétrin à la programmation, de la farine aux lignes de
           code. Pendant 10 années, j’ai façonné des baguettes, des miches & des
