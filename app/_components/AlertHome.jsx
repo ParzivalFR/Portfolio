@@ -9,8 +9,7 @@ const AlertHome = () => {
         Bonjour !
       </AlertTitle>
       <AlertDescription className=" text-[10px] leading-tight md:text-sm">
-        Mon code est mon sortilège, mon café ma potion magique et les jeux vidéo
-        mon aventure épique.
+        Le code, c’est ma tasse de thé… ou plutôt, ma tasse de café !
       </AlertDescription>
     </Alert>
   );

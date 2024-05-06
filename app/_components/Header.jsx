@@ -1,17 +1,11 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import Link from "next/link";
 import { DropdownMenuRadioGroupDemo } from "./MenuBtn";
+import UserAvatar from "./UserAvatar";
 
 const Header = () => {
   return (
     <header>
-      <nav className="w-4/5 bg-foreground/40 h-14  md:h-16 m-auto rounded-xl mt-2 flex items-center p-2 justify-between">
-        <Link href="/">
-          <Avatar>
-            <AvatarImage src="/logo2.jpg" alt="Photo de profil" />
-            <AvatarFallback>GR</AvatarFallback>
-          </Avatar>
-        </Link>
+      <nav className="w-4/5 bg-card-foreground/10 h-14  md:h-16 m-auto rounded-xl mt-2 flex items-center p-2 justify-between">
+        <UserAvatar />
         <DropdownMenuRadioGroupDemo />
       </nav>
     </header>

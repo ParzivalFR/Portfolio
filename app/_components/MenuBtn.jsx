@@ -26,18 +26,22 @@ export function DropdownMenuRadioGroupDemo() {
         <Button variant={"outline"}>Menu</Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">
-        <DropdownMenuLabel>🚀 Where do you want to go ?</DropdownMenuLabel>
+        <DropdownMenuLabel className="text-center">
+          🚀 On va où ?
+        </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuRadioGroup value={position} onValueChange={setPosition}>
           <Link href="/">
-            <DropdownMenuRadioItem value="Home">Home</DropdownMenuRadioItem>
+            <DropdownMenuRadioItem value="Home">Accueil</DropdownMenuRadioItem>
           </Link>
-          <Link href="/about">
-            <DropdownMenuRadioItem value="About">About</DropdownMenuRadioItem>
+          <Link href="#about">
+            <DropdownMenuRadioItem value="About">
+              À propos
+            </DropdownMenuRadioItem>
           </Link>
-          <Link href="/projects">
+          <Link href="#projects">
             <DropdownMenuRadioItem value="Projects">
-              Projects
+              Projets
             </DropdownMenuRadioItem>
           </Link>
           <DropdownMenuSeparator />

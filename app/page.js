@@ -12,28 +12,30 @@ import ColorsTimeline from "./_components/Timeline";
 
 export default function Home() {
   return (
-    <div>
+    <>
       <CursorLight>
         <Header />
-        <Spacing size={40} />
-        <EasterEggAlert />
-        <AlertHome />
-        <Spacing size={40} />
-        <SectionHome />
-        <Spacing size={40} />
-        <Divider className="w-2/3 h-px m-auto bg-current rounded" />
-        <Spacing size={100} />
-        <InfiniFloat />
-        <Spacing size={100} />
-        <Divider className="w-2/3 h-[0.5px] m-auto bg-current rounded" />
-        <Spacing size={40} />
-        <ColorsTimeline />
-        <Spacing size={40} />
-        <Divider className="w-2/3 h-[0.5px] m-auto bg-current rounded" />
-        <Spacing size={100} />
+        <main>
+          <Spacing size={40} />
+          <EasterEggAlert />
+          <AlertHome />
+          <Spacing size={40} />
+          <SectionHome />
+          <Spacing size={40} />
+          <Divider className="w-2/3 h-px m-auto bg-current rounded" />
+          <Spacing size={100} />
+          <InfiniFloat />
+          <Spacing size={100} />
+          <Divider className="w-2/3 h-[0.5px] m-auto bg-current rounded" />
+          <Spacing size={100} />
+          <ColorsTimeline />
+          <Spacing size={50} />
+          <Divider className="w-2/3 h-[0.5px] m-auto bg-current rounded" />
+          <Spacing size={100} />
+          <ScrollToTop />
+        </main>
         <Footer />
-        <ScrollToTop />
       </CursorLight>
-    </div>
+    </>
   );
 }

@@ -12,7 +12,7 @@ const ScrollToTop = () => {
 
   return (
     <button
-      className={`scroll-to-top fixed z-50 bottom-8 right-8 bg-foreground text-background rounded-full border-none w-10 h-10 flex justify-center items-center cursor-pointer transition duration-300 `}
+      className={`scroll-to-top fixed z-50 bottom-4 right-4 md:bottom-8 md:right-8 bg-foreground text-background rounded-full border-none w-10 h-10 flex justify-center items-center cursor-pointer hover:bg-foreground hover:opacity-60 transition duration-300 `}
       aria-label="Scroll to top"
       onClick={scrollToTop}
     >
