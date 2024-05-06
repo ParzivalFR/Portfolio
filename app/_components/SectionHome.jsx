@@ -13,7 +13,7 @@ const SectionHome = () => {
           code. Pendant 10 années, j’ai façonné des baguettes, des miches & des
           croissants, mais maintenant, je modèle des sites web. Mon allergie à
           la farine m’a poussé vers une nouvelle passion : le{" "}
-          <code className="text-sm bg-background/40 rounded-sm px-2 py-1 hover:cursor-default hover:bg-foreground/20 transition duration-500 ease-in-out">
+          <code className="w-max text-sm bg-foreground/20 rounded-sm px-2 py-1 hover:cursor-default hover:bg-foreground/50 transition duration-500 ease-in-out ">
             Développement Web
           </code>
           . Sérieux, assidu et toujours prêt à relever de nouveaux défis, je

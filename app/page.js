@@ -1,6 +1,7 @@
 import { Divider } from "@nextui-org/divider";
 import AlertHome from "./_components/AlertHome";
 import CursorLight from "./_components/CursorLight";
+import { EasterEggAlert } from "./_components/EasterEggAlert";
 import Footer from "./_components/Footer";
 import Header from "./_components/Header";
 import InfiniFloat from "./_components/InfiniFloat";
@@ -14,6 +15,7 @@ export default function Home() {
       <CursorLight>
         <Header />
         <Spacing size={40} />
+        <EasterEggAlert />
         <AlertHome />
         <Spacing size={40} />
         <SectionHome />
