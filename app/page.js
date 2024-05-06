@@ -28,6 +28,9 @@ export default function Home() {
         <Divider className="w-2/3 h-[0.5px] m-auto bg-current rounded" />
         <Spacing size={40} />
         <ColorsTimeline />
+        <Spacing size={40} />
+        <Divider className="w-2/3 h-[0.5px] m-auto bg-current rounded" />
+        <Spacing size={100} />
         <Footer />
         <ScrollToTop />
       </CursorLight>

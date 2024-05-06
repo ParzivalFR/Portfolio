@@ -13,31 +13,31 @@ import TimelineConnector from "@mui/lab/TimelineConnector";
 import TimelineContent from "@mui/lab/TimelineContent";
 import TimelineDot from "@mui/lab/TimelineDot";
 import TimelineItem from "@mui/lab/TimelineItem";
+import TimelineOppositeContent, {
+  timelineOppositeContentClasses,
+} from "@mui/lab/TimelineOppositeContent";
 import TimelineSeparator from "@mui/lab/TimelineSeparator";
-import { useEffect, useState } from "react";
 
-export default function ColorsTimeline() {
-  const [isMobile, setIsMobile] = useState(
-    typeof window !== "undefined" ? window.innerWidth <= 768 : false
-  );
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      window.addEventListener("resize", () => {
-        setIsMobile(window.innerWidth <= 768);
-      });
-    }
-  }, []);
+export default function LeftAlignedTimeline() {
+  const currentYear = new Date().getFullYear();
 
   return (
-    <Timeline position={isMobile ? "alternate" : "alternate"}>
-      <TimelineItem className="items-left">
+    <Timeline
+      className="w-full max-w-5xl mx-auto"
+      sx={{
+        [`& .${timelineOppositeContentClasses.root}`]: {
+          flex: 0.1,
+        },
+      }}
+    >
+      <TimelineItem>
+        <TimelineOppositeContent color="current">2013</TimelineOppositeContent>
         <TimelineSeparator>
-          <TimelineDot color="secondary" />
+          <TimelineDot color="primary" />
           <TimelineConnector />
         </TimelineSeparator>
         <TimelineContent>
-          <Card>
+          <Card className="cursor-default shadow-current shadow-pxl hover:bg-foreground/10 transition-colors transform duration-700">
             <CardHeader>
               <CardTitle>CAP Boulanger</CardTitle>
             </CardHeader>
@@ -51,12 +51,13 @@ export default function ColorsTimeline() {
         </TimelineContent>
       </TimelineItem>
       <TimelineItem>
+        <TimelineOppositeContent color="current">2015</TimelineOppositeContent>
         <TimelineSeparator>
-          <TimelineDot color="success" />
+          <TimelineDot color="secondary" />
           <TimelineConnector />
         </TimelineSeparator>
         <TimelineContent>
-          <Card>
+          <Card className="cursor-default shadow-current shadow-pxl hover:bg-foreground/10 transition-colors transform duration-700">
             <CardHeader>
               <CardTitle>BP Boulanger</CardTitle>
             </CardHeader>
@@ -71,12 +72,13 @@ export default function ColorsTimeline() {
         </TimelineContent>
       </TimelineItem>
       <TimelineItem>
+        <TimelineOppositeContent color="current">2015</TimelineOppositeContent>
         <TimelineSeparator>
-          <TimelineDot color="warning" />
+          <TimelineDot color="success" />
           <TimelineConnector />
         </TimelineSeparator>
         <TimelineContent>
-          <Card>
+          <Card className="cursor-default shadow-current shadow-pxl hover:bg-foreground/10 transition-colors transform duration-700">
             <CardHeader>
               <CardTitle>Premier CDI dans une autre entreprise</CardTitle>
             </CardHeader>
@@ -92,12 +94,13 @@ export default function ColorsTimeline() {
         </TimelineContent>
       </TimelineItem>
       <TimelineItem>
+        <TimelineOppositeContent color="current">2015</TimelineOppositeContent>
         <TimelineSeparator>
-          <TimelineDot color="info" />
+          <TimelineDot color="warning" />
           <TimelineConnector />
         </TimelineSeparator>
         <TimelineContent>
-          <Card>
+          <Card className="cursor-default shadow-current shadow-pxl hover:bg-foreground/10 transition-colors transform duration-700">
             <CardHeader>
               <CardTitle>Recontacté par l'ancienne entreprise</CardTitle>
             </CardHeader>
@@ -114,12 +117,13 @@ export default function ColorsTimeline() {
         </TimelineContent>
       </TimelineItem>
       <TimelineItem>
+        <TimelineOppositeContent color="current">2015</TimelineOppositeContent>
         <TimelineSeparator>
-          <TimelineDot color="error" />
+          <TimelineDot color="info" />
           <TimelineConnector />
         </TimelineSeparator>
         <TimelineContent>
-          <Card>
+          <Card className="cursor-default shadow-current shadow-pxl hover:bg-foreground/10 transition-colors transform duration-700">
             <CardHeader>
               <CardTitle>Déclaré inapte au poste de Boulanger</CardTitle>
             </CardHeader>
@@ -127,16 +131,25 @@ export default function ColorsTimeline() {
               <CardDescription>
                 Après 10 années en Boulangerie, j'ai été déclaré inapte au poste
                 de Boulanger suite à des problèmes de santé lié aux allergies à
-                la farine et à la poussière de farine. J'ai donc décidé de me
-                reconvertir dans le développement web, un domaine qui m'a
-                toujours attiré et que j'ai toujours voulu apprendre. Je suis
-                donc en formation depuis Janvier 2024 pour devenir développeur
-                web grâce à la formation de l'école OpenClassrooms.
+                la farine. J'ai donc décidé de me reconvertir dans le
+                développement web, un domaine qui m'a toujours attiré et que
+                j'ai toujours voulu apprendre. Je suis donc en formation depuis
+                Janvier 2024 pour devenir développeur web grâce à la formation
+                de l'école OpenClassrooms.
               </CardDescription>
             </CardContent>
             <CardFooter>2024 - Aujourd'hui</CardFooter>
           </Card>
         </TimelineContent>
+      </TimelineItem>
+      <TimelineItem>
+        <TimelineOppositeContent color="current">
+          {currentYear}
+        </TimelineOppositeContent>
+        <TimelineSeparator>
+          <TimelineDot color="grey" />
+        </TimelineSeparator>
+        <TimelineContent></TimelineContent>
       </TimelineItem>
     </Timeline>
   );
