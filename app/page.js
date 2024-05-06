@@ -1,5 +1,5 @@
 import { Divider } from "@nextui-org/divider";
-import Badges from "./_components/Badges";
+import AlertHome from "./_components/AlertHome";
 import CursorLight from "./_components/CursorLight";
 import Footer from "./_components/Footer";
 import Header from "./_components/Header";
@@ -13,7 +13,10 @@ export default function Home() {
     <div>
       <CursorLight>
         <Header />
-        <Badges />
+        <Spacing size={40} />
+
+        {/* <Badges /> */}
+        <AlertHome />
         <Spacing size={40} />
         <SectionHome />
         <Spacing size={40} />

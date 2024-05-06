@@ -21,7 +21,7 @@ const DialogDemo = () => {
           <ContactMe size={20} />
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className=" rounded-lg max-w-[350px] sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>Contact</DialogTitle>
           <DialogDescription>
@@ -29,7 +29,7 @@ const DialogDemo = () => {
           </DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             <div className="flex flex-col items-center gap-4">
               <Label htmlFor="name" className="text-right">
                 Prénom
