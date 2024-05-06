@@ -17,12 +17,16 @@ import TimelineSeparator from "@mui/lab/TimelineSeparator";
 import { useEffect, useState } from "react";
 
 export default function ColorsTimeline() {
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const [isMobile, setIsMobile] = useState(
+    typeof window !== "undefined" ? window.innerWidth <= 768 : false
+  );
 
   useEffect(() => {
-    window.addEventListener("resize", () => {
-      setIsMobile(window.innerWidth <= 768);
-    });
+    if (typeof window !== "undefined") {
+      window.addEventListener("resize", () => {
+        setIsMobile(window.innerWidth <= 768);
+      });
+    }
   }, []);
 
   return (
