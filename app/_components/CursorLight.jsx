@@ -8,7 +8,7 @@ export default function CursorLight({ children }) {
 
   useEffect(() => {
     const handleMouseMove = (e) => {
-      setPosition({ x: e.clientX, y: e.clientY });
+      setPosition({ x: e.pageX, y: e.pageY });
     };
 
     window.addEventListener("mousemove", handleMouseMove);
@@ -18,7 +18,7 @@ export default function CursorLight({ children }) {
 
   const spotlightStyle = {
     position: "absolute",
-    background: `radial-gradient(400px at ${position.x}px ${position.y}px, rgba(29, 78, 216, 0.15), transparent 90%)`,
+    background: `radial-gradient(400px at ${position.x}px ${position.y}px, rgba(29, 78, 216, 0.10), transparent 80%)`,
     zIndex: 40,
   };
 

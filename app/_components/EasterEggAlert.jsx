@@ -18,7 +18,7 @@ export function EasterEggAlert({ children: chidren }) {
         <AlertDialogHeader>
           <AlertDialogTitle>👀 Oh !</AlertDialogTitle>
           <AlertDialogDescription>
-            Oh ! Mais... Que'est-ce que.. Il me semble que tu as trouvé un
+            Mais... Mais.. Qu'est-ce que.. Il me semble que tu as trouvé un
             easter egg ! 🥚
           </AlertDialogDescription>
         </AlertDialogHeader>

@@ -8,6 +8,7 @@ import InfiniFloat from "./_components/InfiniFloat";
 import ScrollToTop from "./_components/ScrollToTop";
 import SectionHome from "./_components/SectionHome";
 import Spacing from "./_components/Spacing";
+import ColorsTimeline from "./_components/Timeline";
 
 export default function Home() {
   return (
@@ -26,6 +27,7 @@ export default function Home() {
         <Spacing size={100} />
         <Divider className="w-2/3 h-[0.5px] m-auto bg-current rounded" />
         <Spacing size={40} />
+        <ColorsTimeline />
         <Footer />
         <ScrollToTop />
       </CursorLight>
