@@ -20,8 +20,9 @@ const SectionHome = () => {
           suis le boulanger qui a troqué sa pelle à pain contre un clavier. Mon
           credo ?
         </quote>
-        <cite className="text-xs">
-          “Du levain au code, il n’y a qu’un pas !” 🥐👨‍💻
+        <cite className="text-xs text-nowrap">
+          “Du levain au code, il n’y a qu’un pas !”
+          <span className="flex justify-center not-italic	">🍞💻</span>
         </cite>
       </div>
     </section>
