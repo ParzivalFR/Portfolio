@@ -1,12 +1,7 @@
-import { Poppins, Roboto } from "next/font/google";
+import { Poppins } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "./hooks/ThemeContext";
-
-const roboto = Roboto({
-  weight: "400",
-  subsets: ["latin"],
-  display: "swap",
-});
+import { WindowSizeProvider } from "./hooks/WindowSizeContext";
 
 const poppins = Poppins({
   weight: "400",
@@ -23,9 +18,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <ThemeProvider>
-        <body className={`${poppins.className} min-h-dvh`}>{children}</body>
-      </ThemeProvider>
+      <WindowSizeProvider>
+        <ThemeProvider>
+          <body className={`${poppins.className} min-h-dvh`}>{children}</body>
+        </ThemeProvider>
+      </WindowSizeProvider>
     </html>
   );
 }

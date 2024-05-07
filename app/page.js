@@ -5,6 +5,7 @@ import { EasterEggAlert } from "./_components/EasterEggAlert";
 import Footer from "./_components/Footer";
 import Header from "./_components/Header";
 import InfiniFloat from "./_components/InfiniFloat";
+import Projects from "./_components/Projects";
 import ScrollToTop from "./_components/ScrollToTop";
 import SectionHome from "./_components/SectionHome";
 import Spacing from "./_components/Spacing";
@@ -32,6 +33,8 @@ export default function Home() {
           <Spacing size={50} />
           <Divider className="w-2/3 h-[0.5px] m-auto bg-current rounded" />
           <Spacing size={100} />
+          <Projects />
+          <Spacing size={50} />
           <ScrollToTop />
         </main>
         <Footer />
