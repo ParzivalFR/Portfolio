@@ -1,5 +1,6 @@
 import { Divider } from "@nextui-org/divider";
 import AlertHome from "./_components/AlertHome";
+import ContactMe from "./_components/ContactMe";
 import CursorLight from "./_components/CursorLight";
 import { EasterEggAlert } from "./_components/EasterEggAlert";
 import Footer from "./_components/Footer";
@@ -34,6 +35,10 @@ export default function Home() {
           <Divider className="w-2/3 h-[0.5px] m-auto bg-current rounded" />
           <Spacing size={100} />
           <Projects />
+          <Spacing size={100} />
+          <Divider className="w-2/3 h-[0.5px] m-auto bg-current rounded" />
+          <Spacing size={100} />
+          <ContactMe />
           <Spacing size={50} />
           <ScrollToTop />
         </main>

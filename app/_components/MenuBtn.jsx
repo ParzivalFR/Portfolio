@@ -24,7 +24,7 @@ export function DropdownMenuRadioGroupDemo() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant={"outline"} className="m-0 hover:bg-background/70">
+        <Button variant={"outline"} className="hover:bg-background/70">
           Menu
         </Button>
       </DropdownMenuTrigger>
