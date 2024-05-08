@@ -40,7 +40,6 @@ export default function Home() {
           <Spacing size={100} />
           <ContactMe />
           <Spacing size={50} />
-          {/* <AlertConfirm /> */}
           <ScrollToTop />
         </main>
         <Footer />

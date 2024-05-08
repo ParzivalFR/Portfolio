@@ -68,7 +68,6 @@ const ContactMe = () => {
       );
   };
 
-  // si la valeur des champs est vide, le bouton est désactivé
   useEffect(() => {
     const checkValues = () => {
       if (firstName && name && email && message) {
@@ -187,14 +186,3 @@ const ContactMe = () => {
 };
 
 export default ContactMe;
-
-{
-  /* <Button
-            id="contact-submit"
-            type="submit"
-            disabled={isDisabled}
-            className="w-full mt-4 bg-primary/40 text-current hover:bg-primary/10 py-2 rounded-lg transition-colors duration-500 ease-in-out disabled:bg-primary/20 disabled:text-current disabled:cursor-not-allowed"
-          >
-            Envoyer
-          </Button> */
-}
