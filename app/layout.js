@@ -1,3 +1,5 @@
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "./hooks/ThemeContext";
@@ -20,7 +22,11 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <WindowSizeProvider>
         <ThemeProvider>
-          <body className={`${poppins.className} min-h-dvh`}>{children}</body>
+          <body className={`${poppins.className} min-h-dvh`}>
+            {children}
+            <Analytics />
+            <SpeedInsights />
+          </body>
         </ThemeProvider>
       </WindowSizeProvider>
     </html>
