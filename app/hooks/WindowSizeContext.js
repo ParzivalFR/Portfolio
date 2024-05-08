@@ -1,4 +1,5 @@
 "use client";
+
 import { createContext, useContext, useEffect, useState } from "react";
 
 // Créer le contexte
@@ -6,18 +7,17 @@ const WindowSizeContext = createContext();
 
 // Fournir le contexte
 export const WindowSizeProvider = ({ children }) => {
-  const isBrowser = typeof window !== "undefined";
-  const [windowNotMobile, setWindowNotMobile] = useState(
-    isBrowser ? window.innerWidth > 768 : false
-  );
+  const [windowSize, setWindowSize] = useState(undefined);
 
   useEffect(() => {
-    if (isBrowser) {
+    if (typeof window !== "undefined") {
       const handleResize = () => {
-        setWindowNotMobile(window.innerWidth > 768);
+        setWindowSize(window.innerWidth);
       };
 
       window.addEventListener("resize", handleResize);
+      handleResize(); // Appeler handleResize immédiatement pour obtenir la taille initiale de la fenêtre
+
       return () => {
         window.removeEventListener("resize", handleResize);
       };
@@ -25,7 +25,7 @@ export const WindowSizeProvider = ({ children }) => {
   }, []);
 
   return (
-    <WindowSizeContext.Provider value={windowNotMobile}>
+    <WindowSizeContext.Provider value={windowSize}>
       {children}
     </WindowSizeContext.Provider>
   );
@@ -34,7 +34,7 @@ export const WindowSizeProvider = ({ children }) => {
 // Utiliser le contexte
 export const useWindowSize = () => {
   const context = useContext(WindowSizeContext);
-  if (context === undefined) {
+  if (context === "undefined") {
     throw new Error("useWindowSize must be used within a WindowSizeProvider");
   }
   return context;

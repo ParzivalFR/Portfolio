@@ -19,7 +19,7 @@ import { useWindowSize } from "../hooks/WindowSizeContext";
 export function DropdownMenuRadioGroupDemo() {
   const [position, setPosition] = React.useState("bottom");
   const { toggleTheme, checked } = useTheme();
-  const windowNotMobile = useWindowSize();
+  const WindowSizeContext = useWindowSize();
 
   return (
     <DropdownMenu>
@@ -29,7 +29,7 @@ export function DropdownMenuRadioGroupDemo() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">
-        {!windowNotMobile ? (
+        {WindowSizeContext < 768 ? (
           <>
             <DropdownMenuLabel className="flex justify-between items-center">
               🚀 On va où ?

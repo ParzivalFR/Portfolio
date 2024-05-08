@@ -9,7 +9,7 @@ import UserAvatar from "./UserAvatar";
 
 const Header = () => {
   const { toggleTheme, checked } = useTheme();
-  const windowNotMobile = useWindowSize();
+  const WindowSizeContext = useWindowSize();
 
   return (
     <header>
@@ -17,7 +17,7 @@ const Header = () => {
         <UserAvatar />
         <div className="flex items-center gap-2">
           <DropdownMenuRadioGroupDemo />
-          {windowNotMobile ? (
+          {WindowSizeContext > 768 ? (
             <Toggle checked={checked} onClick={toggleTheme}>
               {checked ? <SunIcon /> : <MoonIcon />}
             </Toggle>
