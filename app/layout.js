@@ -22,7 +22,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <WindowSizeProvider>
         <ThemeProvider>
-          <body className={`${poppins.className} min-h-dvh`}>
+          <body className={`${poppins.className} overflow-x-hidden min-h-dvh`}>
             {children}
             <Analytics />
             <SpeedInsights />
