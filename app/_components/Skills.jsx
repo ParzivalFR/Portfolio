@@ -1,5 +1,11 @@
 import { Progress } from "@/components/ui/progress";
-import { FaHtml5, FaNodeJs, FaReact, FaSass } from "react-icons/fa";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { FaCheck, FaHtml5, FaNodeJs, FaReact, FaSass } from "react-icons/fa";
 import { IoLogoCss3 } from "react-icons/io";
 import {
   RiJavascriptFill,
@@ -9,72 +15,43 @@ import {
 import { SiMongodb } from "react-icons/si";
 
 const Skills = () => {
+  const skills = [
+    { icon: FaHtml5, name: "html", value: 90 },
+    { icon: IoLogoCss3, name: "css", value: 80 },
+    { icon: RiJavascriptFill, name: "javascript", value: 65 },
+    { icon: RiTailwindCssFill, name: "tailwind", value: 70 },
+    { icon: FaReact, name: "react", value: 65 },
+    { icon: RiNextjsFill, name: "nextjs", value: 55 },
+    { icon: FaNodeJs, name: "nodejs", value: 60 },
+    { icon: FaSass, name: "sass", value: 60 },
+    { icon: SiMongodb, name: "mongodb", value: 40 },
+  ];
+
   return (
-    <section className="w-4/5 m-auto">
-      {/* <div className="flex flex-col justify-center items-center">
-        <h2 className=" text-3xl sm:text-5xl">Skills</h2>
-        <p className="italic text-[10px] sm:text-sm md:text-base text-justify ">
-          Technologies que j'ai apprises et utilisées au cours de mes projets :
-        </p>
-      </div> */}
-      {/* Liste des langages appris */}
-      <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-y-6 p-5 m-auto bg-foreground/5 rounded-lg sm:p-10 shadow-pxl">
-        <div className="flex justify-center items-center">
-          <div className="flex flex-col items-center gap-2 p-4 md:p-10 w-2/3 hover:bg-primary/10 rounded-lg transition-colors duration-500 ease-in-out">
-            <FaHtml5 className="size-12" />
-            <Progress value={90} className="w-full" />
-          </div>
+    <TooltipProvider>
+      <section className="w-4/5 m-auto">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-y-6 p-5 m-auto bg-foreground/5 rounded-lg sm:p-10 shadow-pxl">
+          {skills.map((skill, index) => (
+            <Tooltip key={index}>
+              <TooltipTrigger className="cursor-default">
+                <div className="flex justify-center items-center">
+                  <div className="flex flex-col items-center gap-2 p-4 md:p-10 w-2/3 hover:bg-primary/10 rounded-lg transition-colors duration-500 ease-in-out">
+                    <skill.icon className="size-12" />
+                    <Progress value={skill.value} className="w-full" />
+                  </div>
+                </div>
+              </TooltipTrigger>
+              <TooltipContent className="bg-primary/40">
+                <p className="flex gap-1 items-center">
+                  <FaCheck />
+                  {skill.value}
+                </p>
+              </TooltipContent>
+            </Tooltip>
+          ))}
         </div>
-        <div className="flex justify-center items-center">
-          <div className="flex flex-col items-center  gap-2 p-4 md:p-10 w-2/3 hover:bg-primary/10 rounded-lg transition-colors duration-500 ease-in-out">
-            <IoLogoCss3 className="size-12" />
-            <Progress value={80} className="w-full" />
-          </div>
-        </div>
-        <div className="flex justify-center items-center">
-          <div className="flex flex-col items-center  gap-2 p-4 md:p-10 w-2/3 hover:bg-primary/10 rounded-lg transition-colors duration-500 ease-in-out">
-            <RiJavascriptFill className="size-12" />
-            <Progress value={65} className="w-full" />
-          </div>
-        </div>
-        <div className="flex justify-center items-center">
-          <div className="flex flex-col items-center gap-2 p-4 md:p-10 w-2/3 hover:bg-primary/10 rounded-lg transition-colors duration-500 ease-in-out">
-            <RiTailwindCssFill className="size-12" />
-            <Progress value={70} className="w-full" />
-          </div>
-        </div>
-        <div className="flex justify-center items-center">
-          <div className="flex flex-col items-center  gap-2 p-4 md:p-10 w-2/3 hover:bg-primary/10 rounded-lg transition-colors duration-500 ease-in-out">
-            <FaReact className="size-12" />
-            <Progress value={65} className="w-full" />
-          </div>
-        </div>
-        <div className="flex justify-center items-center">
-          <div className="flex flex-col items-center  gap-2 p-4 md:p-10 w-2/3 hover:bg-primary/10 rounded-lg transition-colors duration-500 ease-in-out">
-            <RiNextjsFill className="size-12" />
-            <Progress value={55} className="w-full" />
-          </div>
-        </div>
-        <div className="flex justify-center items-center">
-          <div className="flex flex-col items-center  gap-2 p-4 md:p-10 w-2/3 hover:bg-primary/10 rounded-lg transition-colors duration-500 ease-in-out">
-            <FaNodeJs className="size-12" />
-            <Progress value={60} className="w-full" />
-          </div>
-        </div>
-        <div className="flex justify-center items-center">
-          <div className="flex flex-col items-center gap-2 p-4 md:p-10 w-2/3 hover:bg-primary/10 rounded-lg transition-colors duration-500 ease-in-out">
-            <FaSass className="size-12" />
-            <Progress value={60} className="w-full" />
-          </div>
-        </div>
-        <div className="flex justify-center items-center">
-          <div className="flex flex-col items-center  gap-2 p-4 md:p-10 w-2/3 hover:bg-primary/10 rounded-lg transition-colors duration-500 ease-in-out">
-            <SiMongodb className="size-12" />
-            <Progress value={40} className="w-full" />
-          </div>
-        </div>
-      </div>
-    </section>
+      </section>
+    </TooltipProvider>
   );
 };
 
