@@ -53,12 +53,12 @@ export function MenuBtn() {
           <Link href="/">
             <DropdownMenuRadioItem value="Home">Accueil</DropdownMenuRadioItem>
           </Link>
-          <Link href="#projects">
+          <Link href="/#projects">
             <DropdownMenuRadioItem value="Projects">
               Projets
             </DropdownMenuRadioItem>
           </Link>
-          <Link href="#contact">
+          <Link href="/#contact">
             <DropdownMenuRadioItem value="Contact">
               Contact
             </DropdownMenuRadioItem>

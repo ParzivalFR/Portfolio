@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const Projects = () => {
@@ -52,6 +53,7 @@ const Projects = () => {
                   ))}
                 </div>
               )}
+              <Link href={project.url}>{project.url}</Link>
             </div>
           </div>
         ))}
