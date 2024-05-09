@@ -9,9 +9,8 @@ import InfiniFloat from "./_components/InfiniFloat";
 import Projects from "./_components/Projects";
 import ScrollToTopButton from "./_components/ScrollToTop";
 import SectionHome from "./_components/SectionHome";
-import Spacing from "./_components/Spacing";
-import ColorsTimeline from "./_components/Timeline";
 import Skills from "./_components/Skills";
+import Spacing from "./_components/Spacing";
 
 export default function Home() {
   return (
@@ -29,10 +28,10 @@ export default function Home() {
           <Spacing size={100} />
           <InfiniFloat />
           <Spacing size={100} />
-          <Divider className="w-2/3 h-[0.5px] m-auto bg-current rounded" />
+          {/* <Divider className="w-2/3 h-[0.5px] m-auto bg-current rounded" />
           <Spacing size={100} />
           <ColorsTimeline />
-          <Spacing size={50} />
+          <Spacing size={50} /> */}
           <Divider className="w-2/3 h-[0.5px] m-auto bg-current rounded" />
           <Spacing size={100} />
           <Skills />

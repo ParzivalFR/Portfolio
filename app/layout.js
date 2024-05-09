@@ -12,9 +12,9 @@ const poppins = Poppins({
 });
 
 export const metadata = {
-  title: "Gael RICHARD - Portfolio",
+  title: "Gael RICHARD - Développeur Web Fullstack",
   description:
-    "French Developer Web passionate about the web and new technologies.",
+    "Développeur Web Fullstack, je suis passionné par le développement web et mobile. Je suis spécialisé dans la création de sites web avec pour but de satisfaires les besoins de mes clients.",
 };
 
 export default function RootLayout({ children }) {

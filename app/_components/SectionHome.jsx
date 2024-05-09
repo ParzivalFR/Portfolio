@@ -3,7 +3,7 @@ import Blob from "../icons/Blob";
 const SectionHome = () => {
   return (
     <section className="flex flex-col-reverse cursor-default">
-      <div className="w-4/5 m-auto px-10 py-4 rounded-md flex flex-col items-center gap-5">
+      <div className="w-full sm:w-4/5 m-auto px-10 py-4 rounded-md flex flex-col items-center gap-5">
         <h1 className="text-3xl font-bold text-center">
           Codeur Farfelu, Ancien Boulanger
         </h1>

@@ -5,7 +5,15 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { FaCheck, FaHtml5, FaNodeJs, FaReact, FaSass } from "react-icons/fa";
+import {
+  FaCheck,
+  FaGitAlt,
+  FaGithub,
+  FaHtml5,
+  FaNodeJs,
+  FaReact,
+  FaSass,
+} from "react-icons/fa";
 import { IoLogoCss3 } from "react-icons/io";
 import {
   RiJavascriptFill,
@@ -25,6 +33,8 @@ const Skills = () => {
     { icon: FaNodeJs, name: "nodejs", value: 60 },
     { icon: FaSass, name: "sass", value: 60 },
     { icon: SiMongodb, name: "mongodb", value: 40 },
+    { icon: FaGithub, name: "github", value: 75 },
+    { icon: FaGitAlt, name: "git", value: 70 },
   ];
 
   return (

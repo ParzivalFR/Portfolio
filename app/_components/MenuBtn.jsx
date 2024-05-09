@@ -17,7 +17,7 @@ import * as React from "react";
 import { useTheme } from "../hooks/ThemeContext";
 import { useWindowSize } from "../hooks/WindowSizeContext";
 
-export function DropdownMenuRadioGroupDemo() {
+export function MenuBtn() {
   const [position, setPosition] = React.useState("bottom");
   const { toggleTheme, checked } = useTheme();
   const WindowSizeContext = useWindowSize();
@@ -25,7 +25,10 @@ export function DropdownMenuRadioGroupDemo() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant={"outline"} className="hover:bg-background/70">
+        <Button
+          variant={"outline"}
+          className=" h-12 sm:h-10 hover:bg-background/70"
+        >
           Menu
         </Button>
       </DropdownMenuTrigger>
@@ -58,6 +61,11 @@ export function DropdownMenuRadioGroupDemo() {
           <Link href="#contact">
             <DropdownMenuRadioItem value="Contact">
               Contact
+            </DropdownMenuRadioItem>
+          </Link>
+          <Link href="/about">
+            <DropdownMenuRadioItem value="About">
+              À propos
             </DropdownMenuRadioItem>
           </Link>
         </DropdownMenuRadioGroup>
