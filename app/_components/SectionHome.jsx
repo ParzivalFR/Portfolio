@@ -8,7 +8,7 @@ const SectionHome = () => {
           Codeur Farfelu, Ancien Boulanger
         </h1>
         <Blob className={"w-52 md:w-96"}></Blob>
-        <quote className="text-justify">
+        <blockquote className="text-justify">
           Je suis passé du pétrin à la programmation, de la farine aux lignes de
           code. Pendant 10 années, j’ai façonné des baguettes, des miches & des
           croissants, mais maintenant, je modèle des sites web. Mon allergie à
@@ -19,7 +19,7 @@ const SectionHome = () => {
           . Sérieux, assidu et toujours prêt à relever de nouveaux défis, je
           suis le boulanger qui a troqué sa pelle à pain contre un clavier. Mon
           credo ?
-        </quote>
+        </blockquote>
         <cite className="text-xs text-nowrap">
           “Du levain au code, il n’y a qu’un pas !”
           <span className="flex justify-center not-italic	">🍞💻</span>
