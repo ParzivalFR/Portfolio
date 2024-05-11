@@ -47,7 +47,6 @@ export function MenuBtn() {
             🚀 On va où ?
           </DropdownMenuLabel>
         )}
-
         <DropdownMenuSeparator />
         <DropdownMenuRadioGroup value={position} onValueChange={setPosition}>
           <Link href="/">

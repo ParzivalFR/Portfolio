@@ -1,22 +1,15 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { RiExternalLinkLine } from "react-icons/ri";
 
 const Projects = () => {
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
-    const fetchProjects = async () => {
-      try {
-        const res = await fetch("/projects.json");
-        const data = await res.json();
-        setProjects(data);
-        console.log(data);
-      } catch (error) {
-        console.error(error.message);
-      }
-    };
-    fetchProjects();
+    fetch("http://localhost:3005/api/projects")
+      .then((response) => response.json())
+      .then((data) => setProjects(data));
   }, []);
 
   return (
@@ -28,13 +21,15 @@ const Projects = () => {
         projects.map((project) => (
           <div
             key={project.id}
-            className="flex flex-col space-y-3 h-80 w-4/5 md:w-full m-auto bg-foreground/5 p-5 rounded-md"
+            className="relative flex flex-col space-y-3 h-80 w-4/5 md:w-full m-auto bg-foreground/5 p-5 rounded-md"
           >
-            <img
-              src={project.image}
-              alt={project.title}
-              className="h-2/5 w-full object-cover rounded-xl"
-            />
+            <div className="flex items-center overflow-hidden h-3/5 w-full rounded-xl">
+              <img
+                src={project.cover.replace("/upload/", "/upload/f_webp/")}
+                alt={project.title}
+                className="w-full object-cover"
+              />
+            </div>
             <div className="space-y-2">
               <h3 className="text-xl font-semibold">
                 {project.title} - Projet {project.number}
@@ -53,7 +48,13 @@ const Projects = () => {
                   ))}
                 </div>
               )}
-              <Link href={project.url}>{project.url}</Link>
+              <Link
+                href={project.url}
+                target="_blank"
+                className="absolute top-2 right-2"
+              >
+                <RiExternalLinkLine size={25} />
+              </Link>
             </div>
           </div>
         ))}

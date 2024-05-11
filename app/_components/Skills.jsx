@@ -44,8 +44,8 @@ const Skills = () => {
 
   return (
     <TooltipProvider>
-      <section className="w-4/5 m-auto">
-        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-y-6 p-5 m-auto bg-foreground/5 rounded-lg sm:p-10 shadow-pxl">
+      <section className="w-full p-2 sm:p-0 sm:w-4/5 m-auto">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-y-6 p-5 m-auto bg-foreground/5 rounded-lg sm:p-10 shadow-pxl">
           {skills.map((skill, index) => (
             <Tooltip key={index}>
               <TooltipTrigger className="cursor-default">
@@ -58,7 +58,7 @@ const Skills = () => {
                     {windowSizeContext < 1024 ? (
                       <Badge
                         className={
-                          "bg-foreground text-background text-[10px] sm:text-xs"
+                          "bg-foreground text-background text-[10px] md:text-xs"
                         }
                       >
                         {skill.value}
