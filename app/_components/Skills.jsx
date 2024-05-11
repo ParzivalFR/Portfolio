@@ -29,17 +29,17 @@ import { useWindowSize } from "../hooks/WindowSizeContext";
 const Skills = () => {
   const windowSizeContext = useWindowSize();
   const skills = [
-    { icon: FaHtml5, name: "html", value: "Expert" },
-    { icon: IoLogoCss3, name: "css", value: "Intermédiaire" },
-    { icon: RiJavascriptFill, name: "javascript", value: "Intermédiaire" },
-    { icon: RiTailwindCssFill, name: "tailwind", value: "Intermédiaire" },
-    { icon: FaReact, name: "react", value: "Intermédiaire" },
-    { icon: RiNextjsFill, name: "nextjs", value: "Débutant" },
-    { icon: FaNodeJs, name: "nodejs", value: "Débutant" },
-    { icon: FaSass, name: "sass", value: "Intermédiaire" },
-    { icon: SiMongodb, name: "mongodb", value: "Intermédiaire" },
-    { icon: FaGithub, name: "github", value: "Intermédiaire" },
-    { icon: FaGitAlt, name: "git", value: "Intermédiaire" },
+    { icon: FaHtml5, name: "HTML", value: "Expert" },
+    { icon: IoLogoCss3, name: "CSS", value: "Intermédiaire" },
+    { icon: RiJavascriptFill, name: "Javascript", value: "Intermédiaire" },
+    { icon: RiTailwindCssFill, name: "Tailwind", value: "Intermédiaire" },
+    { icon: FaReact, name: "React", value: "Intermédiaire" },
+    { icon: RiNextjsFill, name: "Nextjs", value: "Débutant" },
+    { icon: FaNodeJs, name: "Nodejs", value: "Débutant" },
+    { icon: FaSass, name: "SASS", value: "Intermédiaire" },
+    { icon: SiMongodb, name: "Mongodb", value: "Intermédiaire" },
+    { icon: FaGithub, name: "Github", value: "Intermédiaire" },
+    { icon: FaGitAlt, name: "Git", value: "Intermédiaire" },
   ];
 
   return (
@@ -52,9 +52,15 @@ const Skills = () => {
                 <div className="flex justify-center items-center">
                   <div className="flex flex-col items-center gap-2 p-4 md:p-10 w-2/3 hover:bg-primary/10 rounded-lg transition-colors duration-500 ease-in-out">
                     <skill.icon className="size-12" />
-                    <Badge>{skill.name}</Badge>
+                    <Badge className={"text-white text-[10px] sm:text-xs"}>
+                      {skill.name}
+                    </Badge>
                     {windowSizeContext < 1024 ? (
-                      <Badge className={"bg-foreground text-background"}>
+                      <Badge
+                        className={
+                          "bg-foreground text-background text-[10px] sm:text-xs"
+                        }
+                      >
                         {skill.value}
                       </Badge>
                     ) : null}
