@@ -10,7 +10,7 @@ import { useFetch } from "../hooks/UseFetch";
 
 const Projects = () => {
   const { fetchedData, isLoading, error } = useFetch(
-    "http://185.157.247.55:3005/api/projects"
+    "https://portfolio-api-kappa-nine.vercel.app/api/projects"
   );
 
   const [heartStates, setHeartStates] = useState({});
@@ -33,7 +33,7 @@ const Projects = () => {
     if (fetchedData && Array.isArray(fetchedData)) {
       fetchedData.forEach(async (project) => {
         const response = await ky.get(
-          `http://185.157.247.55:3005/api/likes/${project._id}`
+          `https://portfolio-api-kappa-nine.vercel.app/api/likes/${project._id}`
         );
         const data = await response.json();
         setLikes((prevLikes) => ({
@@ -52,14 +52,20 @@ const Projects = () => {
 
     try {
       if (heartStates[id]) {
-        await ky.delete(`http://185.157.247.55:3005/api/likes/${id}`, {
-          json: { userIp, postId: id },
-        });
+        await ky.delete(
+          `https://portfolio-api-kappa-nine.vercel.app/api/likes/${id}`,
+          {
+            json: { userIp, postId: id },
+          }
+        );
         console.log("Deleted");
       } else {
-        await ky.post(`http://185.157.247.55:3005/api/likes/${id}`, {
-          json: { userIp, postId: id },
-        });
+        await ky.post(
+          `https://portfolio-api-kappa-nine.vercel.app/api/likes/${id}`,
+          {
+            json: { userIp, postId: id },
+          }
+        );
         confetti({
           particleCount: 200,
           spread: 60,
@@ -70,7 +76,7 @@ const Projects = () => {
 
       // Rafraîchir les likes
       const response = await ky.get(
-        `http://185.157.247.55:3005/api/likes/${id}`
+        `https://portfolio-api-kappa-nine.vercel.app/api/likes/${id}`
       );
       const data = await response.json();
       setLikes((prevLikes) => ({
