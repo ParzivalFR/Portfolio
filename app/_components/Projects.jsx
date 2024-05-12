@@ -4,7 +4,7 @@ import ky from "ky";
 import { useEffect, useState } from "react";
 import { FaHeart } from "react-icons/fa";
 import { v4 as uuidv4 } from "uuid";
-import { useFetch } from "../hooks/useFetch";
+import { useFetch } from "../hooks/UseFetch";
 
 const Projects = () => {
   const { fetchedData, isLoading, error } = useFetch(
