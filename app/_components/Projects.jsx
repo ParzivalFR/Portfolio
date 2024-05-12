@@ -1,5 +1,6 @@
 "use client";
 
+import { CircularProgress } from "@mui/material";
 import { confetti } from "@tsparticles/confetti";
 import ky from "ky";
 import { useEffect, useState } from "react";
@@ -84,7 +85,7 @@ const Projects = () => {
   return (
     <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 3xl:grid-cols-4 gap-10 p-4 w-4/5 m-auto">
       {isLoading ? (
-        <p>Chargement...</p>
+        <CircularProgress color="secondary" className="m-auto" />
       ) : error ? (
         <p>Une erreur est survenue, veuillez m'excuser.</p>
       ) : (
@@ -97,10 +98,10 @@ const Projects = () => {
               <img src={project.cover} alt={project.title} />
             </div>
             <div>
-              <h2 className="font-bold text-xl">{project.title}</h2>
-              <p>{project.shortDescription}</p>
+              <h2 className=" font-black text-xl">{project.title}</h2>
+              <p className="text-sm">{project.shortDescription}</p>
               {project.skills && (
-                <ul className="flex flex-wrap gap-2 w-[90%] mt-5">
+                <ul className="flex flex-wrap gap-2 w-[85%] mt-5">
                   {project.skills.map((skill) => (
                     <li
                       key={skill}
@@ -112,13 +113,17 @@ const Projects = () => {
                 </ul>
               )}
             </div>
-            <FaHeart
-              className={`absolute bottom-2 right-3 text-2xl cursor-pointer transition-all transform hover:scale-110 duration-500 ${
-                heartStates[project._id] ? "text-primary/80" : "text-primary/20"
-              }`}
-              onClick={(e) => toggleColor(project._id)}
-            />
-            <p>{likes[project._id] || 0} likes</p>
+            <div className="absolute bottom-1 right-1 w-20 flex items-center justify-end gap-2">
+              <p className="text-[12px]">{likes[project._id] || 0}</p>
+              <FaHeart
+                className={`text-2xl cursor-pointer transition-all transform hover:scale-110 duration-500 ${
+                  heartStates[project._id]
+                    ? "text-primary/80"
+                    : "text-primary/20"
+                }`}
+                onClick={(e) => toggleColor(project._id)}
+              />
+            </div>
           </article>
         ))
       )}
