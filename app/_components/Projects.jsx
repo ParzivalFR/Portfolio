@@ -1,5 +1,6 @@
 "use client";
 
+import { confetti } from "@tsparticles/confetti";
 import ky from "ky";
 import { useEffect, useState } from "react";
 import { FaHeart } from "react-icons/fa";
@@ -58,6 +59,11 @@ const Projects = () => {
         await ky.post(`http://185.157.247.55:3005/api/likes/${id}`, {
           json: { userIp, postId: id },
         });
+        confetti({
+          particleCount: 200,
+          spread: 60,
+          origin: { y: 0.6 },
+        });
         console.log("Created");
       }
 
@@ -108,9 +114,9 @@ const Projects = () => {
             </div>
             <FaHeart
               className={`absolute bottom-2 right-3 text-2xl cursor-pointer transition-all transform hover:scale-110 duration-500 ${
-                heartStates[project._id] ? "text-primary/20" : "text-primary/80"
+                heartStates[project._id] ? "text-primary/80" : "text-primary/20"
               }`}
-              onClick={() => toggleColor(project._id)}
+              onClick={(e) => toggleColor(project._id)}
             />
             <p>{likes[project._id] || 0} likes</p>
           </article>
