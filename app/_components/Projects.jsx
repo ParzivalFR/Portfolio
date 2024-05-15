@@ -3,16 +3,15 @@
 import { CircularProgress } from "@mui/material";
 import { confetti } from "@tsparticles/confetti";
 import ky from "ky";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { FaHeart } from "react-icons/fa";
 import { v4 as uuidv4 } from "uuid";
-import { useFetch } from "../hooks/UseFetch";
 
 const Projects = () => {
-  const { fetchedData, isLoading, error } = useFetch(
-    "https://portfolio-api-kappa-nine.vercel.app/api/projects"
-  );
-
+  const [fetchedData, setFetchedData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [heartStates, setHeartStates] = useState({});
   const [userIp, setUserIp] = useState("");
   const [likes, setLikes] = useState({});
@@ -29,20 +28,34 @@ const Projects = () => {
       }
     }
 
-    // Récupérer les likes pour chaque projet
-    if (fetchedData && Array.isArray(fetchedData)) {
-      fetchedData.forEach(async (project) => {
+    const fetchData = async () => {
+      try {
         const response = await ky.get(
-          `https://portfolio-api-kappa-nine.vercel.app/api/likes/${project._id}`
+          "http://185.157.247.55:3005/api/projects"
         );
         const data = await response.json();
-        setLikes((prevLikes) => ({
-          ...prevLikes,
-          [project._id]: data.length,
-        }));
-      });
-    }
-  }, [fetchedData]);
+        setFetchedData(data);
+        setIsLoading(false);
+
+        // Récupérer les likes pour chaque projet
+        data.forEach(async (project) => {
+          const response = await ky.get(
+            `http://185.157.247.55:3005/api/likes/${project._id}`
+          );
+          const data = await response.json();
+          setLikes((prevLikes) => ({
+            ...prevLikes,
+            [project._id]: data.length,
+          }));
+        });
+      } catch (error) {
+        setError(error);
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const toggleColor = async (id) => {
     setHeartStates({
@@ -52,20 +65,14 @@ const Projects = () => {
 
     try {
       if (heartStates[id]) {
-        await ky.delete(
-          `https://portfolio-api-kappa-nine.vercel.app/api/likes/${id}`,
-          {
-            json: { userIp, postId: id },
-          }
-        );
+        await ky.delete(`http://185.157.247.55:3005/api/likes/${id}`, {
+          json: { userIp, postId: id },
+        });
         console.log("Deleted");
       } else {
-        await ky.post(
-          `https://portfolio-api-kappa-nine.vercel.app/api/likes/${id}`,
-          {
-            json: { userIp, postId: id },
-          }
-        );
+        await ky.post(`http://185.157.247.55:3005/api/likes/${id}`, {
+          json: { userIp, postId: id },
+        });
         confetti({
           particleCount: 200,
           spread: 60,
@@ -76,7 +83,7 @@ const Projects = () => {
 
       // Rafraîchir les likes
       const response = await ky.get(
-        `https://portfolio-api-kappa-nine.vercel.app/api/likes/${id}`
+        `http://185.157.247.55:3005/api/likes/${id}`
       );
       const data = await response.json();
       setLikes((prevLikes) => ({
@@ -96,41 +103,40 @@ const Projects = () => {
         <p>Une erreur est survenue, veuillez m'excuser.</p>
       ) : (
         fetchedData.map((project) => (
-          <article
-            key={project._id}
-            className="relative flex flex-col justify-between gap-10 p-4 bg-foreground/5 rounded-lg transition-transform transform hover:scale-105 duration-700 shadow-pxl"
-          >
-            <div className="flex justify-center items-center object-cover">
-              <img src={project.cover} alt={project.title} />
-            </div>
-            <div>
-              <h2 className=" font-black text-xl">{project.title}</h2>
-              <p className="text-sm">{project.shortDescription}</p>
-              {project.skills && (
-                <ul className="flex flex-wrap gap-2 w-[85%] mt-5">
-                  {project.skills.map((skill) => (
-                    <li
-                      key={skill}
-                      className="bg-foreground/50 rounded px-1 text-background text-sm"
-                    >
-                      {skill}
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </div>
-            <div className="absolute bottom-1 right-1 w-20 flex items-center justify-end gap-2">
-              <p className="text-[12px]">{likes[project._id] || 0}</p>
-              <FaHeart
-                className={`text-2xl cursor-pointer transition-all transform hover:scale-110 duration-500 ${
-                  heartStates[project._id]
-                    ? "text-primary/80"
-                    : "text-primary/20"
-                }`}
-                onClick={(e) => toggleColor(project._id)}
-              />
-            </div>
-          </article>
+          <Link key={project._id} href={`/pages/projects/${project._id}`}>
+            <article className="relative flex flex-col h-full justify-between gap-10 p-4 bg-foreground/5 rounded-lg transition-transform transform hover:scale-105 duration-700 shadow-pxl">
+              <div className="flex justify-center items-center object-cover">
+                <img src={project.cover} alt={project.title} />
+              </div>
+              <div>
+                <h2 className=" font-black text-xl">{project.title}</h2>
+                <p className="text-sm">{project.shortDescription}</p>
+                {project.skills && (
+                  <ul className="flex flex-wrap gap-2 w-[85%] mt-5">
+                    {project.skills.map((skill) => (
+                      <li
+                        key={skill}
+                        className="bg-foreground/50 rounded px-1 text-background text-sm"
+                      >
+                        {skill}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+              <div className="absolute bottom-1 right-1 w-20 flex items-center justify-end gap-2">
+                <p className="text-[12px]">{likes[project._id] || 0}</p>
+                <FaHeart
+                  className={`text-2xl cursor-pointer transition-all transform hover:scale-110 duration-500 ${
+                    heartStates[project._id]
+                      ? "text-primary/80"
+                      : "text-primary/20"
+                  }`}
+                  onClick={(e) => toggleColor(project._id)}
+                />
+              </div>
+            </article>
+          </Link>
         ))
       )}
     </section>

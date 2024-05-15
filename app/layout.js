@@ -1,6 +1,9 @@
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Poppins } from "next/font/google";
+import CursorLight from "./_components/CursorLight";
+import Footer from "./_components/Footer";
+import Header from "./_components/Header";
 import "./globals.css";
 import { ThemeProvider } from "./hooks/ThemeContext";
 import { WindowSizeProvider } from "./hooks/WindowSizeContext";
@@ -19,11 +22,15 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="fr">
       <WindowSizeProvider>
         <ThemeProvider>
-          <body className={`${poppins.className} overflow-x-hidden min-h-dvh`}>
-            {children}
+          <body className={`${poppins.className} overflow-x-hidden`}>
+            <CursorLight>
+              <Header />
+              {children}
+              <Footer />
+            </CursorLight>
             <Analytics />
             <SpeedInsights />
           </body>
