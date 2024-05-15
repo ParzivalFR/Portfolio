@@ -33,7 +33,7 @@ export default function Project({ params }) {
     const fetchData = async () => {
       try {
         const response = await ky.get(
-          "https://185.157.247.55:3005/api/projects"
+          "http://185.157.247.55:3005/api/projects"
         );
         const data = await response.json();
         const filteredData = data.filter(
@@ -51,7 +51,7 @@ export default function Project({ params }) {
     const fetchLikes = async () => {
       try {
         const response = await ky.get(
-          `https://185.157.247.55:3005/api/likes/${params.id}`
+          `http://185.157.247.55:3005/api/likes/${params.id}`
         );
         const data = await response.json();
         const filteredLikes = data.filter((like) => like.postId === params.id);
@@ -109,10 +109,9 @@ export default function Project({ params }) {
                 <DotPulse size={4} color={"primary"} />
                 <Carousel className={"w-full rounded-2xl overflow-hidden"}>
                   <CarouselContent>
-                    {project.images.map((image) => (
-                      <CarouselItem>
+                    {project.images.map((image, index) => (
+                      <CarouselItem key={index}>
                         <img
-                          key={project._id}
                           src={image}
                           alt={project.title}
                           className="w-full object-cover"

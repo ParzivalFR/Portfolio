@@ -31,7 +31,7 @@ const Projects = () => {
     const fetchData = async () => {
       try {
         const response = await ky.get(
-          "https://185.157.247.55:3005/api/projects"
+          "http://185.157.247.55:3005/api/projects"
         );
         const data = await response.json();
         setFetchedData(data);
@@ -40,7 +40,7 @@ const Projects = () => {
         // Récupérer les likes pour chaque projet
         data.forEach(async (project) => {
           const response = await ky.get(
-            `https://185.157.247.55:3005/api/likes/${project._id}`
+            `http://185.157.247.55:3005/api/likes/${project._id}`
           );
           const data = await response.json();
           setLikes((prevLikes) => ({
@@ -65,12 +65,12 @@ const Projects = () => {
 
     try {
       if (heartStates[id]) {
-        await ky.delete(`https://185.157.247.55:3005/api/likes/${id}`, {
+        await ky.delete(`http://185.157.247.55:3005/api/likes/${id}`, {
           json: { userIp, postId: id },
         });
         console.log("Deleted");
       } else {
-        await ky.post(`https://185.157.247.55:3005/api/likes/${id}`, {
+        await ky.post(`http://185.157.247.55:3005/api/likes/${id}`, {
           json: { userIp, postId: id },
         });
         confetti({
@@ -83,7 +83,7 @@ const Projects = () => {
 
       // Rafraîchir les likes
       const response = await ky.get(
-        `https://185.157.247.55:3005/api/likes/${id}`
+        `http://185.157.247.55:3005/api/likes/${id}`
       );
       const data = await response.json();
       setLikes((prevLikes) => ({
