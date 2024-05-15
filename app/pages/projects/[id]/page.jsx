@@ -33,7 +33,7 @@ export default function Project({ params }) {
     const fetchData = async () => {
       try {
         const response = await ky.get(
-          "http://185.157.247.55:3005/api/projects"
+          "https://185.157.247.55:3005/api/projects"
         );
         const data = await response.json();
         const filteredData = data.filter(
@@ -51,7 +51,7 @@ export default function Project({ params }) {
     const fetchLikes = async () => {
       try {
         const response = await ky.get(
-          `http://185.157.247.55:3005/api/likes/${params.id}`
+          `https://185.157.247.55:3005/api/likes/${params.id}`
         );
         const data = await response.json();
         const filteredLikes = data.filter((like) => like.postId === params.id);
