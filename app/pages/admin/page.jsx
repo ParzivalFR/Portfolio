@@ -8,10 +8,16 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Divider } from "@nextui-org/divider";
 import ky from "ky";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const AddProjectForm = () => {
-  const userId = localStorage.getItem("userId");
+  // const userId = localStorage.getItem("userId");
+  const [userId, setUserId] = useState("");
+
+  useEffect(() => {
+    const localUserId = localStorage.getItem("userId");
+    setUserId(localUserId);
+  }, []);
 
   const [formData, setFormData] = useState({
     userId,
