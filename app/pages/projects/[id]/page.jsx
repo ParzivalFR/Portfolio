@@ -64,16 +64,17 @@ export default function Project({ params }) {
           `https://parzival.fun/api/likes/${params.id}`
         );
         const data = await response.json();
-        const filteredLikes = data.filter((like) => like.postId === params.id);
-        setLikes(filteredLikes);
-        console.log(data);
+        setLikes((prevLikes) => ({
+          ...prevLikes,
+          [params.id]: data,
+        }));
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
     };
 
-    fetchData();
     fetchLikes();
+    fetchData();
   }, []);
 
   const handleDelete = async (id) => {
@@ -99,9 +100,14 @@ export default function Project({ params }) {
             prevData.filter((project) => project._id !== id)
           );
         } catch (error) {
+          Swal.fire("Erreur", "Une erreur est survenue.", "error");
           console.error(error);
         }
-        Swal.fire("Deleted!", "Your file has been deleted.", "success");
+        Swal.fire(
+          "Projet supprimé !",
+          "Votre projet a bien été supprimé.",
+          "success"
+        );
         router.push("/");
       }
     });
@@ -146,19 +152,32 @@ export default function Project({ params }) {
                   className="relative flex gap-2 hover:text-primary transition-colors duration-500 ease-in-out"
                 >
                   <h1 className="text-4xl md:text-6xl">{project.title}</h1>
+
                   <FiExternalLink className="absolute top-1 -right-4 size-3 md:size-5 md:-right-6" />
                 </Link>
+                <Spacing size={20} />
+                <p>
+                  Ce projet a été liké{" "}
+                  <span className="bg-foreground/80 rounded px-1 sm:px-2 text-background text-sm hover:bg-foreground/50 transition-colors duration-500 ease-in-out">
+                    {likes[project._id] ? likes[project._id].length : 0}
+                  </span>{" "}
+                  fois.
+                </p>
                 <Spacing size={50} />
-                <div className="relative w-full lg:w-4/5 flex justify-center items-center shadow-pxl">
+                <div className="relative w-full lg:w-4/5 h-36 sm:h-48 md:h-56 lg:h-96 rounded-2xl shadow-pxl">
                   <DotPulse size={4} color={"primary"} />
-                  <Carousel className={"w-full rounded-2xl overflow-hidden"}>
+                  <Carousel
+                    className={
+                      "size-full rounded-2xl overflow-hidden object-cover "
+                    }
+                  >
                     <CarouselContent>
                       {project.images.map((image, index) => (
                         <CarouselItem key={index}>
                           <img
                             src={image}
                             alt={project.title}
-                            className="w-full object-cover"
+                            className="size-full rounded-2xl object-cover"
                           />
                         </CarouselItem>
                       ))}
@@ -167,7 +186,9 @@ export default function Project({ params }) {
                     <CarouselNext className="right-5 md:size-12 border-none bg-background/30 hover:bg-background/70 duration-500" />
                   </Carousel>
                 </div>
+
                 <Spacing size={50} />
+
                 {token && (
                   <div className="w-full flex items-center justify-center gap-12 md:gap-24">
                     <button

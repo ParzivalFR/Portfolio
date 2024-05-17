@@ -38,13 +38,21 @@ const Header = () => {
               Connexion
             </Link>
           ) : (
-            <Link
-              href="/pages/login"
-              onClick={handleToken}
-              className="text-xs sm:text-sm md:text-base hover:text-primary/90 transition-colors duration-700 ease-in-out"
-            >
-              Déconnexion
-            </Link>
+            <>
+              <Link
+                href={`/pages/admin`}
+                className="text-xs sm:text-sm md:text-base hover:text-primary/90 transition-colors duration-700 ease-in-out"
+              >
+                Panel
+              </Link>
+              <Link
+                href="/pages/login"
+                onClick={handleToken}
+                className="text-xs sm:text-sm md:text-base hover:text-primary/90 transition-colors duration-700 ease-in-out"
+              >
+                Déconnexion
+              </Link>
+            </>
           )}
           <MenuBtn />
           {WindowSizeContext > 768 ? (

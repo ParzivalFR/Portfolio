@@ -6,6 +6,7 @@ import ky from "ky";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { FaHeart } from "react-icons/fa";
+import { HiHashtag } from "react-icons/hi";
 import { v4 as uuidv4 } from "uuid";
 
 const Projects = () => {
@@ -94,7 +95,7 @@ const Projects = () => {
   const handleDelete = async (id) => {
     try {
       await ky.delete(`https://parzival.fun/api/projects/${id}`, {
-        json: { userId },
+        json: { userIp },
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -115,40 +116,47 @@ const Projects = () => {
         <p>Une erreur est survenue, veuillez m'excuser.</p>
       ) : (
         fetchedData.map((project) => (
-          <Link key={project._id} href={`/pages/projects/${project._id}`}>
-            <article className="relative flex flex-col h-full justify-between gap-10 p-4 bg-foreground/5 rounded-lg transition-transform transform hover:scale-105 duration-700 shadow-pxl">
-              <div className="shadow-pxl w-full h-36 p-2 m-auto overflow-hidden rounded-xl object-cover flex justify-center items-center">
+          <article
+            key={project._id}
+            className="relative flex flex-col justify-between h-full gap-5 p-4 bg-foreground/5 rounded-lg transition-transform transform hover:scale-105 duration-700 shadow-pxl"
+          >
+            <Link href={`/pages/projects/${project._id}`}>
+              <div className="shadow-pxl w-full h-36 m-auto overflow-hidden rounded-xl object-cover flex justify-center items-center">
                 <img src={project.cover} alt={project.title} />
               </div>
-              <div>
-                <h2 className=" font-black text-xl">{project.title}</h2>
-                <p className="text-sm">{project.shortDescription}</p>
-                {project.skills && (
-                  <ul className="flex flex-wrap gap-2 w-[85%] mt-5">
-                    {project.skills.map((skill) => (
-                      <li
-                        key={skill}
-                        className="bg-foreground/50 rounded px-1 text-background text-sm"
-                      >
-                        {skill}
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </div>
-              <div className="absolute bottom-1 right-1 w-20 flex items-center justify-end gap-2">
-                <p className="text-[12px]">{likes[project._id] || 0}</p>
-                <FaHeart
-                  className={`text-2xl cursor-pointer transition-all transform hover:scale-110 duration-500 ${
-                    heartStates[project._id]
-                      ? "text-primary/80"
-                      : "text-primary/20"
-                  }`}
-                  onClick={(e) => toggleColor(project._id)}
-                />
-              </div>
-            </article>
-          </Link>
+            </Link>
+            <hr className="w-3/5 m-auto center rounded-lg border border-primary/80 " />
+            <div>
+              <h2 className="flex items-center gap-1 lg:gap-2 font-black text-xl md:text-2xl">
+                <HiHashtag className="text-primary" />
+                {project.title}
+              </h2>
+              <q className="text-xs md:text-sm"> {project.shortDescription} </q>
+              {project.skills && (
+                <ul className="flex flex-wrap gap-2 w-[85%] mt-5">
+                  {project.skills.map((skill) => (
+                    <li
+                      key={skill}
+                      className="bg-foreground/80 rounded px-1 sm:px-2 text-background text-sm"
+                    >
+                      {skill}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+            <div className="absolute bottom-1 right-1 w-20 flex items-center justify-end gap-2">
+              <p className="text-[12px]">{likes[project._id] || 0}</p>
+              <FaHeart
+                className={`text-2xl cursor-pointer transition-all transform hover:scale-110 duration-500 ${
+                  heartStates[project._id]
+                    ? "text-primary/80"
+                    : "text-primary/20"
+                }`}
+                onClick={() => toggleColor(project._id)}
+              />
+            </div>
+          </article>
         ))
       )}
     </section>
