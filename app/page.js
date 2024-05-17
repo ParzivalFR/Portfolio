@@ -2,6 +2,7 @@ import { Divider } from "@nextui-org/divider";
 import AlertHome from "./_components/AlertHome";
 import ContactMe from "./_components/ContactMe";
 import { EasterEggAlert } from "./_components/EasterEggAlert";
+import Header from "./_components/Header";
 import InfiniFloat from "./_components/InfiniFloat";
 import Projects from "./_components/Projects";
 import ScrollToTopButton from "./_components/ScrollToTop";
@@ -12,6 +13,7 @@ import Spacing from "./_components/Spacing";
 export default function Home() {
   return (
     <>
+      <Header />
       <main className="min-h-svh">
         <Spacing size={40} />
         <EasterEggAlert />

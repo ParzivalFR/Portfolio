@@ -95,6 +95,22 @@ const Projects = () => {
     }
   };
 
+  const handleDelete = async (id) => {
+    try {
+      await ky.delete(`http://185.157.247.55:3005/api/projects/${id}`, {
+        json: { userId },
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setFetchedData((prevData) =>
+        prevData.filter((project) => project._id !== id)
+      );
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 3xl:grid-cols-4 gap-10 p-4 w-4/5 m-auto">
       {isLoading ? (
@@ -105,7 +121,7 @@ const Projects = () => {
         fetchedData.map((project) => (
           <Link key={project._id} href={`/pages/projects/${project._id}`}>
             <article className="relative flex flex-col h-full justify-between gap-10 p-4 bg-foreground/5 rounded-lg transition-transform transform hover:scale-105 duration-700 shadow-pxl">
-              <div className="flex justify-center items-center object-cover">
+              <div className="shadow-pxl w-full h-36 p-2 m-auto overflow-hidden rounded-xl object-cover flex justify-center items-center">
                 <img src={project.cover} alt={project.title} />
               </div>
               <div>

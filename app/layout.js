@@ -27,7 +27,6 @@ export default function RootLayout({ children }) {
         <ThemeProvider>
           <body className={`${poppins.className} overflow-x-hidden`}>
             <CursorLight>
-              <Header />
               {children}
               <Footer />
             </CursorLight>

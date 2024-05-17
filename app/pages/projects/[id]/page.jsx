@@ -13,6 +13,7 @@ import { FiExternalLink } from "react-icons/fi";
 import { VscListSelection } from "react-icons/vsc";
 
 import DotPulse from "@/app/_components/DotPulse";
+import Header from "@/app/_components/Header";
 import {
   Carousel,
   CarouselContent,
@@ -21,15 +22,26 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import Swal from "sweetalert2";
 
 export default function Project({ params }) {
+  const router = useRouter();
+
   const [fetchData, setFetchedData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  const [token, setToken] = useState("");
+  const [userId, setUserId] = useState("");
   const [likes, setLikes] = useState({});
 
   useEffect(() => {
+    const localToken = localStorage.getItem("token");
+    const localUserId = localStorage.getItem("userId");
+
+    setToken(localToken);
+    setUserId(localUserId);
+
     const fetchData = async () => {
       try {
         const response = await ky.get(
@@ -66,111 +78,168 @@ export default function Project({ params }) {
     fetchLikes();
   }, []);
 
-  const style = {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: 400,
-    bgcolor: "background.paper",
-    border: "2px solid #000",
-    boxShadow: 24,
-    p: 4,
+  const handleDelete = async (id) => {
+    Swal.fire({
+      title: "Es-tu sûr ?",
+      text: "Une fois supprimé, tu ne pourras pas revenir en arrière !",
+      icon: "warning",
+      showCancelButton: true,
+      cancelButtonText: "Annuler",
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Oui, supprimer !",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        try {
+          ky.delete(`http://185.157.247.55:3005/api/projects/${id}`, {
+            json: { userId },
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          setFetchedData((prevData) =>
+            prevData.filter((project) => project._id !== id)
+          );
+        } catch (error) {
+          console.error(error);
+        }
+        Swal.fire("Deleted!", "Your file has been deleted.", "success");
+        router.push("/");
+      }
+    });
   };
 
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleModify = async (id) => {
+    Swal.fire({
+      title: "Es-tu sûr ?",
+      text: "Tu veux vraiment modifier ce projet ?",
+      icon: "question",
+      showCancelButton: true,
+      cancelButtonText: "Annuler",
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Oui, c'est parti !",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        router.push(`/pages/projects/${id}/edit`);
+      }
+    });
+  };
 
   return (
-    <main className=" min-h-svh">
-      <Spacing size={40} />
-      {isLoading ? (
-        <p>Loading...</p>
-      ) : error ? (
-        <p>Error: {error.message}</p>
-      ) : (
-        <section className="w-4/5 m-auto">
-          {fetchData.map((project) => (
-            <div
-              key={project._id}
-              className="flex flex-col justify-center items-center w-full"
-            >
-              <Link
-                href={project.url}
-                target="_blank"
-                className="relative flex gap-2 hover:text-primary transition-colors duration-500 ease-in-out"
+    <>
+      <Header />
+      <main className=" min-h-svh">
+        <Spacing size={40} />
+        {isLoading ? (
+          <p>Loading...</p>
+        ) : error ? (
+          <p>Error: {error.message}</p>
+        ) : (
+          <section className="w-4/5 m-auto">
+            {fetchData.map((project) => (
+              <div
+                key={project._id}
+                className="flex flex-col justify-center items-center w-full"
               >
-                <h1 className="text-4xl md:text-6xl">{project.title}</h1>
-                <FiExternalLink className="absolute top-1 -right-4 size-3 md:size-5 md:-right-6" />
-              </Link>
-              <Spacing size={50} />
-              <div className="relative w-full lg:w-4/5 flex justify-center items-center shadow-pxl">
-                <DotPulse size={4} color={"primary"} />
-                <Carousel className={"w-full rounded-2xl overflow-hidden"}>
-                  <CarouselContent>
-                    {project.images.map((image, index) => (
-                      <CarouselItem key={index}>
-                        <img
-                          src={image}
-                          alt={project.title}
-                          className="w-full object-cover"
-                          onClick={handleOpen}
-                        />
-                      </CarouselItem>
-                    ))}
-                  </CarouselContent>
-                  <CarouselPrevious className="left-5 md:size-12 border-none bg-background/30 hover:bg-background/70 duration-500" />
-                  <CarouselNext className="right-5 md:size-12 border-none bg-background/30 hover:bg-background/70 duration-500" />
-                </Carousel>
+                <Link
+                  href={project.url}
+                  target="_blank"
+                  className="relative flex gap-2 hover:text-primary transition-colors duration-500 ease-in-out"
+                >
+                  <h1 className="text-4xl md:text-6xl">{project.title}</h1>
+                  <FiExternalLink className="absolute top-1 -right-4 size-3 md:size-5 md:-right-6" />
+                </Link>
+                <Spacing size={50} />
+                <div className="relative w-full lg:w-4/5 flex justify-center items-center shadow-pxl">
+                  <DotPulse size={4} color={"primary"} />
+                  <Carousel className={"w-full rounded-2xl overflow-hidden"}>
+                    <CarouselContent>
+                      {project.images.map((image, index) => (
+                        <CarouselItem key={index}>
+                          <img
+                            src={image}
+                            alt={project.title}
+                            className="w-full object-cover"
+                          />
+                        </CarouselItem>
+                      ))}
+                    </CarouselContent>
+                    <CarouselPrevious className="left-5 md:size-12 border-none bg-background/30 hover:bg-background/70 duration-500" />
+                    <CarouselNext className="right-5 md:size-12 border-none bg-background/30 hover:bg-background/70 duration-500" />
+                  </Carousel>
+                </div>
+                <Spacing size={50} />
+                {token && (
+                  <div className="w-full flex items-center justify-center gap-12 md:gap-24">
+                    <button
+                      onClick={() => handleDelete(project._id)}
+                      className=" w-32 bg-primary/60 hover:bg-primary/30 transition-colors duration-500 ease-in-out text-white px-4 py-2 rounded-lg shadow-pxl"
+                    >
+                      Supprimer
+                    </button>
+                    <button
+                      onClick={() => handleModify(project._id)}
+                      className=" w-32 bg-primary/60 hover:bg-primary/30 transition-colors duration-500 ease-in-out text-white px-4 py-2 rounded-lg shadow-pxl"
+                    >
+                      Modifer
+                    </button>
+                  </div>
+                )}
+                <Spacing size={50} />
+                <div className="w-full flex flex-col gap-10 md:flex-row">
+                  <Accordion type="single" className="w-full" collapsible>
+                    <AccordionItem
+                      value="item-1"
+                      className="w-full border-none bg-background/30 p-1 md:p-2 rounded-lg shadow-pxl"
+                    >
+                      <AccordionTrigger>
+                        <span className="flex items-center gap-2">
+                          <VscListSelection
+                            size={20}
+                            className="text-primary"
+                          />
+                          Description
+                        </span>
+                      </AccordionTrigger>
+                      <AccordionContent>
+                        <p>{project.description}</p>
+                      </AccordionContent>
+                    </AccordionItem>
+                  </Accordion>
+                  <Accordion type="single" className="w-full" collapsible>
+                    <AccordionItem
+                      value="item-1"
+                      className="w-full border-none bg-background/30 p-1 md:p-2 rounded-lg shadow-pxl"
+                    >
+                      <AccordionTrigger>
+                        <span className="flex items-center gap-2">
+                          <VscListSelection
+                            size={20}
+                            className="text-primary"
+                          />
+                          Skills
+                        </span>
+                      </AccordionTrigger>
+                      <AccordionContent>
+                        <ul>
+                          {project.skills.map((skill) => (
+                            <li key={skill} className="flex items-center gap-1">
+                              <CiBookmarkCheck className="text-primary" />
+                              {skill}
+                            </li>
+                          ))}
+                        </ul>
+                      </AccordionContent>
+                    </AccordionItem>
+                  </Accordion>
+                </div>
+                <Spacing size={50} />
               </div>
-              <Spacing size={70} />
-              <div className="w-full flex flex-col gap-10 md:flex-row">
-                <Accordion type="single" className="w-full" collapsible>
-                  <AccordionItem
-                    value="item-1"
-                    className="w-full border-none bg-background/30 p-1 md:p-2 rounded-lg shadow-pxl"
-                  >
-                    <AccordionTrigger>
-                      <span className="flex items-center gap-2">
-                        <VscListSelection size={20} className="text-primary" />
-                        Description
-                      </span>
-                    </AccordionTrigger>
-                    <AccordionContent>
-                      <p>{project.description}</p>
-                    </AccordionContent>
-                  </AccordionItem>
-                </Accordion>
-                <Accordion type="single" className="w-full" collapsible>
-                  <AccordionItem
-                    value="item-1"
-                    className="w-full border-none bg-background/30 p-1 md:p-2 rounded-lg shadow-pxl"
-                  >
-                    <AccordionTrigger>
-                      <span className="flex items-center gap-2">
-                        <VscListSelection size={20} className="text-primary" />
-                        Skills
-                      </span>
-                    </AccordionTrigger>
-                    <AccordionContent>
-                      <ul>
-                        {project.skills.map((skill) => (
-                          <li key={skill} className="flex items-center gap-1">
-                            <CiBookmarkCheck className="text-primary" />
-                            {skill}
-                          </li>
-                        ))}
-                      </ul>
-                    </AccordionContent>
-                  </AccordionItem>
-                </Accordion>
-              </div>
-              <Spacing size={50} />
-            </div>
-          ))}
-        </section>
-      )}
-    </main>
+            ))}
+          </section>
+        )}
+      </main>
+    </>
   );
 }
