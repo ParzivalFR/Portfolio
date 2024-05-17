@@ -74,7 +74,7 @@ const AddProjectForm = () => {
 
       // Utilisation de ky pour envoyer la requête POST
       const response = await ky
-        .post("http://185.157.247.55:3005/api/projects", {
+        .post("https://parzival.fun/api/projects", {
           headers: {
             Authorization: `Bearer ${token}`,
           },

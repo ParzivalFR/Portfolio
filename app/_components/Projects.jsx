@@ -30,9 +30,7 @@ const Projects = () => {
 
     const fetchData = async () => {
       try {
-        const response = await ky.get(
-          "http://185.157.247.55:3005/api/projects"
-        );
+        const response = await ky.get("https://parzival.fun/api/projects");
         const data = await response.json();
         setFetchedData(data);
         setIsLoading(false);
@@ -40,7 +38,7 @@ const Projects = () => {
         // Récupérer les likes pour chaque projet
         data.forEach(async (project) => {
           const response = await ky.get(
-            `http://185.157.247.55:3005/api/likes/${project._id}`
+            `https://parzival.fun/api/likes/${project._id}`
           );
           const data = await response.json();
           setLikes((prevLikes) => ({
@@ -65,12 +63,12 @@ const Projects = () => {
 
     try {
       if (heartStates[id]) {
-        await ky.delete(`http://185.157.247.55:3005/api/likes/${id}`, {
+        await ky.delete(`https://parzival.fun/api/likes/${id}`, {
           json: { userIp, postId: id },
         });
         console.log("Deleted");
       } else {
-        await ky.post(`http://185.157.247.55:3005/api/likes/${id}`, {
+        await ky.post(`https://parzival.fun/api/likes/${id}`, {
           json: { userIp, postId: id },
         });
         confetti({
@@ -82,9 +80,7 @@ const Projects = () => {
       }
 
       // Rafraîchir les likes
-      const response = await ky.get(
-        `http://185.157.247.55:3005/api/likes/${id}`
-      );
+      const response = await ky.get(`https://parzival.fun/api/likes/${id}`);
       const data = await response.json();
       setLikes((prevLikes) => ({
         ...prevLikes,
@@ -97,7 +93,7 @@ const Projects = () => {
 
   const handleDelete = async (id) => {
     try {
-      await ky.delete(`http://185.157.247.55:3005/api/projects/${id}`, {
+      await ky.delete(`https://parzival.fun/api/projects/${id}`, {
         json: { userId },
         headers: {
           Authorization: `Bearer ${token}`,

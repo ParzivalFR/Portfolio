@@ -3,7 +3,6 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Poppins } from "next/font/google";
 import CursorLight from "./_components/CursorLight";
 import Footer from "./_components/Footer";
-import Header from "./_components/Header";
 import "./globals.css";
 import { ThemeProvider } from "./hooks/ThemeContext";
 import { WindowSizeProvider } from "./hooks/WindowSizeContext";
@@ -25,7 +24,7 @@ export default function RootLayout({ children }) {
     <html lang="fr">
       <WindowSizeProvider>
         <ThemeProvider>
-          <body className={`${poppins.className} overflow-x-hidden`}>
+          <body className={`${poppins.className}`}>
             <CursorLight>
               {children}
               <Footer />

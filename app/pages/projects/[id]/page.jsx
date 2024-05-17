@@ -44,9 +44,7 @@ export default function Project({ params }) {
 
     const fetchData = async () => {
       try {
-        const response = await ky.get(
-          "http://185.157.247.55:3005/api/projects"
-        );
+        const response = await ky.get("https://parzival.fun/api/projects");
         const data = await response.json();
         const filteredData = data.filter(
           (project) => project._id === params.id
@@ -63,7 +61,7 @@ export default function Project({ params }) {
     const fetchLikes = async () => {
       try {
         const response = await ky.get(
-          `http://185.157.247.55:3005/api/likes/${params.id}`
+          `https://parzival.fun/api/likes/${params.id}`
         );
         const data = await response.json();
         const filteredLikes = data.filter((like) => like.postId === params.id);
@@ -91,7 +89,7 @@ export default function Project({ params }) {
     }).then((result) => {
       if (result.isConfirmed) {
         try {
-          ky.delete(`http://185.157.247.55:3005/api/projects/${id}`, {
+          ky.delete(`https://parzival.fun/api/projects/${id}`, {
             json: { userId },
             headers: {
               Authorization: `Bearer ${token}`,
