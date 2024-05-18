@@ -1,4 +1,6 @@
 "use client";
+import DotPulse from "@/app/_components/DotPulse";
+import Header from "@/app/_components/Header";
 import Spacing from "@/app/_components/Spacing";
 import {
   Accordion,
@@ -6,14 +8,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import ky from "ky";
-import { useEffect, useState } from "react";
-import { CiBookmarkCheck } from "react-icons/ci";
-import { FiExternalLink } from "react-icons/fi";
-import { VscListSelection } from "react-icons/vsc";
-
-import DotPulse from "@/app/_components/DotPulse";
-import Header from "@/app/_components/Header";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import {
   Carousel,
   CarouselContent,
@@ -21,8 +16,15 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { CircularProgress } from "@mui/material";
+import ky from "ky";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { CiBookmarkCheck } from "react-icons/ci";
+import { FiExternalLink } from "react-icons/fi";
+import { RiErrorWarningFill } from "react-icons/ri";
+import { VscListSelection } from "react-icons/vsc";
 import Swal from "sweetalert2";
 
 export default function Project({ params }) {
@@ -44,7 +46,7 @@ export default function Project({ params }) {
 
     const fetchData = async () => {
       try {
-        const response = await ky.get("https://parzival.fun/api/projects");
+        const response = await ky.get("http://localhost:3005/api/projects");
         const data = await response.json();
         const filteredData = data.filter(
           (project) => project._id === params.id
@@ -90,7 +92,7 @@ export default function Project({ params }) {
     }).then((result) => {
       if (result.isConfirmed) {
         try {
-          ky.delete(`https://parzival.fun/api/projects/${id}`, {
+          ky.delete(`http://localhost:3005/api/projects/${id}`, {
             json: { userId },
             headers: {
               Authorization: `Bearer ${token}`,
@@ -136,9 +138,24 @@ export default function Project({ params }) {
       <main className=" min-h-svh">
         <Spacing size={40} />
         {isLoading ? (
-          <p>Loading...</p>
+          <div className="size-full m-auto flex justify-center items-center">
+            <CircularProgress color="secondary" className="m-auto" size={100} />
+          </div>
         ) : error ? (
-          <p>Error: {error.message}</p>
+          <div className="size-full flex justify-center items-center">
+            <Alert
+              severity="error"
+              className="w-4/5 m-auto border-foreground/50 bg-red-600/40 shadow-pxl"
+            >
+              <RiErrorWarningFill className="text-2xl md:text-xl" />
+              <AlertTitle className="font-bold text-xs underline md:text-base">
+                Erreur
+              </AlertTitle>
+              <AlertDescription className="text-[10px] leading-tight md:text-sm">
+                {error.message}
+              </AlertDescription>
+            </Alert>
+          </div>
         ) : (
           <section className="w-4/5 m-auto">
             {fetchData.map((project) => (
@@ -168,7 +185,7 @@ export default function Project({ params }) {
                   <DotPulse size={4} color={"primary"} />
                   <Carousel
                     className={
-                      "size-full rounded-2xl overflow-hidden object-cover "
+                      "size-full rounded-2xl overflow-hidden object-contain "
                     }
                   >
                     <CarouselContent>

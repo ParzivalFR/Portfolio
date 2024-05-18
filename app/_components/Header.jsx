@@ -8,6 +8,7 @@ import { useTheme } from "../hooks/ThemeContext";
 import { useWindowSize } from "../hooks/WindowSizeContext";
 import { MenuBtn } from "./MenuBtn";
 import UserAvatar from "./UserAvatar";
+import { CurtainMenuPage } from "./CurtainMenu";
 
 const Header = () => {
   const { toggleTheme, checked } = useTheme();
@@ -61,6 +62,7 @@ const Header = () => {
             </Toggle>
           ) : null}
         </div>
+        <CurtainMenuPage />
       </div>
     </header>
   );

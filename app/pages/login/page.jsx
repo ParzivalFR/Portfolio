@@ -19,7 +19,7 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    ky.post("https://parzival.fun/api/auth/login", {
+    ky.post("http://localhost:3005/api/auth/login", {
       json: { email, password },
     })
       .then((res) => res.json())

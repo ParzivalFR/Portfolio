@@ -8,15 +8,21 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Divider } from "@nextui-org/divider";
 import ky from "ky";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import Swal from "sweetalert2";
 
 const AddProjectForm = () => {
-  // const userId = localStorage.getItem("userId");
+  const router = useRouter();
   const [userId, setUserId] = useState("");
 
   useEffect(() => {
     const localUserId = localStorage.getItem("userId");
     setUserId(localUserId);
+    setFormData((prevState) => ({
+      ...prevState,
+      userId: localUserId,
+    }));
   }, []);
 
   const [formData, setFormData] = useState({
@@ -41,7 +47,7 @@ const AddProjectForm = () => {
       }));
     } else if (name === "skills") {
       // Séparer les compétences par des virgules et les stocker comme un tableau
-      const skillsArray = value.split(",").map((skill) => skill.trim());
+      const skillsArray = value.split(", ").map((skill) => skill.trim());
       setFormData((prevState) => ({
         ...prevState,
         [name]: skillsArray,
@@ -79,29 +85,45 @@ const AddProjectForm = () => {
       }
 
       // Utilisation de ky pour envoyer la requête POST
-      const response = await ky
-        .post("https://parzival.fun/api/projects", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-          body: formDataToSend,
+      ky.post("http://localhost:3005/api/projects", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        body: formDataToSend,
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log("Projet ajouté avec succès:", data);
+          setFormData({
+            title: "",
+            categories: "",
+            cover: null,
+            images: [],
+            shortDescription: "",
+            description: "",
+            year: "",
+            skills: "",
+            url: "",
+          });
+          Swal.fire({
+            icon: "success",
+            title: "Projet ajouté !",
+            text: `Le projet ${data.title} a bien été ajouté avec succès.`,
+            showConfirmButton: false,
+            timer: 2000,
+          });
+          router.push("/");
         })
-        .json();
-
-      console.log("Projet ajouté avec succès:", response);
-
-      // Réinitialiser le formulaire après soumission réussie
-      setFormData({
-        title: "",
-        categories: "",
-        cover: null,
-        images: [],
-        shortDescription: "",
-        description: "",
-        year: "",
-        skills: "",
-        url: "",
-      });
+        .catch((error) => {
+          console.error("Erreur lors de l'ajout du projet:", error);
+          Swal.fire({
+            icon: "error",
+            title: "Erreur",
+            text: ` Une erreur est survenue lors de l'ajout du projet: ${error.message}`,
+            showConfirmButton: false,
+            timer: 2000,
+          });
+        });
     } catch (error) {
       console.error("Erreur lors de l'ajout du projet:", error);
     }
@@ -143,7 +165,7 @@ const AddProjectForm = () => {
               name="categories"
               id="categories"
               onChange={handleChange}
-              className="bg-secondary/50 text-sm text-current rounded-lg p-2 border border-secondary focus:outline-none focus:ring-2 focus:ring-primary/90 focus:ring-opacity-50"
+              className="bg-secondary/50 text-sm text-current rounded-lg p-2 border border-foreground/10 focus:outline-none focus:ring-2 focus:ring-primary/90 focus:ring-opacity-50"
             >
               <option value="" disabled selected>
                 Sélectionner la catégorie...
