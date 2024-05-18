@@ -176,7 +176,7 @@ const AddProjectForm = () => {
             </select>
           </div>
         </div>
-        <div className="grid grid-cols-2 gap-5 text-center lg:grid lg:grid-cols-2 lg:gap-10">
+        <div className="grid grid-cols-1 gap-5 text-center lg:grid lg:grid-cols-2 lg:gap-10">
           <div className="flex flex-col gap-2">
             <Label htmlFor="cover" className=" truncate">
               Image de couverture
