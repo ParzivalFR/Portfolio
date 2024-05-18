@@ -44,7 +44,7 @@ const Skills = () => {
 
   return (
     <TooltipProvider>
-      <section className="w-full p-2 sm:p-0 sm:w-4/5 m-auto">
+      <section id="skills" className="w-full p-2 sm:p-0 sm:w-4/5 m-auto">
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-y-6 p-5 m-auto bg-foreground/5 rounded-lg sm:p-10 shadow-pxl">
           {skills.map((skill, index) => (
             <Tooltip key={index}>

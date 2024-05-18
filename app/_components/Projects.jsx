@@ -95,7 +95,7 @@ const Projects = () => {
   };
 
   return (
-    <section>
+    <section id="projects">
       {isLoading ? (
         <div className="size-full m-auto flex justify-center items-center">
           <CircularProgress color="secondary" className="m-auto" size={100} />
