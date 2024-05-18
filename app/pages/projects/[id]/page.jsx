@@ -181,11 +181,11 @@ export default function Project({ params }) {
                   fois.
                 </p>
                 <Spacing size={50} />
-                <div className="relative w-full lg:w-4/5 h-36 sm:h-48 md:h-56 lg:h-96 rounded-2xl shadow-pxl">
+                <div className="relative w-full h-36 lg:w-4/5 sm:h-48 md:h-56 lg:h-96 rounded-2xl shadow-pxl">
                   <DotPulse size={4} color={"primary"} />
                   <Carousel
                     className={
-                      "size-full rounded-2xl overflow-hidden object-contain "
+                      "size-full rounded-2xl overflow-hidden object-cover"
                     }
                   >
                     <CarouselContent>

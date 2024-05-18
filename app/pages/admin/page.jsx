@@ -47,7 +47,7 @@ const AddProjectForm = () => {
       }));
     } else if (name === "skills") {
       // Séparer les compétences par des virgules et les stocker comme un tableau
-      const skillsArray = value.split(", ").map((skill) => skill.trim());
+      const skillsArray = value.split(",").map((skill) => skill.trim());
       setFormData((prevState) => ({
         ...prevState,
         [name]: skillsArray,
