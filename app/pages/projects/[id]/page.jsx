@@ -46,7 +46,7 @@ export default function Project({ params }) {
 
     const fetchData = async () => {
       try {
-        const response = await ky.get("http://localhost:3005/api/projects");
+        const response = await ky.get("https://parzival.fun/api/projects");
         const data = await response.json();
         const filteredData = data.filter(
           (project) => project._id === params.id
@@ -92,7 +92,7 @@ export default function Project({ params }) {
     }).then((result) => {
       if (result.isConfirmed) {
         try {
-          ky.delete(`http://localhost:3005/api/projects/${id}`, {
+          ky.delete(`https://parzival.fun/api/projects/${id}`, {
             json: { userId },
             headers: {
               Authorization: `Bearer ${token}`,
