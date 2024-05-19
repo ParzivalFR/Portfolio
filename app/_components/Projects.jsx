@@ -23,7 +23,7 @@ const Projects = () => {
     if (typeof window !== "undefined") {
       const localUserIp = localStorage.getItem("userIp");
       if (!localUserIp) {
-        const newUserIp = uuidv4(); // Génère un identifiant unique lors du montage du composant
+        const newUserIp = uuidv4();
         setUserIp(newUserIp);
         localStorage.setItem("userIp", newUserIp);
       } else {
@@ -38,17 +38,21 @@ const Projects = () => {
         setFetchedData(data);
         setIsLoading(false);
 
-        // Récupérer les likes pour chaque projet
-        data.forEach(async (project) => {
-          const response = await ky.get(
-            `https://parzival.fun/api/likes/${project._id}`
-          );
-          const data = await response.json();
-          setLikes((prevLikes) => ({
-            ...prevLikes,
-            [project._id]: data.length,
-          }));
-        });
+        const likesData = await Promise.all(
+          data.map(async (project) => {
+            const response = await ky.get(
+              `https://parzival.fun/api/likes/${project._id}`
+            );
+            const likes = await response.json();
+            return { id: project._id, count: likes.length };
+          })
+        );
+
+        const likesObj = likesData.reduce(
+          (acc, { id, count }) => ({ ...acc, [id]: count }),
+          {}
+        );
+        setLikes(likesObj);
       } catch (error) {
         setError(error);
         setIsLoading(false);
@@ -59,10 +63,10 @@ const Projects = () => {
   }, []);
 
   const toggleColor = async (id) => {
-    setHeartStates({
-      ...heartStates,
-      [id]: !heartStates[id],
-    });
+    setHeartStates((prevHeartStates) => ({
+      ...prevHeartStates,
+      [id]: !prevHeartStates[id],
+    }));
 
     try {
       if (heartStates[id]) {
@@ -82,13 +86,9 @@ const Projects = () => {
         console.log("Liked !");
       }
 
-      // Rafraîchir les likes
       const response = await ky.get(`https://parzival.fun/api/likes/${id}`);
       const data = await response.json();
-      setLikes((prevLikes) => ({
-        ...prevLikes,
-        [id]: data.length,
-      }));
+      setLikes((prevLikes) => ({ ...prevLikes, [id]: data.length }));
     } catch (error) {
       console.error(error);
     }
@@ -108,7 +108,7 @@ const Projects = () => {
           >
             <RiErrorWarningFill className="text-2xl md:text-xl" />
             <AlertTitle className="font-bold text-xs underline md:text-base">
-              Erreur
+              Error
             </AlertTitle>
             <AlertDescription className="text-[10px] leading-tight md:text-sm">
               {error.message}
@@ -123,8 +123,12 @@ const Projects = () => {
               className="relative flex flex-col justify-between h-full gap-5 p-4 bg-foreground/5 rounded-lg transition-transform transform hover:scale-105 duration-700 shadow-pxl"
             >
               <Link href={`/pages/projects/${project._id}`}>
-                <div className="shadow-pxl w-full h-36 m-auto overflow-hidden rounded-xl object-cover flex justify-center items-center">
-                  <img src={project.cover} alt={project.title} />
+                <div className="shadow-pxl w-full h-36 m-auto  rounded-xl flex justify-center items-center object-cover">
+                  <img
+                    src={project.cover}
+                    alt={project.title}
+                    className="object-cover"
+                  />
                 </div>
               </Link>
               <hr className="w-3/5 m-auto center rounded-lg border border-primary/80 " />

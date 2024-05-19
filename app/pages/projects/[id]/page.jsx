@@ -78,11 +78,11 @@ export default function Project({ params }) {
   };
 
   const handleHideImages = () => {
-    setNumberShowImage((prevNumber) => prevNumber - 2);
+    setNumberShowImage(2);
   };
 
   const handleDelete = async (id) => {
-    Swal.fire({
+    const confirmation = await Swal.fire({
       title: "Es-tu sûr ?",
       text: "Une fois supprimé, tu ne pourras pas revenir en arrière !",
       icon: "warning",
@@ -91,30 +91,30 @@ export default function Project({ params }) {
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Oui, supprimer !",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        try {
-          ky.delete(`https://parzival.fun/api/projects/${id}`, {
-            json: { userId },
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          });
-          setFetchedData((prevData) =>
-            prevData.filter((project) => project._id !== id)
-          );
-        } catch (error) {
-          Swal.fire("Erreur", "Une erreur est survenue.", "error");
-          console.error(error);
-        }
-        Swal.fire(
+    });
+
+    if (confirmation.isConfirmed) {
+      try {
+        await ky.delete(`https://parzival.fun/api/projects/${id}`, {
+          json: { userId },
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setFetchedData((prevData) =>
+          prevData.filter((project) => project._id !== id)
+        );
+        await Swal.fire(
           "Projet supprimé !",
           "Votre projet a bien été supprimé.",
           "success"
         );
         router.push("/");
+      } catch (error) {
+        console.error(error);
+        Swal.fire("Erreur", "Une erreur est survenue.", "error");
       }
-    });
+    }
   };
 
   const handleModify = async (id) => {
@@ -192,14 +192,12 @@ export default function Project({ params }) {
                   {project.images
                     .slice(0, numberShowImage)
                     .map((image, index) => (
-                      <>
-                        <img
-                          key={index}
-                          src={image}
-                          alt={project.title}
-                          className="relative w-full md:w-4/5 lg:w-[400px] xl:w-[500px] rounded-lg shadow-pxl transition-transform hover:scale-105 duration-700 ease-in-out"
-                        />
-                      </>
+                      <img
+                        key={index}
+                        src={image}
+                        alt={project.title}
+                        className="relative w-full md:w-4/5 lg:w-[400px] xl:w-[500px] rounded-lg shadow-pxl transition-transform hover:scale-105 duration-700 ease-in-out"
+                      />
                     ))}
                 </div>
                 <Spacing size={30} />
