@@ -57,6 +57,9 @@ export const CurtainMenuPage = () => {
               <MenuItem href="/pages/admin" onClick={toggle}>
                 Panel
               </MenuItem>
+              <MenuItem href="/pages/login" onClick={toggle}>
+                Inscription
+              </MenuItem>
               <MenuItem href="/" onClick={handleToken}>
                 Déconnexion
               </MenuItem>

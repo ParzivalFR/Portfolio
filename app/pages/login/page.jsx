@@ -92,48 +92,6 @@ const Login = () => {
       <Header />
       <Spacing size={80} />
       <main className="w-full sm:w-4/5 m-auto flex justify-center items-center">
-        {/* <section className="w-full">
-          <form
-            onSubmit={handleLogin}
-            className="w-4/5 sm:w-3/5 md:w-[400px] m-auto flex flex-col items-center gap-10 bg-background/60 p-6 rounded-lg shadow-pxl"
-          >
-            <div className="w-full flex flex-col gap-2 ">
-              <h1 className="text-3xl text-center">Connexion</h1>
-              <p className="text-xs italic text-center">
-                Connectez-vous pour accéder à votre espace personnel.
-              </p>
-            </div>
-            <Divider className="w-4/5 bg-primary rounded m-auto" />
-            <div className="flex flex-col gap-2 w-full">
-              <Label htmlFor="email">Email</Label>
-              <Input
-                type="email"
-                id="email"
-                className="bg-secondary text-current"
-                aria-placeholder="Email"
-                placeholder="Email"
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-              <Label htmlFor="password">Password</Label>
-              <Input
-                type="password"
-                id="password"
-                className="bg-secondary text-current"
-                aria-placeholder="Mot de passe"
-                placeholder="Mot de passe"
-                required
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
-
-            <Button type="submit" className="w-[100px] m-auto">
-              Connexion
-            </Button>
-          </form>
-        </section> */}
         <Tabs defaultValue="Connexion" className="w-4/5 md:w-[400px]">
           <TabsList className="grid w-full grid-cols-2 border border-foreground/10">
             <TabsTrigger value="Connexion">Connexion</TabsTrigger>
