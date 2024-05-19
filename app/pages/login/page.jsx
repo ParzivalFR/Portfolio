@@ -21,7 +21,10 @@ const Login = () => {
 
   useEffect(() => {
     setToken(localStorage.getItem("token"));
-  }, []);
+    if (token) {
+      setDisabled(false);
+    }
+  }, [token]);
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -71,9 +74,6 @@ const Login = () => {
         localStorage.setItem("token", data.token);
         localStorage.setItem("userId", data.userId);
         setDisabled(false);
-        setTimeout(() => {
-          router.push("/pages/admin");
-        }, 3000);
       })
       .catch((error) => {
         Swal.fire({
