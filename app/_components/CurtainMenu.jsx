@@ -1,10 +1,14 @@
 "use client";
 
+import { Toggle } from "@/components/ui/toggle";
+import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
 import { useEffect, useState } from "react";
 import { MdOutlineClose } from "react-icons/md";
+import { useTheme } from "../hooks/ThemeContext";
 import Spacing from "./Spacing";
 
 export const CurtainMenuPage = () => {
+  const { toggleTheme, checked } = useTheme();
   const [open, setOpen] = useState(false);
   const [token, setToken] = useState(null);
   const [userId, setUserId] = useState(null);
@@ -71,6 +75,11 @@ export const CurtainMenuPage = () => {
           </MenuItem>
           <MenuItem href="/#contact" onClick={toggle}>
             Contact
+          </MenuItem>
+          <MenuItem>
+            <Toggle checked={checked} onClick={toggleTheme}>
+              {checked ? <SunIcon /> : <MoonIcon />}
+            </Toggle>
           </MenuItem>
         </MenuContainer>
       </Menu>
