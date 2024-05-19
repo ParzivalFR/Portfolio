@@ -201,8 +201,8 @@ export default function Project({ params }) {
                     ))}
                 </div>
                 <Spacing size={30} />
-                {project.images.length > numberShowImage ||
-                project.images.length <= 1 ? (
+                {project.images.length > 1 &&
+                project.images.length > numberShowImage ? (
                   <>
                     <span className="text-xs text-green-500">
                       Il reste {project.images.length - numberShowImage} images.
@@ -215,17 +215,19 @@ export default function Project({ params }) {
                     </button>
                   </>
                 ) : (
-                  <>
-                    <span className="text-xs text-red-500">
-                      Toutes les images sont affichées.
-                    </span>
-                    <button
-                      className=" w-40 m-auto rounded-lg shadow-pxl p-2 bg-primary/80 text-white transition-all duration-500 ease-in-out hover:bg-primary/50 hover:scale-95"
-                      onClick={handleHideImages}
-                    >
-                      Afficher moins
-                    </button>
-                  </>
+                  project.images.length > 1 && (
+                    <>
+                      <span className="text-xs text-red-500">
+                        Toutes les images sont affichées.
+                      </span>
+                      <button
+                        className=" w-40 m-auto rounded-lg shadow-pxl p-2 bg-primary/80 text-white transition-all duration-500 ease-in-out hover:bg-primary/50 hover:scale-95"
+                        onClick={handleHideImages}
+                      >
+                        Afficher moins
+                      </button>
+                    </>
+                  )
                 )}
                 <Spacing size={20} />
 
