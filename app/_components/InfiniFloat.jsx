@@ -13,7 +13,7 @@ const InfiniFloat = () => {
     <>
       <section className="bg-foreground/10 overflow-hidden rotate-3 w-dvw">
         <div className="logos group items-center relative overflow-hidden whitespace-nowrap py-0 [mask-image:_linear-gradient(to_right,_transparent_0,_white_128px,white_calc(100%-128px),_transparent_100%)] flex gap-20">
-          <div className="animate-slide-left items-center py-2 inline-flex w-max gap-20">
+          <div className="animate-slide-left items-center py-2 inline-flex w-max gap-10 md:gap-20">
             <MdHtml size={100} />
             <MdCss size={100} />
             <MdJavascript size={100} />
@@ -29,7 +29,7 @@ const InfiniFloat = () => {
             <Nextjs width="150" />
             <Tailwind width="250" />
           </div>
-          <div className="animate-slide-left items-center py-2 inline-flex w-max gap-20">
+          <div className="animate-slide-left items-center py-2 inline-flex w-max gap-10 md:gap-20">
             <MdHtml size={100} />
             <MdCss size={100} />
             <MdJavascript size={100} />

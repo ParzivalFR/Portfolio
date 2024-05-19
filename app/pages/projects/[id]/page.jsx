@@ -1,7 +1,7 @@
 "use client";
-import DotPulse from "@/app/_components/DotPulse";
 import Header from "@/app/_components/Header";
 import Spacing from "@/app/_components/Spacing";
+
 import {
   Accordion,
   AccordionContent,
@@ -9,13 +9,6 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
 import { CircularProgress } from "@mui/material";
 import ky from "ky";
 import Link from "next/link";
@@ -30,6 +23,7 @@ import Swal from "sweetalert2";
 export default function Project({ params }) {
   const router = useRouter();
 
+  const [numberShowImage, setNumberShowImage] = useState(2);
   const [fetchData, setFetchedData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -79,6 +73,14 @@ export default function Project({ params }) {
     fetchData();
   }, []);
 
+  const handleShowImages = () => {
+    setNumberShowImage((prevNumber) => prevNumber + 2);
+  };
+
+  const handleHideImages = () => {
+    setNumberShowImage((prevNumber) => prevNumber - 2);
+  };
+
   const handleDelete = async (id) => {
     Swal.fire({
       title: "Es-tu sûr ?",
@@ -125,11 +127,16 @@ export default function Project({ params }) {
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Oui, c'est parti !",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        router.push(`/pages/projects/${id}/edit`);
-      }
-    });
+    })
+      .then((result) => {
+        if (result.isConfirmed) {
+          router.push(`/pages/projects/${id}/edit`);
+        }
+      })
+      .catch((error) => {
+        Swal.fire("Erreur", "Une erreur est survenue.", "error");
+        console.error(error);
+      });
   };
 
   return (
@@ -181,30 +188,48 @@ export default function Project({ params }) {
                   fois.
                 </p>
                 <Spacing size={50} />
-                <div className="relative w-full h-36 lg:w-4/5 sm:h-48 md:h-56 lg:h-96 rounded-2xl shadow-pxl">
-                  <DotPulse size={4} color={"primary"} />
-                  <Carousel
-                    className={
-                      "size-full rounded-2xl overflow-hidden object-cover"
-                    }
-                  >
-                    <CarouselContent>
-                      {project.images.map((image, index) => (
-                        <CarouselItem key={index}>
-                          <img
-                            src={image}
-                            alt={project.title}
-                            className="size-full rounded-2xl object-cover"
-                          />
-                        </CarouselItem>
-                      ))}
-                    </CarouselContent>
-                    <CarouselPrevious className="left-5 md:size-12 border-none bg-background/30 hover:bg-background/70 duration-500" />
-                    <CarouselNext className="right-5 md:size-12 border-none bg-background/30 hover:bg-background/70 duration-500" />
-                  </Carousel>
+                <div className="w-full flex justify-center items-center gap-5 flex-wrap">
+                  {project.images
+                    .slice(0, numberShowImage)
+                    .map((image, index) => (
+                      <>
+                        <img
+                          key={index}
+                          src={image}
+                          alt={project.title}
+                          className="relative w-full md:w-4/5 lg:w-[400px] xl:w-[500px] rounded-lg shadow-pxl transition-transform hover:scale-105 duration-700 ease-in-out"
+                        />
+                      </>
+                    ))}
                 </div>
-
-                <Spacing size={50} />
+                <Spacing size={30} />
+                {project.images.length > numberShowImage ||
+                project.images.length <= 1 ? (
+                  <>
+                    <span className="text-xs text-green-500">
+                      Il reste {project.images.length - numberShowImage} images.
+                    </span>
+                    <button
+                      className=" w-40 m-auto rounded-lg shadow-pxl border border-foreground/10 p-2 bg-primary/80 text-white transition-colors duration-500 ease-in-out hover:bg-primary/50 hover:scale-95"
+                      onClick={handleShowImages}
+                    >
+                      Afficher plus
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <span className="text-xs text-red-500">
+                      Toutes les images sont affichées.
+                    </span>
+                    <button
+                      className=" w-40 m-auto rounded-lg shadow-pxl p-2 bg-primary/80 text-white transition-all duration-500 ease-in-out hover:bg-primary/50 hover:scale-95"
+                      onClick={handleHideImages}
+                    >
+                      Afficher moins
+                    </button>
+                  </>
+                )}
+                <Spacing size={20} />
 
                 {token && (
                   <div className="w-full flex items-center justify-center gap-12 md:gap-24">

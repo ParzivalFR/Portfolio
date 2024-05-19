@@ -3,6 +3,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Poppins } from "next/font/google";
 import CursorLight from "./_components/CursorLight";
 import Footer from "./_components/Footer";
+import ScrollToTop from "./_components/ScrollToTop";
 import "./globals.css";
 import { ThemeProvider } from "./hooks/ThemeContext";
 import { WindowSizeProvider } from "./hooks/WindowSizeContext";
@@ -28,6 +29,7 @@ export default function RootLayout({ children }) {
             <CursorLight>
               {children}
               <Footer />
+              <ScrollToTop />
             </CursorLight>
             <Analytics />
             <SpeedInsights />

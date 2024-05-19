@@ -69,17 +69,17 @@ const Projects = () => {
         await ky.delete(`https://parzival.fun/api/likes/${id}`, {
           json: { userIp, postId: id },
         });
-        console.log("Deleted");
+        console.log("Disliked !");
       } else {
         await ky.post(`https://parzival.fun/api/likes/${id}`, {
           json: { userIp, postId: id },
         });
         confetti({
           particleCount: 200,
-          spread: 60,
+          spread: 70,
           origin: { y: 0.6 },
         });
-        console.log("Created");
+        console.log("Liked !");
       }
 
       // Rafraîchir les likes

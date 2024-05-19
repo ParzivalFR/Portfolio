@@ -5,7 +5,6 @@ import { EasterEggAlert } from "./_components/EasterEggAlert";
 import Header from "./_components/Header";
 import InfiniFloat from "./_components/InfiniFloat";
 import Projects from "./_components/Projects";
-import ScrollToTopButton from "./_components/ScrollToTop";
 import SectionHome from "./_components/SectionHome";
 import Skills from "./_components/Skills";
 import Spacing from "./_components/Spacing";
@@ -37,7 +36,6 @@ export default function Home() {
         <Spacing size={100} />
         <ContactMe />
         <Spacing size={50} />
-        <ScrollToTopButton />
       </main>
     </>
   );

@@ -37,7 +37,13 @@ const Login = () => {
           router.push("/pages/admin");
         }, 3000);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        Swal.fire({
+          icon: "error",
+          title: "Erreur de connexion !",
+          text: `Email ou mot de passe incorrect: ${error}.`,
+        });
+      });
 
     setEmail("");
     setPassword("");
