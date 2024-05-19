@@ -3,20 +3,57 @@ import Header from "@/app/_components/Header";
 import Spacing from "@/app/_components/Spacing";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Divider } from "@mui/material";
-import { Label } from "@radix-ui/react-dropdown-menu";
 import ky from "ky";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 
 const Login = () => {
+  const [token, setToken] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [disabled, setDisabled] = useState(true);
 
   const router = useRouter();
 
-  const handleSubmit = (e) => {
+  useEffect(() => {
+    setToken(localStorage.getItem("token"));
+  }, []);
+
+  const handleRegister = (e) => {
+    e.preventDefault();
+
+    ky.post("https://parzival.fun/api/auth/signup", {
+      json: { email, password },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        Swal.fire({
+          icon: "success",
+          title: "Inscription réussie !",
+          text: "Vous êtes inscrit avec succès, vous pouvez maintenant vous connecter.",
+          showConfirmButton: false,
+          timer: 2000,
+        });
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("userId", data.userId);
+      })
+      .catch((error) => {
+        Swal.fire({
+          icon: "error",
+          title: "Erreur d'inscription !",
+          text: `Vous n'avez pas pu vous inscrire: ${error}.`,
+        });
+      });
+
+    setEmail("");
+    setPassword("");
+  };
+
+  const handleLogin = (e) => {
     e.preventDefault();
 
     ky.post("https://parzival.fun/api/auth/login", {
@@ -33,6 +70,7 @@ const Login = () => {
         });
         localStorage.setItem("token", data.token);
         localStorage.setItem("userId", data.userId);
+        setDisabled(false);
         setTimeout(() => {
           router.push("/pages/admin");
         }, 3000);
@@ -54,9 +92,9 @@ const Login = () => {
       <Header />
       <Spacing size={80} />
       <main className="w-full sm:w-4/5 m-auto flex justify-center items-center">
-        <section className="w-full">
+        {/* <section className="w-full">
           <form
-            onSubmit={handleSubmit}
+            onSubmit={handleLogin}
             className="w-4/5 sm:w-3/5 md:w-[400px] m-auto flex flex-col items-center gap-10 bg-background/60 p-6 rounded-lg shadow-pxl"
           >
             <div className="w-full flex flex-col gap-2 ">
@@ -95,7 +133,100 @@ const Login = () => {
               Connexion
             </Button>
           </form>
-        </section>
+        </section> */}
+        <Tabs defaultValue="Connexion" className="w-4/5 md:w-[400px]">
+          <TabsList className="grid w-full grid-cols-2 border border-foreground/10">
+            <TabsTrigger value="Connexion">Connexion</TabsTrigger>
+            <TabsTrigger value="Inscription">Inscription</TabsTrigger>
+          </TabsList>
+          <TabsContent value="Connexion">
+            <form
+              onSubmit={handleLogin}
+              className="w-full m-auto flex flex-col items-center gap-10 bg-background/60 p-6 rounded-lg shadow-pxl border border-foreground/20"
+            >
+              <div className="w-full flex flex-col gap-2 ">
+                <h1 className="text-3xl text-center">Connexion</h1>
+                <p className="text-xs italic text-center">
+                  Connectez-vous pour accéder à votre espace personnel.
+                </p>
+              </div>
+              <Divider className="w-4/5 bg-primary rounded m-auto" />
+              <div className="flex flex-col gap-2 w-full">
+                <Label htmlFor="email">Email</Label>
+                <Input
+                  type="email"
+                  id="email"
+                  className="bg-secondary text-current"
+                  aria-placeholder="Email"
+                  placeholder="Email"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+                <Label htmlFor="password">Password</Label>
+                <Input
+                  type="password"
+                  id="password"
+                  className="bg-secondary text-current"
+                  aria-placeholder="Mot de passe"
+                  placeholder="Mot de passe"
+                  required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </div>
+
+              <Button type="submit" className="w-[100px] m-auto">
+                Connexion
+              </Button>
+            </form>
+          </TabsContent>
+          <TabsContent value="Inscription">
+            <form
+              onSubmit={handleRegister}
+              className="w-full m-auto flex flex-col items-center gap-10 bg-background/60 p-6 rounded-lg shadow-pxl border border-foreground/20"
+            >
+              <div className="w-full flex flex-col gap-2 ">
+                <h1 className="text-3xl text-center">Inscription</h1>
+                <p className="text-xs italic text-center">
+                  Rentrez vos informations pour vous inscrire.
+                </p>
+              </div>
+              <Divider className="w-4/5 bg-primary rounded m-auto" />
+              <div className="flex flex-col gap-2 w-full">
+                <Label htmlFor="email">Email</Label>
+                <Input
+                  type="email"
+                  id="email"
+                  className="bg-secondary text-current"
+                  aria-placeholder="Email"
+                  placeholder="Email"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+                <Label htmlFor="password">Password</Label>
+                <Input
+                  type="password"
+                  id="password"
+                  className="bg-secondary text-current"
+                  aria-placeholder="Mot de passe"
+                  placeholder="Mot de passe"
+                  required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </div>
+              <Button
+                type="submit"
+                className="w-[100px] m-auto"
+                disabled={disabled}
+              >
+                Inscription
+              </Button>
+            </form>
+          </TabsContent>
+        </Tabs>
       </main>
       <Spacing size={80} />
     </>

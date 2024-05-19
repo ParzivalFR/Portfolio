@@ -25,6 +25,7 @@ export const CurtainMenuPage = () => {
   const handleToken = () => {
     setToken(localStorage.removeItem("token"));
     setUserId(localStorage.removeItem("userId"));
+    setToken(null);
   };
 
   return (
