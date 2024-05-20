@@ -14,6 +14,7 @@ import Swal from "sweetalert2";
 
 const AddProjectForm = () => {
   const router = useRouter();
+  const [value, setValue] = useState("**Hello world!!!**");
   const [formData, setFormData] = useState({
     userId: "",
     title: "",
