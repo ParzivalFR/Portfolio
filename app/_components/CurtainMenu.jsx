@@ -2,31 +2,26 @@
 
 import { Toggle } from "@/components/ui/toggle";
 import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { MdOutlineClose } from "react-icons/md";
 import { useTheme } from "../hooks/ThemeContext";
+import { useToken } from "../hooks/TokenContext"; // Importez le hook useToken
 import Spacing from "./Spacing";
 
 export const CurtainMenuPage = () => {
   const { toggleTheme, checked } = useTheme();
+  const { token, userId, logout } = useToken(); // Utilisez le hook useToken pour accéder à l'userId
   const [open, setOpen] = useState(false);
-  const [token, setToken] = useState(null);
-  const [userId, setUserId] = useState(null);
-
-  useEffect(() => {
-    setToken(localStorage.getItem("token"));
-    setUserId(localStorage.getItem("userId"));
-  }, []);
 
   const toggle = () => {
     setOpen((prevState) => !prevState);
   };
 
-  const handleToken = () => {
-    setToken(localStorage.removeItem("token"));
-    setUserId(localStorage.removeItem("userId"));
-    setToken(null);
+  const handleLogout = () => {
+    logout(); // Utilisez la fonction logout du TokenContext pour déconnecter l'utilisateur
   };
+
+  // Vous pouvez maintenant utiliser l'userId pour des opérations spécifiques à l'utilisateur
 
   return (
     <>
@@ -54,13 +49,14 @@ export const CurtainMenuPage = () => {
             </>
           ) : (
             <>
-              <MenuItem href="/pages/admin" onClick={toggle}>
+              {/* Utilisez l'userId pour afficher des informations spécifiques à l'utilisateur ou pour des vérifications */}
+              <MenuItem href={`/pages/users/${userId}/admin`} onClick={toggle}>
                 Panel
               </MenuItem>
               <MenuItem href="/pages/login" onClick={toggle}>
                 Inscription
               </MenuItem>
-              <MenuItem href="/" onClick={handleToken}>
+              <MenuItem href="/" onClick={handleLogout}>
                 Déconnexion
               </MenuItem>
               <Spacing size={20} />

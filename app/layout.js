@@ -6,6 +6,7 @@ import Footer from "./_components/Footer";
 import ScrollToTop from "./_components/ScrollToTop";
 import "./globals.css";
 import { ThemeProvider } from "./hooks/ThemeContext";
+import { TokenProvider } from "./hooks/TokenContext";
 import { WindowSizeProvider } from "./hooks/WindowSizeContext";
 
 const poppins = Poppins({
@@ -22,20 +23,22 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="fr">
-      <WindowSizeProvider>
-        <ThemeProvider>
-          <body className={`${poppins.className}`}>
-            <CursorLight>
-              {children}
-              <Footer />
-              <ScrollToTop />
-            </CursorLight>
-            <Analytics />
-            <SpeedInsights />
-          </body>
-        </ThemeProvider>
-      </WindowSizeProvider>
-    </html>
+    <TokenProvider>
+      <html lang="fr">
+        <WindowSizeProvider>
+          <ThemeProvider>
+            <body className={`${poppins.className}`}>
+              <CursorLight>
+                {children}
+                <Footer />
+                <ScrollToTop />
+              </CursorLight>
+              <Analytics />
+              <SpeedInsights />
+            </body>
+          </ThemeProvider>
+        </WindowSizeProvider>
+      </html>
+    </TokenProvider>
   );
 }

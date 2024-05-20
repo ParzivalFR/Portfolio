@@ -1,88 +1,78 @@
 "use client";
 import Header from "@/app/_components/Header";
 import Spacing from "@/app/_components/Spacing";
+import { useToken } from "@/app/hooks/TokenContext";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Divider } from "@mui/material";
 import ky from "ky";
-import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 
 const Login = () => {
-  const [token, setToken] = useState("");
+  const { token, login, logout } = useToken(); // Utilisez le hook useToken
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [disabled, setDisabled] = useState(true);
 
-  const router = useRouter();
-
   useEffect(() => {
-    setToken(localStorage.getItem("token"));
     if (token) {
       setDisabled(false);
     }
   }, [token]);
 
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
-
-    ky.post("https://parzival.fun/api/auth/signup", {
-      json: { email, password },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        Swal.fire({
-          icon: "success",
-          title: "Inscription réussie !",
-          text: "Vous êtes inscrit avec succès, vous pouvez maintenant vous connecter.",
-          showConfirmButton: false,
-          timer: 2000,
-        });
-        localStorage.setItem("token", data.token);
-        localStorage.setItem("userId", data.userId);
-      })
-      .catch((error) => {
-        Swal.fire({
-          icon: "error",
-          title: "Erreur d'inscription !",
-          text: `Vous n'avez pas pu vous inscrire: ${error}.`,
-        });
+    try {
+      const response = await ky
+        .post("https://parzival.fun/api/auth/signup", {
+          json: { email, password },
+        })
+        .json();
+      login(response.token, response.userId); // Utilisez la fonction login du TokenContext
+      Swal.fire({
+        icon: "success",
+        title: "Inscription réussie !",
+        text: "Vous êtes inscrit avec succès, vous pouvez maintenant vous connecter.",
+        showConfirmButton: false,
+        timer: 2000,
       });
-
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Erreur d'inscription !",
+        text: `Vous n'avez pas pu vous inscrire: ${error}.`,
+      });
+    }
     setEmail("");
     setPassword("");
   };
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-
-    ky.post("https://parzival.fun/api/auth/login", {
-      json: { email, password },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        Swal.fire({
-          icon: "success",
-          title: "Connexion réussie",
-          text: "Vous êtes connecté",
-          showConfirmButton: false,
-          timer: 2000,
-        });
-        localStorage.setItem("token", data.token);
-        localStorage.setItem("userId", data.userId);
-        setDisabled(false);
-      })
-      .catch((error) => {
-        Swal.fire({
-          icon: "error",
-          title: "Erreur de connexion !",
-          text: `Email ou mot de passe incorrect: ${error}.`,
-        });
+    try {
+      const response = await ky
+        .post("https://parzival.fun/api/auth/login", {
+          json: { email, password },
+        })
+        .json();
+      login(response.token, response.userId); // Utilisez la fonction login du TokenContext
+      Swal.fire({
+        icon: "success",
+        title: "Connexion réussie",
+        text: "Vous êtes connecté",
+        showConfirmButton: false,
+        timer: 2000,
       });
-
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Erreur de connexion !",
+        text: `Email ou mot de passe incorrect: ${error}.`,
+      });
+    }
     setEmail("");
     setPassword("");
   };
