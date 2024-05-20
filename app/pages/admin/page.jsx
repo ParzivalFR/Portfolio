@@ -159,6 +159,7 @@ const AddProjectForm = () => {
               <option value="Frontend">Frontend</option>
               <option value="Backend">Backend</option>
               <option value="Fullstack">Fullstack</option>
+              <option value="Optimisation">Optimisation</option>
             </select>
           </div>
         </div>
