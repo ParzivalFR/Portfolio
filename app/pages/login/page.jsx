@@ -1,6 +1,5 @@
 "use client";
 import Header from "@/app/_components/Header";
-import Spacing from "@/app/_components/Spacing";
 import { useToken } from "@/app/hooks/TokenContext";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -80,8 +79,7 @@ const Login = () => {
   return (
     <>
       <Header />
-      <Spacing size={80} />
-      <main className="w-full sm:w-4/5 m-auto flex justify-center items-center">
+      <main className="w-full h-svh sm:w-4/5 m-auto flex justify-center items-center">
         <Tabs defaultValue="Connexion" className="w-4/5 md:w-[400px]">
           <TabsList className="grid w-full grid-cols-2 border border-foreground/10">
             <TabsTrigger value="Connexion">Connexion</TabsTrigger>
@@ -176,7 +174,6 @@ const Login = () => {
           </TabsContent>
         </Tabs>
       </main>
-      <Spacing size={80} />
     </>
   );
 };

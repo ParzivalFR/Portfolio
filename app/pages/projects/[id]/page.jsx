@@ -2,6 +2,7 @@
 import Header from "@/app/_components/Header";
 import Spacing from "@/app/_components/Spacing";
 
+import ImageModal from "@/app/_components/ImageModal";
 import {
   Accordion,
   AccordionContent,
@@ -23,6 +24,7 @@ import Swal from "sweetalert2";
 export default function Project({ params }) {
   const router = useRouter();
 
+  const [selectedImage, setSelectedImage] = useState(null);
   const [numberShowImage, setNumberShowImage] = useState(2);
   const [fetchData, setFetchedData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -139,6 +141,14 @@ export default function Project({ params }) {
       });
   };
 
+  const handleImageClick = (image) => {
+    setSelectedImage(image);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedImage(null);
+  };
+
   return (
     <>
       <Header />
@@ -196,6 +206,7 @@ export default function Project({ params }) {
                         key={index}
                         src={image}
                         alt={project.title}
+                        onClick={() => handleImageClick(image)}
                         className="relative w-full md:w-4/5 lg:w-[400px] xl:w-[500px] rounded-lg shadow-pxl transition-transform hover:scale-105 duration-700 ease-in-out"
                       />
                     ))}
@@ -299,6 +310,9 @@ export default function Project({ params }) {
               </div>
             ))}
           </section>
+        )}
+        {selectedImage && (
+          <ImageModal imageUrl={selectedImage} onClose={handleCloseModal} />
         )}
       </main>
     </>
