@@ -50,7 +50,7 @@ export const CurtainMenuPage = () => {
           ) : (
             <>
               {/* Utilisez l'userId pour afficher des informations spécifiques à l'utilisateur ou pour des vérifications */}
-              <MenuItem href={`/pages/users/${userId}/admin`} onClick={toggle}>
+              <MenuItem href={`/pages/admin`} onClick={toggle}>
                 Panel
               </MenuItem>
               <MenuItem href="/pages/login" onClick={toggle}>
