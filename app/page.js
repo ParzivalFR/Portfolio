@@ -31,7 +31,7 @@ export default function Home() {
         <Divider className="w-2/3 h-[0.5px] m-auto bg-current rounded" />
         <Spacing size={100} />
         <Projects />
-        <Spacing size={100} />
+        <Spacing size={50} />
         <Divider className="w-2/3 h-[0.5px] m-auto bg-current rounded" />
         <Spacing size={100} />
         <ContactMe />

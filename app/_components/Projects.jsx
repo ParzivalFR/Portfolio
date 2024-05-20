@@ -10,6 +10,7 @@ import { FaHeart } from "react-icons/fa";
 import { HiHashtag } from "react-icons/hi";
 import { RiErrorWarningFill } from "react-icons/ri";
 import { v4 as uuidv4 } from "uuid";
+import Spacing from "./Spacing";
 
 const Projects = () => {
   const [fetchedData, setFetchedData] = useState([]);
@@ -18,6 +19,15 @@ const Projects = () => {
   const [heartStates, setHeartStates] = useState({});
   const [userIp, setUserIp] = useState("");
   const [likes, setLikes] = useState({});
+  const [showProjects, setShowProjects] = useState(3);
+
+  const handleShowMoreProjects = () => {
+    setShowProjects((prevShowMoreProjects) => prevShowMoreProjects + 2);
+  };
+
+  const handleShowHideProjects = () => {
+    setShowProjects(3);
+  };
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -117,7 +127,7 @@ const Projects = () => {
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 3xl:grid-cols-4 gap-10 p-4 w-4/5 m-auto">
-          {fetchedData.map((project) => (
+          {fetchedData.slice(0, showProjects).map((project) => (
             <article
               key={project._id}
               className="relative flex flex-col justify-between h-full gap-5 p-4 bg-foreground/5 rounded-lg transition-transform transform hover:scale-105 duration-700 shadow-pxl"
@@ -169,6 +179,34 @@ const Projects = () => {
           ))}
         </div>
       )}
+      <Spacing size={20} />
+      <div className="flex flex-col justify-center items-center">
+        {showProjects < fetchedData.length ? (
+          <>
+            <p className="text-xs text-center text-green-500">
+              Il reste {fetchedData.length - showProjects} projets à découvrir.
+            </p>
+            <button
+              onClick={handleShowMoreProjects}
+              className="w-[250px] bg-primary text-background font-bold p-2 rounded-lg shadow-pxl hover:bg-primary/80 transition-all duration-500"
+            >
+              Voir plus
+            </button>
+          </>
+        ) : (
+          <>
+            <p className="text-xs text-center text-red-500">
+              Vous avez découvert tous les projets.
+            </p>
+            <button
+              onClick={handleShowHideProjects}
+              className="w-[250px] bg-primary text-background font-bold p-2 rounded-lg shadow-pxl hover:bg-primary/80 transition-all duration-500"
+            >
+              Voir moins
+            </button>
+          </>
+        )}
+      </div>
     </section>
   );
 };
