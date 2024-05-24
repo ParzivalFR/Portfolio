@@ -89,7 +89,7 @@ export const CurtainMenuPage = () => {
 
 /* Logic*/
 const style = {
-  container: `relative top-1/4 w-full text-center mt-8`,
+  container: `relative top-1/4 w-full text-center m-auto`,
   item: `text-3xl text-current cursor-pointer hover:text-foreground/40 transition-colors duration-700 ease-in-out`,
   menu: {
     open: `h-full w-full `,

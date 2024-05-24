@@ -25,8 +25,14 @@ export const metadata = {
       "Développeur Web Fullstack, je suis passionné par le développement web. Je suis spécialisé dans la création de sites web avec pour but de satisfaires les besoins de mes clients.",
     type: "website",
     url: "https://parzival-portfolio.vercel.app",
-    image:
-      "https://res.cloudinary.com/dbmjyltpp/image/upload/v1716566940/IMG_1882_zky80l.jpg",
+    images: [
+      {
+        type: "image/jpeg",
+        width: 1200,
+        height: 630,
+        url: "https://res.cloudinary.com/dbmjyltpp/image/upload/v1716566940/IMG_1882_zky80l.jpg",
+      },
+    ],
     site_name: "Gael RICHARD - Développeur Web Fullstack",
     locale: "fr_FR",
   },
@@ -39,8 +45,9 @@ export const metadata = {
       "Développeur Web Fullstack, je suis passionné par le développement web. Je suis spécialisé dans la création de sites web avec pour but de satisfaires les besoins de mes clients.",
     type: "website",
     url: "https://parzival-portfolio.vercel.app",
-    image:
+    images: [
       "https://res.cloudinary.com/dbmjyltpp/image/upload/v1716566940/IMG_1882_zky80l.jpg",
+    ],
   },
 };
 
