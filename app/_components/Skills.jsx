@@ -29,11 +29,11 @@ import { useWindowSize } from "../hooks/WindowSizeContext";
 const Skills = () => {
   const windowSizeContext = useWindowSize();
   const skills = [
-    { icon: FaHtml5, name: "HTML", value: "Expert" },
+    { icon: FaHtml5, name: "HTML", value: "Intermédiaire" },
     { icon: IoLogoCss3, name: "CSS", value: "Intermédiaire" },
-    { icon: RiJavascriptFill, name: "Javascript", value: "Intermédiaire" },
-    { icon: RiTailwindCssFill, name: "Tailwind", value: "Intermédiaire" },
-    { icon: FaReact, name: "React", value: "Intermédiaire" },
+    { icon: RiJavascriptFill, name: "Javascript", value: "Débutant" },
+    { icon: RiTailwindCssFill, name: "Tailwind", value: "Débutant" },
+    { icon: FaReact, name: "React", value: "Débutant" },
     { icon: RiNextjsFill, name: "Nextjs", value: "Débutant" },
     { icon: FaNodeJs, name: "Nodejs", value: "Débutant" },
     { icon: FaSass, name: "SASS", value: "Intermédiaire" },
