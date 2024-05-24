@@ -18,7 +18,28 @@ const poppins = Poppins({
 export const metadata = {
   title: "Gael RICHARD - Développeur Web Fullstack",
   description:
-    "Développeur Web Fullstack, je suis passionné par le développement web et mobile. Je suis spécialisé dans la création de sites web avec pour but de satisfaires les besoins de mes clients.",
+    "Développeur Web Fullstack, je suis passionné par le développement web. Je suis spécialisé dans la création de sites web avec pour but de satisfaires les besoins de mes clients.",
+  openGraph: {
+    title: "Gael RICHARD - Développeur Web Fullstack",
+    description:
+      "Développeur Web Fullstack, je suis passionné par le développement web. Je suis spécialisé dans la création de sites web avec pour but de satisfaires les besoins de mes clients.",
+    type: "website",
+    url: "https://parzival-portfolio.vercel.app",
+    image: "/logoP.jpg",
+    site_name: "Gael RICHARD - Développeur Web Fullstack",
+    locale: "fr_FR",
+  },
+  twitter: {
+    handle: "@gaelprodev",
+    site: "@gaelprodev",
+    cardType: "summary_large_image",
+    title: "Gael RICHARD - Développeur Web Fullstack",
+    description:
+      "Développeur Web Fullstack, je suis passionné par le développement web. Je suis spécialisé dans la création de sites web avec pour but de satisfaires les besoins de mes clients.",
+    type: "website",
+    url: "https://parzival-portfolio.vercel.app",
+    image: "/logoP.jpg",
+  },
 };
 
 export default function RootLayout({ children }) {
