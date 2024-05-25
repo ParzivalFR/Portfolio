@@ -6,9 +6,8 @@ import { useTheme } from "../hooks/ThemeContext";
 import { useWindowSize } from "../hooks/WindowSizeContext";
 import { CurtainMenuPage } from "./CurtainMenu";
 import UserAvatar from "./UserAvatar";
-
 const Header = () => {
-  const { toggleTheme, checked } = useTheme();
+  const { theme, toggleTheme, checked } = useTheme();
   const WindowSizeContext = useWindowSize();
 
   return (
@@ -19,7 +18,7 @@ const Header = () => {
           <CurtainMenuPage />
           {WindowSizeContext > 768 ? (
             <Toggle checked={checked} onClick={toggleTheme}>
-              {checked ? <SunIcon /> : <MoonIcon />}
+              {theme === "dark" ? <SunIcon /> : <MoonIcon />}
             </Toggle>
           ) : null}
         </div>

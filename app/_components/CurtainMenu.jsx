@@ -4,12 +4,12 @@ import { Toggle } from "@/components/ui/toggle";
 import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
 import { useState } from "react";
 import { MdOutlineClose } from "react-icons/md";
-import { useTheme } from "../hooks/ThemeContext";
+// import { useTheme } from "../hooks/ThemeContext";
 import { useToken } from "../hooks/TokenContext"; // Importez le hook useToken
 import Spacing from "./Spacing";
 
 export const CurtainMenuPage = () => {
-  const { toggleTheme, checked } = useTheme();
+  // const { toggleTheme, checked } = useTheme();
   const { token, userId, logout } = useToken(); // Utilisez le hook useToken pour accéder à l'userId
   const [open, setOpen] = useState(false);
 
@@ -76,11 +76,11 @@ export const CurtainMenuPage = () => {
           <MenuItem href="/#contact" onClick={toggle}>
             Contact
           </MenuItem>
-          <MenuItem>
+          {/* <MenuItem>
             <Toggle checked={checked} onClick={toggleTheme}>
               {checked ? <SunIcon /> : <MoonIcon />}
             </Toggle>
-          </MenuItem>
+          </MenuItem> */}
         </MenuContainer>
       </Menu>
     </>

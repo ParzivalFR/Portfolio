@@ -54,19 +54,17 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <TokenProvider>
-      <html lang="fr">
+      <html lang="fr" suppressHydrationWarning>
         <WindowSizeProvider>
-          <ThemeProvider>
-            <body className={`${poppins.className}`}>
-              <CursorLight>
-                {children}
-                <Footer />
-                <ScrollToTop />
-              </CursorLight>
-              <Analytics />
-              <SpeedInsights />
-            </body>
-          </ThemeProvider>
+          <body className={`${poppins.className}`}>
+            <CursorLight>
+              <ThemeProvider>{children}</ThemeProvider>
+              <Footer />
+              <ScrollToTop />
+            </CursorLight>
+            <Analytics />
+            <SpeedInsights />
+          </body>
         </WindowSizeProvider>
       </html>
     </TokenProvider>

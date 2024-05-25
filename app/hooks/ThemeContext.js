@@ -15,6 +15,14 @@ export const ThemeProvider = ({ children }) => {
       setTheme(localTheme);
       setChecked(localTheme === "dark");
       document.body.classList.toggle("dark", localTheme === "dark");
+    } else {
+      const systemPrefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+      ).matches;
+      const systemTheme = systemPrefersDark ? "dark" : "light";
+      setTheme(systemTheme);
+      setChecked(systemTheme === "dark");
+      document.body.classList.toggle("dark", systemPrefersDark);
     }
   }, []);
 

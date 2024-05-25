@@ -59,13 +59,6 @@
 }
 
 @layer utilities {
-  .wave {
-    /* Créez un arrière-plan beige avec un effet d'onde */
-    background: radial-gradient(circle at 50% 50%, transparent, black 80%);
-    background-size: 50% 50%;
-    background-repeat: repeat;
-  }
-
   .listBeforeNone {
     content: none;
   }
