@@ -77,7 +77,6 @@ const Projects = () => {
       ...prevHeartStates,
       [id]: !prevHeartStates[id],
     }));
-
     try {
       if (heartStates[id]) {
         await ky.delete(`https://parzival.fun/api/likes/${id}`, {
@@ -85,13 +84,13 @@ const Projects = () => {
         });
         console.log("Disliked !");
       } else {
-        await ky.post(`https://parzival.fun/api/likes/${id}`, {
-          json: { userIp, postId: id },
-        });
         confetti({
           particleCount: 200,
           spread: 70,
           origin: { y: 0.6 },
+        });
+        await ky.post(`https://parzival.fun/api/likes/${id}`, {
+          json: { userIp, postId: id },
         });
         console.log("Liked !");
       }
