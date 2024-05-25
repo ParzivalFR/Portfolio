@@ -1,15 +1,17 @@
 "use client";
 
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { CircularProgress } from "@mui/material";
 import { confetti } from "@tsparticles/confetti";
 import ky from "ky";
-import Link from "next/link";
 import { useEffect, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
+
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { CircularProgress } from "@mui/material";
 import { FaHeart } from "react-icons/fa";
 import { HiHashtag } from "react-icons/hi";
 import { RiErrorWarningFill } from "react-icons/ri";
-import { v4 as uuidv4 } from "uuid";
+
+import Link from "next/link";
 import Spacing from "./Spacing";
 
 const Projects = () => {
@@ -21,24 +23,12 @@ const Projects = () => {
   const [likes, setLikes] = useState({});
   const [showProjects, setShowProjects] = useState(3);
 
-  const handleShowMoreProjects = () => {
-    setShowProjects((prevShowMoreProjects) => prevShowMoreProjects + 2);
-  };
-
-  const handleShowHideProjects = () => {
-    setShowProjects(3);
-  };
-
   useEffect(() => {
     if (typeof window !== "undefined") {
       const localUserIp = localStorage.getItem("userIp");
-      if (!localUserIp) {
-        const newUserIp = uuidv4();
-        setUserIp(newUserIp);
-        localStorage.setItem("userIp", newUserIp);
-      } else {
-        setUserIp(localUserIp);
-      }
+      const newUserIp = localUserIp || uuidv4();
+      setUserIp(newUserIp);
+      localStorage.setItem("userIp", newUserIp);
     }
 
     const fetchData = async () => {
@@ -46,7 +36,6 @@ const Projects = () => {
         const response = await ky.get("https://parzival.fun/api/projects");
         const data = await response.json();
         setFetchedData(data);
-        setIsLoading(false);
 
         const likesData = await Promise.all(
           data.map(async (project) => {
@@ -65,6 +54,7 @@ const Projects = () => {
         setLikes(likesObj);
       } catch (error) {
         setError(error);
+      } finally {
         setIsLoading(false);
       }
     };
@@ -77,22 +67,24 @@ const Projects = () => {
       ...prevHeartStates,
       [id]: !prevHeartStates[id],
     }));
+
     try {
-      if (heartStates[id]) {
-        await ky.post(`https://parzival.fun/api/likes/${id}`, {
-          json: { userIp, postId: id },
-        });
+      const likeEndpoint = heartStates[id]
+        ? `https://parzival.fun/api/likes/${id}`
+        : `https://parzival.fun/api/likes/${id}`;
+      const method = heartStates[id] ? "DELETE" : "POST";
+
+      await ky(likeEndpoint, {
+        method,
+        json: { userIp, postId: id },
+      });
+
+      if (!heartStates[id]) {
         confetti({
           particleCount: 200,
           spread: 70,
           origin: { y: 0.6 },
         });
-        console.log("Liked !");
-      } else {
-        await ky.delete(`https://parzival.fun/api/likes/${id}`, {
-          json: { userIp, postId: id },
-        });
-        console.log("Disliked !");
       }
 
       const response = await ky.get(`https://parzival.fun/api/likes/${id}`);
@@ -101,6 +93,14 @@ const Projects = () => {
     } catch (error) {
       console.error(error);
     }
+  };
+
+  const handleShowMoreProjects = () => {
+    setShowProjects((prevShowMoreProjects) => prevShowMoreProjects + 2);
+  };
+
+  const handleShowHideProjects = () => {
+    setShowProjects(3);
   };
 
   return (
