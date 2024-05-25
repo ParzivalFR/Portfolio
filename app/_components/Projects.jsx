@@ -79,20 +79,20 @@ const Projects = () => {
     }));
     try {
       if (heartStates[id]) {
-        await ky.delete(`https://parzival.fun/api/likes/${id}`, {
+        await ky.post(`https://parzival.fun/api/likes/${id}`, {
           json: { userIp, postId: id },
         });
-        console.log("Disliked !");
-      } else {
         confetti({
           particleCount: 200,
           spread: 70,
           origin: { y: 0.6 },
         });
-        await ky.post(`https://parzival.fun/api/likes/${id}`, {
+        console.log("Liked !");
+      } else {
+        await ky.delete(`https://parzival.fun/api/likes/${id}`, {
           json: { userIp, postId: id },
         });
-        console.log("Liked !");
+        console.log("Disliked !");
       }
 
       const response = await ky.get(`https://parzival.fun/api/likes/${id}`);
