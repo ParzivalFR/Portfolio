@@ -98,7 +98,9 @@ const Login = () => {
               </div>
               <Divider className="w-4/5 bg-primary rounded m-auto" />
               <div className="flex flex-col gap-2 w-full">
-                <Label htmlFor="email">Email</Label>
+                <Label htmlFor="email">
+                  <span className="text-red-600">*</span> Email
+                </Label>
                 <Input
                   type="email"
                   id="email"
@@ -109,7 +111,9 @@ const Login = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
-                <Label htmlFor="password">Password</Label>
+                <Label htmlFor="password">
+                  <span className="text-red-600">*</span> Password
+                </Label>
                 <Input
                   type="password"
                   id="password"
@@ -140,7 +144,9 @@ const Login = () => {
               </div>
               <Divider className="w-4/5 bg-primary rounded m-auto" />
               <div className="flex flex-col gap-2 w-full">
-                <Label htmlFor="email">Email</Label>
+                <Label htmlFor="email">
+                  <span className="text-red-600">*</span> Email
+                </Label>
                 <Input
                   type="email"
                   id="email"
@@ -151,7 +157,9 @@ const Login = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
-                <Label htmlFor="password">Password</Label>
+                <Label htmlFor="password">
+                  <span className="text-red-600">*</span> Password
+                </Label>
                 <Input
                   type="password"
                   id="password"

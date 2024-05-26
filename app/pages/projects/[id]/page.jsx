@@ -1,8 +1,8 @@
 "use client";
-import Header from "@/app/_components/Header";
-import Spacing from "@/app/_components/Spacing";
 
+import Header from "@/app/_components/Header";
 import ImageModal from "@/app/_components/ImageModal";
+import Spacing from "@/app/_components/Spacing";
 import {
   Accordion,
   AccordionContent,
@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/accordion";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { CircularProgress } from "@mui/material";
+import DOMPurify from "dompurify";
 import ky from "ky";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -275,7 +276,11 @@ export default function Project({ params }) {
                         </span>
                       </AccordionTrigger>
                       <AccordionContent>
-                        <p>{project.description}</p>
+                        <div
+                          dangerouslySetInnerHTML={{
+                            __html: DOMPurify.sanitize(project.description),
+                          }}
+                        />
                       </AccordionContent>
                     </AccordionItem>
                   </Accordion>

@@ -1,5 +1,6 @@
 "use client";
 
+import Textarea from "@/app/_components/Textarea";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -15,7 +16,6 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 import emailjs from "@emailjs/browser";
 import { DotFilledIcon, QuestionMarkIcon } from "@radix-ui/react-icons";
 import { useEffect, useRef, useState } from "react";
@@ -30,42 +30,57 @@ const ContactMe = () => {
 
   const form = useRef();
 
+  const validateEmail = (email) => {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+  };
+
   const sendEmail = () => {
-    emailjs
-      .sendForm(
-        process.env.NEXT_PUBLIC_SERVICE_ID,
-        process.env.NEXT_PUBLIC_TEMPLATE_ID,
-        form.current,
-        {
-          publicKey: process.env.NEXT_PUBLIC_PUBLIC_KEY,
-        }
-      )
-      .then(
-        () => {
-          Swal.fire({
-            position: "center",
-            icon: "success",
-            title: "Message envoyé avec succès !",
-            showConfirmButton: false,
-            timer: 2000,
-          });
-          setFirstName("");
-          setName("");
-          setEmail("");
-          setMessage("");
-          console.log("SUCCESS!");
-        },
-        (error) => {
-          Swal.fire({
-            position: "center",
-            icon: "error",
-            title: "Échec de l'envoi du message !",
-            showConfirmButton: false,
-            timer: 2000,
-          });
-          console.log("FAILED...", error.text);
-        }
-      );
+    if (!validateEmail(email)) {
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        title: "Adresse email invalide !",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+    } else {
+      emailjs
+        .sendForm(
+          process.env.NEXT_PUBLIC_SERVICE_ID,
+          process.env.NEXT_PUBLIC_TEMPLATE_ID,
+          form.current,
+          {
+            publicKey: process.env.NEXT_PUBLIC_PUBLIC_KEY,
+          }
+        )
+        .then(
+          () => {
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "Message envoyé avec succès !",
+              showConfirmButton: false,
+              timer: 2000,
+            });
+            setFirstName("");
+            setName("");
+            setEmail("");
+            setMessage("");
+            console.log("SUCCESS!");
+          },
+          (error) => {
+            Swal.fire({
+              position: "center",
+              icon: "error",
+              title: "Échec de l'envoi du message !",
+              showConfirmButton: false,
+              timer: 2000,
+            });
+            console.log("FAILED...", error.text);
+          }
+        );
+    }
   };
 
   useEffect(() => {
@@ -133,21 +148,17 @@ const ContactMe = () => {
               required
             />
           </div>
-          <div className="w-full gap-1 mt-2 md:gap-4 md:mt-5 flex flex-col items-center">
-            <Label htmlFor="message-2">
-              <span className="text-red-600">*</span> Votre message
-            </Label>
-            <Textarea
-              placeholder="Entrez votre message ici..."
-              id="message-2"
-              name="message"
-              className="bg-secondary/20 w-full"
-              rows="6"
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              required
-            />
-          </div>
+          <Textarea
+            name={"message"}
+            id={"message-2"}
+            cols={50}
+            rows={6}
+            placeholder={"Votre message..."}
+            value={message}
+            maxLength={300}
+            className={"w-full bg-secondary/20"}
+            onChange={(e) => setMessage(e.target.value)}
+          />
           <AlertDialog>
             <AlertDialogTrigger asChild>
               <Button

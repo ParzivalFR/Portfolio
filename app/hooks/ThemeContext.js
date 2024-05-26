@@ -10,27 +10,36 @@ export const ThemeProvider = ({ children }) => {
   const [checked, setChecked] = useState(false);
 
   useEffect(() => {
-    const localTheme = localStorage.getItem("theme");
-    if (localTheme) {
-      setTheme(localTheme);
-      setChecked(localTheme === "dark");
-      document.body.classList.toggle("dark", localTheme === "dark");
-    } else {
-      const systemPrefersDark = window.matchMedia(
-        "(prefers-color-scheme: dark)"
-      ).matches;
-      const systemTheme = systemPrefersDark ? "dark" : "light";
-      setTheme(systemTheme);
-      setChecked(systemTheme === "dark");
-      document.body.classList.toggle("dark", systemPrefersDark);
-    }
+    const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
+      .matches
+      ? "dark"
+      : "light";
+    setTheme(systemTheme);
+    setChecked(systemTheme === "dark");
+    document.body.classList.toggle("dark", systemTheme === "dark");
+
+    const handleChange = (e) => {
+      const newTheme = e.matches ? "dark" : "light";
+      setTheme(newTheme);
+      setChecked(newTheme === "dark");
+      document.body.classList.toggle("dark", newTheme === "dark");
+    };
+
+    window
+      .matchMedia("(prefers-color-scheme: dark)")
+      .addEventListener("change", handleChange);
+
+    return () => {
+      window
+        .matchMedia("(prefers-color-scheme: dark)")
+        .removeEventListener("change", handleChange);
+    };
   }, []);
 
   const toggleTheme = () => {
     const newTheme = theme === "light" ? "dark" : "light";
     setTheme(newTheme);
-    localStorage.setItem("theme", newTheme);
-    document.body.classList.toggle("dark");
+    document.body.classList.toggle("dark", newTheme === "dark");
     setChecked((prevChecked) => !prevChecked); // Utilisation de la forme de fonction pour mettre à jour l'état checked
   };
 
