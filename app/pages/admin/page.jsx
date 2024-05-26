@@ -10,8 +10,9 @@ import { Divider } from "@nextui-org/divider";
 import ky from "ky";
 import { marked } from "marked";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
+import ReactMarkdown from "react-markdown";
 
 const AddProjectForm = () => {
   const router = useRouter();
@@ -171,7 +172,6 @@ const AddProjectForm = () => {
         <Spacing size={20} />
         <Divider className="w-4/5 lg:w-3/5 h-px m-auto bg-primary rounded" />
         <Spacing size={40} />
-
         <div className="flex flex-col gap-4 lg:grid lg:grid-cols-2 lg:gap-10">
           {renderInputField("title", "Titre", "text", "Titre du projet", {
             required: true,
@@ -196,7 +196,6 @@ const AddProjectForm = () => {
             </select>
           </div>
         </div>
-
         <div className="grid grid-cols-1 gap-5 text-center lg:grid lg:grid-cols-2 lg:gap-10">
           <div className="flex flex-col gap-2">
             <Label htmlFor="cover" className="truncate">
@@ -222,7 +221,6 @@ const AddProjectForm = () => {
             />
           </div>
         </div>
-
         {renderTextareaField(
           "shortDescription",
           "Description courte",
@@ -233,7 +231,12 @@ const AddProjectForm = () => {
           "Description",
           "Description du projet (longue)"
         )}
-
+        <div className="flex flex-col gap-2">
+          <Label htmlFor="year">Prévisualisation</Label>
+          <ReactMarkdown className="bg-secondary/50 min-h-24 text-current p-2 rounded-lg">
+            {formData.description}
+          </ReactMarkdown>
+        </div>
         <div className="flex flex-col gap-4 lg:grid lg:grid-cols-2 lg:gap-10">
           {renderInputField(
             "year",
@@ -250,11 +253,9 @@ const AddProjectForm = () => {
             { required: true }
           )}
         </div>
-
         {renderInputField("url", "URL", "text", "Lien du projet", {
           required: true,
         })}
-
         <Spacing size={10} />
         <Divider className="w-4/5 lg:w-3/5 h-[0.5px] m-auto bg-primary rounded" />
         <Spacing size={5} />
