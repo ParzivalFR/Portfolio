@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { CircularProgress } from "@mui/material";
 import { FaHeart } from "react-icons/fa";
 import { HiHashtag } from "react-icons/hi";
@@ -22,6 +23,7 @@ const Projects = () => {
   const [userIp, setUserIp] = useState("");
   const [likes, setLikes] = useState({});
   const [showProjects, setShowProjects] = useState(3);
+  const [isSortedDescending, setIsSortedDescending] = useState(true); // Nouvel état
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -35,7 +37,11 @@ const Projects = () => {
       try {
         const response = await ky.get("https://parzival.fun/api/projects");
         const data = await response.json();
-        setFetchedData(data);
+
+        const sortedData = data.sort(
+          (a, b) => new Date(b.timestamp) - new Date(a.timestamp)
+        );
+        setFetchedData(sortedData);
 
         const likesData = await Promise.all(
           data.map(async (project) => {
@@ -103,8 +109,44 @@ const Projects = () => {
     setShowProjects(3);
   };
 
+  const toggleSort = () => {
+    setFetchedData((prevFetchedData) => {
+      const sortedData = prevFetchedData.sort((a, b) => {
+        return isSortedDescending
+          ? new Date(a.timestamp) - new Date(b.timestamp)
+          : new Date(b.timestamp) - new Date(a.timestamp);
+      });
+      return [...sortedData];
+    });
+    setIsSortedDescending(!isSortedDescending); // Bascule l'état du tri
+  };
+
   return (
     <section id="projects">
+      <Tabs
+        defaultValue="descending"
+        className="w-full flex flex-col justify-center items-center p-4"
+      >
+        <TabsList>
+          <TabsTrigger
+            value="descending"
+            onClick={() => {
+              toggleSort();
+            }}
+          >
+            Le plus récent
+          </TabsTrigger>
+          <TabsTrigger
+            value="ascending"
+            onClick={() => {
+              toggleSort();
+            }}
+          >
+            Le plus ancien
+          </TabsTrigger>
+        </TabsList>
+      </Tabs>
+
       {isLoading ? (
         <div className="size-full m-auto flex justify-center items-center">
           <CircularProgress color="secondary" className="m-auto" size={100} />
@@ -141,15 +183,17 @@ const Projects = () => {
                 </div>
               </Link>
               <hr className="w-3/5 m-auto center rounded-lg border border-primary/80 " />
-              <div>
-                <h2 className="flex items-center gap-1 lg:gap-2 font-black text-xl md:text-2xl">
-                  <HiHashtag className="text-primary" />
-                  {project.title}
-                </h2>
-                <q className="text-xs md:text-sm">
-                  {" "}
-                  {project.shortDescription}{" "}
-                </q>
+              <div className="flex flex-col justify-between h-full">
+                <div className="flex flex-col">
+                  <h2 className="flex items-center gap-1 lg:gap-2 font-black text-xl md:text-2xl">
+                    <HiHashtag className="text-primary" />
+                    {project.title}
+                  </h2>
+                  <q className="text-xs md:text-sm text-wrap">
+                    {" "}
+                    {project.shortDescription}{" "}
+                  </q>
+                </div>
                 {project.skills && (
                   <ul className="flex flex-wrap gap-2 w-[85%] mt-5">
                     {project.skills.map((skill) => (
