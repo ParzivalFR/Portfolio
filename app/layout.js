@@ -30,7 +30,7 @@ export const metadata = {
         type: "image/jpeg",
         width: 1200,
         height: 630,
-        url: "https://res.cloudinary.com/dbmjyltpp/image/upload/v1716566940/IMG_1882_zky80l.jpg",
+        url: "https://res.cloudinary.com/dbmjyltpp/image/upload/v1716816576/IMG_1883_o6atab.jpg",
       },
     ],
     site_name: "Gael RICHARD - Développeur Web Fullstack",
@@ -46,7 +46,7 @@ export const metadata = {
     type: "website",
     url: "https://parzival-portfolio.vercel.app",
     images: [
-      "https://res.cloudinary.com/dbmjyltpp/image/upload/v1716566940/IMG_1882_zky80l.jpg",
+      "https://res.cloudinary.com/dbmjyltpp/image/upload/v1716816576/IMG_1883_o6atab.jpg",
     ],
   },
 };

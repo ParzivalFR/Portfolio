@@ -220,7 +220,7 @@ export default function Project({ params }) {
                       Il reste {project.images.length - numberShowImage} images.
                     </span>
                     <button
-                      className=" w-40 m-auto rounded-lg shadow-pxl border border-foreground/10 p-2 bg-primary/80 text-white transition-colors duration-500 ease-in-out hover:bg-primary/50 hover:scale-95"
+                      className=" w-40 m-auto rounded-lg shadow-pxl border border-foreground/10 p-2 bg-primary/80 text-white transition-all duration-500 ease-in-out hover:bg-primary/50 hover:scale-95"
                       onClick={handleShowImages}
                     >
                       Afficher plus

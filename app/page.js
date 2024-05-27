@@ -1,5 +1,5 @@
 import { Divider } from "@nextui-org/divider";
-import AlertHome from "./_components/AlertHome";
+import CoffeeTime from "./_components/CoffeeTime";
 import ContactMe from "./_components/ContactMe";
 import { EasterEggAlert } from "./_components/EasterEggAlert";
 import Header from "./_components/Header";
@@ -14,10 +14,12 @@ export default function Home() {
     <>
       <Header />
       <main className="min-h-svh">
-        <Spacing size={40} />
+        <Spacing size={20} />
         <EasterEggAlert />
-        <AlertHome />
-        <Spacing size={40} />
+        <CoffeeTime>
+          Le code, c’est ma tasse de thé… ou plutôt, ma tasse de café !
+        </CoffeeTime>
+        <Spacing size={20} />
         <SectionHome />
         <Spacing size={40} />
         <Divider className="w-2/3 h-px m-auto bg-current rounded" />

@@ -231,7 +231,7 @@ const Projects = () => {
             </p>
             <button
               onClick={handleShowMoreProjects}
-              className="w-[250px] bg-primary text-background font-bold p-2 rounded-lg shadow-pxl hover:bg-primary/80 transition-all duration-500"
+              className="w-[250px] bg-primary text-white font-bold p-2 rounded-lg shadow-pxl hover:bg-primary/80 transition-all duration-500"
             >
               Voir plus
             </button>
@@ -243,7 +243,7 @@ const Projects = () => {
             </p>
             <button
               onClick={handleShowHideProjects}
-              className="w-[250px] bg-primary text-background font-bold p-2 rounded-lg shadow-pxl hover:bg-primary/80 transition-all duration-500"
+              className="w-[250px] bg-primary text-white font-bold p-2 rounded-lg shadow-pxl hover:bg-primary/80 transition-all duration-500"
             >
               Voir moins
             </button>

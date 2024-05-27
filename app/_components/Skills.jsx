@@ -29,9 +29,9 @@ import { useWindowSize } from "../hooks/WindowSizeContext";
 const Skills = () => {
   const windowSizeContext = useWindowSize();
   const skills = [
-    { icon: FaHtml5, name: "HTML", value: "Intermédiaire" },
-    { icon: IoLogoCss3, name: "CSS", value: "Intermédiaire" },
-    { icon: RiJavascriptFill, name: "Javascript", value: "Débutant" },
+    // { icon: FaHtml5, name: "HTML", value: "Intermédiaire" },
+    // { icon: IoLogoCss3, name: "CSS", value: "Intermédiaire" },
+    // { icon: RiJavascriptFill, name: "Javascript", value: "Débutant" },
     { icon: RiTailwindCssFill, name: "Tailwind", value: "Débutant" },
     { icon: FaReact, name: "React", value: "Débutant" },
     { icon: RiNextjsFill, name: "Nextjs", value: "Débutant" },
@@ -39,7 +39,7 @@ const Skills = () => {
     { icon: FaSass, name: "SASS", value: "Intermédiaire" },
     { icon: SiMongodb, name: "Mongodb", value: "Intermédiaire" },
     { icon: FaGithub, name: "Github", value: "Intermédiaire" },
-    { icon: FaGitAlt, name: "Git", value: "Intermédiaire" },
+    // { icon: FaGitAlt, name: "Git", value: "Intermédiaire" },
   ];
 
   return (
