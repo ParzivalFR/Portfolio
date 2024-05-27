@@ -36,7 +36,7 @@ const Skills = () => {
     { icon: FaReact, name: "React", value: "Débutant" },
     { icon: RiNextjsFill, name: "Nextjs", value: "Débutant" },
     { icon: FaNodeJs, name: "Nodejs", value: "Débutant" },
-    { icon: FaSass, name: "SASS", value: "Intermédiaire" },
+    // { icon: FaSass, name: "SASS", value: "Intermédiaire" },
     { icon: SiMongodb, name: "Mongodb", value: "Intermédiaire" },
     { icon: FaGithub, name: "Github", value: "Intermédiaire" },
     // { icon: FaGitAlt, name: "Git", value: "Intermédiaire" },

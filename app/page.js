@@ -8,6 +8,7 @@ import Projects from "./_components/Projects";
 import SectionHome from "./_components/SectionHome";
 import Skills from "./_components/Skills";
 import Spacing from "./_components/Spacing";
+import TypeWrite from "./_components/TypeWrite";
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
           Le code, c’est ma tasse de thé… ou plutôt, ma tasse de café !
         </CoffeeTime>
         <Spacing size={20} />
+        <TypeWrite />
         <SectionHome />
         <Spacing size={40} />
         <Divider className="w-2/3 h-px m-auto bg-current rounded" />
@@ -27,15 +29,15 @@ export default function Home() {
         <InfiniFloat />
         <Spacing size={100} />
         <Divider className="w-2/3 h-[0.5px] m-auto bg-current rounded" />
-        <Spacing size={100} />
+        <Spacing size={50} />
         <Skills />
         <Spacing size={50} />
         <Divider className="w-2/3 h-[0.5px] m-auto bg-current rounded" />
-        <Spacing size={100} />
+        <Spacing size={50} />
         <Projects />
         <Spacing size={50} />
         <Divider className="w-2/3 h-[0.5px] m-auto bg-current rounded" />
-        <Spacing size={100} />
+        <Spacing size={50} />
         <ContactMe />
         <Spacing size={50} />
       </main>
