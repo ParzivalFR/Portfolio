@@ -1,23 +1,12 @@
 "use client";
 
 import Textarea from "@/app/_components/Textarea";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import emailjs from "@emailjs/browser";
-import { DotFilledIcon, QuestionMarkIcon } from "@radix-ui/react-icons";
+import { Checkbox } from "@mui/material";
 import { useEffect, useRef, useState } from "react";
 import Swal from "sweetalert2";
 
@@ -27,6 +16,7 @@ const ContactMe = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [isChecked, setIsChecked] = useState(false);
 
   const form = useRef();
 
@@ -35,7 +25,9 @@ const ContactMe = () => {
     return regex.test(email);
   };
 
-  const sendEmail = () => {
+  const sendEmail = async (e) => {
+    e.preventDefault();
+
     if (!validateEmail(email)) {
       Swal.fire({
         position: "center",
@@ -44,55 +36,67 @@ const ContactMe = () => {
         showConfirmButton: false,
         timer: 2000,
       });
-    } else {
-      emailjs
-        .sendForm(
+      return;
+    }
+
+    const result = await Swal.fire({
+      title: "Êtes-vous certain ?",
+      text: "Une fois envoyé, vous ne pourrez plus modifier votre message.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Oui, envoyer !",
+      cancelButtonText: "Annuler",
+      customClass: {
+        popup: "my-swal-theme",
+      },
+    });
+
+    if (result.isConfirmed) {
+      try {
+        await emailjs.sendForm(
           process.env.NEXT_PUBLIC_SERVICE_ID,
           process.env.NEXT_PUBLIC_TEMPLATE_ID,
           form.current,
-          {
-            publicKey: process.env.NEXT_PUBLIC_PUBLIC_KEY,
-          }
-        )
-        .then(
-          () => {
-            Swal.fire({
-              position: "center",
-              icon: "success",
-              title: "Message envoyé avec succès !",
-              showConfirmButton: false,
-              timer: 2000,
-            });
-            setFirstName("");
-            setName("");
-            setEmail("");
-            setMessage("");
-            console.log("SUCCESS!");
-          },
-          (error) => {
-            Swal.fire({
-              position: "center",
-              icon: "error",
-              title: "Échec de l'envoi du message !",
-              showConfirmButton: false,
-              timer: 2000,
-            });
-            console.log("FAILED...", error.text);
-          }
+          process.env.NEXT_PUBLIC_PUBLIC_KEY
         );
+
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Message envoyé avec succès !",
+          showConfirmButton: false,
+          timer: 2000,
+        });
+
+        setFirstName("");
+        setName("");
+        setEmail("");
+        setMessage("");
+      } catch (error) {
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: "Échec de l'envoi du message !",
+          showConfirmButton: false,
+          timer: 2000,
+        });
+        console.error("Échec de l'envoi du message :", error.text);
+      }
     }
   };
 
   useEffect(() => {
     const checkValues = () => {
-      if (firstName && name && email && message) {
+      if (firstName && name && email && message && isChecked) {
         setIsDisabled(false);
       } else {
         setIsDisabled(true);
       }
     };
     checkValues();
-  }, [firstName, name, email, message]);
+  }, [firstName, name, email, message, isChecked]);
 
   return (
     <section id="contact" className="m-2">
@@ -106,7 +110,7 @@ const ContactMe = () => {
         <form ref={form} className="grid gap-2 md:gap-4 py-4">
           <div className="grid grid-cols-1 gap-2 md:gap-4 md:grid-cols-2">
             <div className="flex flex-col items-center gap-1 md:gap-4">
-              <Label htmlFor="name" className="text-right">
+              <Label htmlFor="name" className="w-full text-left">
                 <span className="text-red-600">*</span> Prénom
               </Label>
               <Input
@@ -120,7 +124,7 @@ const ContactMe = () => {
               />
             </div>
             <div className="flex flex-col items-center gap-1 md:gap-4">
-              <Label htmlFor="name" className="text-right">
+              <Label htmlFor="name" className="w-full text-left">
                 <span className="text-red-600">*</span> Nom
               </Label>
               <Input
@@ -135,7 +139,7 @@ const ContactMe = () => {
             </div>
           </div>
           <div className="flex flex-col items-center gap-1 md:gap-4">
-            <Label htmlFor="username" className="text-right">
+            <Label htmlFor="username" className="w-full text-left">
               <span className="text-red-600">*</span> Email
             </Label>
             <Input
@@ -159,37 +163,32 @@ const ContactMe = () => {
             className={"w-full bg-secondary/20"}
             onChange={(e) => setMessage(e.target.value)}
           />
-          <AlertDialog>
-            <AlertDialogTrigger asChild>
-              <Button
-                id="contact-submit"
-                disabled={isDisabled}
-                className="w-full mt-4 bg-primary/40 text-current hover:bg-primary/10 py-2 rounded-lg transition-colors duration-500 ease-in-out disabled:bg-primary/20 disabled:text-current disabled:cursor-not-allowed"
-                variant="default"
-              >
-                Envoyez
-              </Button>
-            </AlertDialogTrigger>
-            <AlertDialogContent>
-              <AlertDialogHeader>
-                <AlertDialogTitle className="flex">
-                  <QuestionMarkIcon className="w-6 h-6 mr-2 text-primary text-bold" />
-                  Êtes-vous certain ?
-                </AlertDialogTitle>
-                <AlertDialogDescription className="flex">
-                  <DotFilledIcon className="w-4 h-4 mr-2 text-primary" />
-                  Une fois avoir envoyé votre message, vous ne pourrez plus le
-                  modifier. Êtes-vous sûr de vouloir continuer ?
-                </AlertDialogDescription>
-              </AlertDialogHeader>
-              <AlertDialogFooter>
-                <AlertDialogCancel>Annuler</AlertDialogCancel>
-                <AlertDialogAction onClick={sendEmail}>
-                  Confirmer
-                </AlertDialogAction>
-              </AlertDialogFooter>
-            </AlertDialogContent>
-          </AlertDialog>
+          <div className="w-full flex gap-2 justify-end items-center">
+            <Checkbox
+              style={{ color: "#8A2BE2" }}
+              type="checkbox"
+              id="data-consent"
+              name="data-consent"
+              onChange={(e) => setIsChecked(e.target.checked)}
+              required
+            />
+            <label
+              htmlFor="data-consent"
+              className="text-xs italic min-w-[300px]"
+            >
+              J'accepte la politique de confidentialité et les conditions
+              d'utilisation.
+            </label>
+          </div>
+          <Button
+            id="contact-submit"
+            disabled={isDisabled}
+            className="w-full mt-4 bg-primary/40 text-current hover:bg-primary/10 py-2 rounded-lg transition-colors duration-500 ease-in-out disabled:bg-primary/20 disabled:text-current disabled:cursor-not-allowed"
+            variant="default"
+            onClick={sendEmail}
+          >
+            Envoyez
+          </Button>
         </form>
       </Card>
     </section>

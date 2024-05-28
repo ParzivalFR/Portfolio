@@ -15,11 +15,11 @@ const TypeWrite = () => {
           1500,
           "I'm a Baker",
           1500,
-          "I'm a dad",
+          "I'm a Dad",
           500,
         ]}
         speed={1}
-        className="text-3xl font-bold text-center bg-gradient-to-l from-fuchsia-500 to-cyan-500 bg-clip-text text-transparent"
+        className="text-4xl lg:text-6xl font-bold text-center bg-gradient-to-l from-fuchsia-500 to-cyan-500 bg-clip-text text-transparent"
         repeat={Infinity}
       />
     </div>

@@ -12,27 +12,28 @@ import {
 import { Button } from "@/components/ui/button";
 import { DotFilledIcon, QuestionMarkIcon } from "@radix-ui/react-icons";
 
-export function AlertConfirm() {
+export function AlertConfirm({ button, question, content, onClick, disabled }) {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button variant="default">Send</Button>
+        <Button variant="default" disabled={disabled}>
+          {button}
+        </Button>
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle className="flex">
             <QuestionMarkIcon className="w-6 h-6 mr-2 text-primary text-bold" />
-            Êtes-vous certain ?
+            {question}
           </AlertDialogTitle>
           <AlertDialogDescription className="flex">
             <DotFilledIcon className="w-4 h-4 mr-2 text-primary" />
-            Une fois avoir envoyé votre message, vous ne pourrez plus le
-            modifier. Êtes-vous sûr de vouloir continuer ?
+            {content}
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Annuler</AlertDialogCancel>
-          <AlertDialogAction>Confirmer</AlertDialogAction>
+          <AlertDialogAction onClick={onClick}>Confirmer</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

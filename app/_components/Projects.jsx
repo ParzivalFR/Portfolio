@@ -1,19 +1,18 @@
 "use client";
 
-import { confetti } from "@tsparticles/confetti";
 import ky from "ky";
-import { useEffect, useState } from "react";
-import { v4 as uuidv4 } from "uuid";
+import Link from "next/link";
+import Spacing from "./Spacing";
 
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { CircularProgress } from "@mui/material";
+import { confetti } from "@tsparticles/confetti";
+import { useEffect, useState } from "react";
 import { FaHeart } from "react-icons/fa";
 import { HiHashtag } from "react-icons/hi";
 import { RiErrorWarningFill } from "react-icons/ri";
-
-import Link from "next/link";
-import Spacing from "./Spacing";
+import { v4 as uuidv4 } from "uuid";
 
 const Projects = () => {
   const [fetchedData, setFetchedData] = useState([]);
@@ -24,6 +23,7 @@ const Projects = () => {
   const [likes, setLikes] = useState({});
   const [showProjects, setShowProjects] = useState(3);
   const [isSortedDescending, setIsSortedDescending] = useState(true); // Nouvel état
+  const [selectedTab, setSelectedTab] = useState("descending"); // Nouvel état
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -109,16 +109,21 @@ const Projects = () => {
     setShowProjects(3);
   };
 
-  const toggleSort = () => {
+  const handleSort = (tab) => {
+    if (selectedTab === tab) return; // Vérifie si l'onglet sélectionné est le même que celui cliqué
+
+    setSelectedTab(tab); // Met à jour l'onglet sélectionné
+
     setFetchedData((prevFetchedData) => {
       const sortedData = prevFetchedData.sort((a, b) => {
-        return isSortedDescending
-          ? new Date(a.timestamp) - new Date(b.timestamp)
-          : new Date(b.timestamp) - new Date(a.timestamp);
+        return tab === "descending"
+          ? new Date(b.timestamp) - new Date(a.timestamp)
+          : new Date(a.timestamp) - new Date(b.timestamp);
       });
       return [...sortedData];
     });
-    setIsSortedDescending(!isSortedDescending); // Bascule l'état du tri
+
+    setIsSortedDescending(tab === "descending");
   };
 
   return (
@@ -130,98 +135,181 @@ const Projects = () => {
         <TabsList>
           <TabsTrigger
             value="descending"
-            onClick={() => {
-              toggleSort();
-            }}
+            onClick={() => handleSort("descending")}
           >
             Le plus récent
           </TabsTrigger>
           <TabsTrigger
             value="ascending"
-            onClick={() => {
-              toggleSort();
-            }}
+            onClick={() => handleSort("ascending")}
           >
             Le plus ancien
           </TabsTrigger>
         </TabsList>
+        <TabsContent value="descending">
+          {isLoading ? (
+            <div className="size-full m-auto flex justify-center items-center">
+              <CircularProgress
+                color="secondary"
+                className="m-auto"
+                size={100}
+              />
+            </div>
+          ) : error ? (
+            <div className="size-full flex justify-center items-center">
+              <Alert
+                severity="error"
+                className="w-4/5 m-auto border-foreground/50 bg-red-600/40 shadow-pxl"
+              >
+                <RiErrorWarningFill className="text-2xl md:text-xl" />
+                <AlertTitle className="font-bold text-xs underline md:text-base">
+                  Error
+                </AlertTitle>
+                <AlertDescription className="text-[10px] leading-tight md:text-sm">
+                  {error.message}
+                </AlertDescription>
+              </Alert>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 3xl:grid-cols-4 gap-10 p-4 w-full sm:w-4/5 m-auto">
+              {fetchedData.slice(0, showProjects).map((project) => (
+                <article
+                  key={project._id}
+                  className="relative flex flex-col justify-between h-full gap-5 p-4 bg-foreground/5 rounded-lg transition-transform transform hover:scale-105 duration-700 shadow-pxl"
+                >
+                  <Link href={`/pages/projects/${project._id}`}>
+                    <div className="shadow-pxl w-full h-36 m-auto  rounded-xl flex justify-center items-center object-cover overflow-hidden">
+                      <img
+                        src={project.cover}
+                        alt={project.title}
+                        className=" object-cover"
+                      />
+                    </div>
+                  </Link>
+                  <hr className="w-3/5 m-auto center rounded-lg border border-primary/80 " />
+                  <div className="flex flex-col justify-between h-full">
+                    <div className="flex flex-col">
+                      <h2 className="flex items-center gap-1 lg:gap-2 font-black text-xl md:text-2xl">
+                        <HiHashtag className="text-primary" />
+                        {project.title}
+                      </h2>
+                      <q className="text-xs md:text-sm text-wrap">
+                        {" "}
+                        {project.shortDescription}{" "}
+                      </q>
+                    </div>
+                    {project.skills && (
+                      <ul className="flex flex-wrap gap-2 w-[85%] mt-5">
+                        {project.skills.map((skill) => (
+                          <li
+                            key={skill}
+                            className="bg-foreground/80 rounded px-1 sm:px-2 text-background text-sm"
+                          >
+                            {skill}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                  <div className="absolute bottom-1 right-1 w-20 flex items-center justify-end gap-2">
+                    <p className="text-[12px]">{likes[project._id] || 0}</p>
+                    <FaHeart
+                      className={`text-2xl cursor-pointer transition-all transform hover:scale-110 duration-500 ${
+                        heartStates[project._id]
+                          ? "text-primary/80"
+                          : "text-primary/20"
+                      }`}
+                      onClick={() => toggleColor(project._id)}
+                    />
+                  </div>
+                </article>
+              ))}
+            </div>
+          )}
+        </TabsContent>
+        <TabsContent value="ascending">
+          {isLoading ? (
+            <div className="size-full m-auto flex justify-center items-center">
+              <CircularProgress
+                color="secondary"
+                className="m-auto"
+                size={100}
+              />
+            </div>
+          ) : error ? (
+            <div className="size-full flex justify-center items-center">
+              <Alert
+                severity="error"
+                className="w-4/5 m-auto border-foreground/50 bg-red-600/40 shadow-pxl"
+              >
+                <RiErrorWarningFill className="text-2xl md:text-xl" />
+                <AlertTitle className="font-bold text-xs underline md:text-base">
+                  Error
+                </AlertTitle>
+                <AlertDescription className="text-[10px] leading-tight md:text-sm">
+                  {error.message}
+                </AlertDescription>
+              </Alert>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 3xl:grid-cols-4 gap-10 p-4 w-4/5 m-auto">
+              {fetchedData.slice(0, showProjects).map((project) => (
+                <article
+                  key={project._id}
+                  className="relative flex flex-col justify-between h-full gap-5 p-4 bg-foreground/5 rounded-lg transition-transform transform hover:scale-105 duration-700 shadow-pxl"
+                >
+                  <Link href={`/pages/projects/${project._id}`}>
+                    <div className="shadow-pxl w-full h-36 m-auto  rounded-xl flex justify-center items-center object-cover overflow-hidden">
+                      <img
+                        src={project.cover}
+                        alt={project.title}
+                        className=" object-cover"
+                      />
+                    </div>
+                  </Link>
+                  <hr className="w-3/5 m-auto center rounded-lg border border-primary/80 " />
+                  <div className="flex flex-col justify-between h-full">
+                    <div className="flex flex-col">
+                      <h2 className="flex items-center gap-1 lg:gap-2 font-black text-xl md:text-2xl">
+                        <HiHashtag className="text-primary" />
+                        {project.title}
+                      </h2>
+                      <q className="text-xs md:text-sm text-wrap">
+                        {" "}
+                        {project.shortDescription}{" "}
+                      </q>
+                    </div>
+                    {project.skills && (
+                      <ul className="flex flex-wrap gap-2 w-[85%] mt-5">
+                        {project.skills.map((skill) => (
+                          <li
+                            key={skill}
+                            className="bg-foreground/80 rounded px-1 sm:px-2 text-background text-sm"
+                          >
+                            {skill}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                  <div className="absolute bottom-1 right-1 w-20 flex items-center justify-end gap-2">
+                    <p className="text-[12px]">{likes[project._id] || 0}</p>
+                    <FaHeart
+                      className={`text-2xl cursor-pointer transition-all transform hover:scale-110 duration-500 ${
+                        heartStates[project._id]
+                          ? "text-primary/80"
+                          : "text-primary/20"
+                      }`}
+                      onClick={() => toggleColor(project._id)}
+                    />
+                  </div>
+                </article>
+              ))}
+            </div>
+          )}
+        </TabsContent>
       </Tabs>
 
-      {isLoading ? (
-        <div className="size-full m-auto flex justify-center items-center">
-          <CircularProgress color="secondary" className="m-auto" size={100} />
-        </div>
-      ) : error ? (
-        <div className="size-full flex justify-center items-center">
-          <Alert
-            severity="error"
-            className="w-4/5 m-auto border-foreground/50 bg-red-600/40 shadow-pxl"
-          >
-            <RiErrorWarningFill className="text-2xl md:text-xl" />
-            <AlertTitle className="font-bold text-xs underline md:text-base">
-              Error
-            </AlertTitle>
-            <AlertDescription className="text-[10px] leading-tight md:text-sm">
-              {error.message}
-            </AlertDescription>
-          </Alert>
-        </div>
-      ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 3xl:grid-cols-4 gap-10 p-4 w-4/5 m-auto">
-          {fetchedData.slice(0, showProjects).map((project) => (
-            <article
-              key={project._id}
-              className="relative flex flex-col justify-between h-full gap-5 p-4 bg-foreground/5 rounded-lg transition-transform transform hover:scale-105 duration-700 shadow-pxl"
-            >
-              <Link href={`/pages/projects/${project._id}`}>
-                <div className="shadow-pxl w-full h-36 m-auto  rounded-xl flex justify-center items-center object-cover overflow-hidden">
-                  <img
-                    src={project.cover}
-                    alt={project.title}
-                    className=" object-cover"
-                  />
-                </div>
-              </Link>
-              <hr className="w-3/5 m-auto center rounded-lg border border-primary/80 " />
-              <div className="flex flex-col justify-between h-full">
-                <div className="flex flex-col">
-                  <h2 className="flex items-center gap-1 lg:gap-2 font-black text-xl md:text-2xl">
-                    <HiHashtag className="text-primary" />
-                    {project.title}
-                  </h2>
-                  <q className="text-xs md:text-sm text-wrap">
-                    {" "}
-                    {project.shortDescription}{" "}
-                  </q>
-                </div>
-                {project.skills && (
-                  <ul className="flex flex-wrap gap-2 w-[85%] mt-5">
-                    {project.skills.map((skill) => (
-                      <li
-                        key={skill}
-                        className="bg-foreground/80 rounded px-1 sm:px-2 text-background text-sm"
-                      >
-                        {skill}
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </div>
-              <div className="absolute bottom-1 right-1 w-20 flex items-center justify-end gap-2">
-                <p className="text-[12px]">{likes[project._id] || 0}</p>
-                <FaHeart
-                  className={`text-2xl cursor-pointer transition-all transform hover:scale-110 duration-500 ${
-                    heartStates[project._id]
-                      ? "text-primary/80"
-                      : "text-primary/20"
-                  }`}
-                  onClick={() => toggleColor(project._id)}
-                />
-              </div>
-            </article>
-          ))}
-        </div>
-      )}
       <Spacing size={20} />
       <div className="flex flex-col justify-center items-center">
         {showProjects < fetchedData.length ? (
