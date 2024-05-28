@@ -22,6 +22,7 @@ export default function Home() {
         </CoffeeTime>
         <Spacing size={20} />
         <TypeWrite />
+
         <SectionHome />
         <Spacing size={40} />
         <Divider className="w-2/3 h-px m-auto bg-current rounded" />

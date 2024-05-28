@@ -5,8 +5,8 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import emailjs from "@emailjs/browser";
 import { Checkbox } from "@mui/material";
+import ky from "ky";
 import { useEffect, useRef, useState } from "react";
 import Swal from "sweetalert2";
 
@@ -48,19 +48,13 @@ const ContactMe = () => {
       cancelButtonColor: "#d33",
       confirmButtonText: "Oui, envoyer !",
       cancelButtonText: "Annuler",
-      customClass: {
-        popup: "my-swal-theme",
-      },
     });
 
     if (result.isConfirmed) {
       try {
-        await emailjs.sendForm(
-          process.env.NEXT_PUBLIC_SERVICE_ID,
-          process.env.NEXT_PUBLIC_TEMPLATE_ID,
-          form.current,
-          process.env.NEXT_PUBLIC_PUBLIC_KEY
-        );
+        await ky.post("https://parzival.fun/api/contact", {
+          json: { firstName, name, email, message },
+        });
 
         Swal.fire({
           position: "center",
@@ -110,7 +104,10 @@ const ContactMe = () => {
         <form ref={form} className="grid gap-2 md:gap-4 py-4">
           <div className="grid grid-cols-1 gap-2 md:gap-4 md:grid-cols-2">
             <div className="flex flex-col items-center gap-1 md:gap-4">
-              <Label htmlFor="name" className="w-full text-center sm:text-left">
+              <Label
+                htmlFor="first-name"
+                className="w-full text-center sm:text-left"
+              >
                 <span className="text-red-600">*</span> Prénom
               </Label>
               <Input
