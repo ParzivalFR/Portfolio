@@ -110,7 +110,7 @@ const ContactMe = () => {
         <form ref={form} className="grid gap-2 md:gap-4 py-4">
           <div className="grid grid-cols-1 gap-2 md:gap-4 md:grid-cols-2">
             <div className="flex flex-col items-center gap-1 md:gap-4">
-              <Label htmlFor="name" className="w-full text-left">
+              <Label htmlFor="name" className="w-full text-center sm:text-left">
                 <span className="text-red-600">*</span> Prénom
               </Label>
               <Input
@@ -124,7 +124,7 @@ const ContactMe = () => {
               />
             </div>
             <div className="flex flex-col items-center gap-1 md:gap-4">
-              <Label htmlFor="name" className="w-full text-left">
+              <Label htmlFor="name" className="w-full text-center sm:text-left">
                 <span className="text-red-600">*</span> Nom
               </Label>
               <Input
@@ -139,7 +139,10 @@ const ContactMe = () => {
             </div>
           </div>
           <div className="flex flex-col items-center gap-1 md:gap-4">
-            <Label htmlFor="username" className="w-full text-left">
+            <Label
+              htmlFor="username"
+              className="w-full text-center sm:text-left"
+            >
               <span className="text-red-600">*</span> Email
             </Label>
             <Input
@@ -163,7 +166,7 @@ const ContactMe = () => {
             className={"w-full bg-secondary/20"}
             onChange={(e) => setMessage(e.target.value)}
           />
-          <div className="w-full flex gap-2 justify-end items-center">
+          <div className="w-full flex gap-2 justify-start flex-row-reverse items-center ">
             <Checkbox
               style={{ color: "#8A2BE2" }}
               type="checkbox"
