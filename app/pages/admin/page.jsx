@@ -13,6 +13,7 @@ import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import ReactMarkdown from "react-markdown";
+import Footer from "@/app/_components/Footer";
 
 const AddProjectForm = () => {
   const router = useRouter();
@@ -151,6 +152,7 @@ const AddProjectForm = () => {
         value={formData[name]}
         onChange={handleChange}
         placeholder={placeholder}
+        required
       />
     </div>
   );
@@ -264,6 +266,7 @@ const AddProjectForm = () => {
         </Button>
       </form>
       <Spacing size={100} />
+      <Footer />
     </>
   );
 };

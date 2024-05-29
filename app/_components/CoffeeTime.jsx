@@ -1,4 +1,5 @@
 import { FiCoffee } from "react-icons/fi";
+import DotPulse from "./DotPulse";
 
 const CoffeeTime = ({ children }) => {
   return (
@@ -8,6 +9,7 @@ const CoffeeTime = ({ children }) => {
       <p className="w-full text-[10px] leading-tight text-center md:text-sm">
         {children}
       </p>
+      <DotPulse size={3} color="primary" />
     </div>
   );
 };

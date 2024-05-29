@@ -1,3 +1,4 @@
+import { Divider } from "@nextui-org/divider";
 import Link from "next/link";
 import { FaGithubSquare, FaLinkedin } from "react-icons/fa";
 import VercelIcon from "../icons/VercelIcon";
@@ -7,7 +8,7 @@ const Footer = () => {
   const currentDate = new Date().getFullYear();
 
   return (
-    <footer className="bg-foreground/5 mt-auto py-4">
+    <footer className="w-full bg-foreground/5 mt-auto py-4">
       <div className="flex justify-center">
         <VercelIcon size={150} />
       </div>
@@ -15,32 +16,40 @@ const Footer = () => {
         <Link
           href={"https://github.com/parzivalfr"}
           target="_blank"
-          className="transition duration-500 ease-in-out hover:scale-105 hover:text-primary/60"
+          className="transition duration-500 ease-in-out hover:scale-110 "
         >
-          <FaGithubSquare size={30} />
+          <FaGithubSquare size={20} />
         </Link>
         <Link
           href={"https://www.linkedin.com/in/ga%C3%ABl-richard-680b8a263/"}
           target="_blank"
-          className="transition duration-500 ease-in-out hover:scale-105 hover:text-primary/60"
+          className="transition duration-500 ease-in-out hover:scale-110"
+          passHref
         >
-          <FaLinkedin size={30} />
+          <FaLinkedin size={20} />
         </Link>
       </div>
       <Spacing size={10} />
-      <div>
-        <p className="text-center text-sm text-foreground/70">
+      <div className="flex justify-center items-center gap-1">
+        <p className="text-center text-xs sm:text-sm text-foreground/70">
           © {currentDate} Created with ❤️ by{" "}
           <Link
             href={"https://discord.com/users/1017721923259613234"}
             target="_blank"
+            passHref
           >
-            <span className="text-accent-foreground transition duration-500 ease-in-out hover:text-primary/60 font-semibold">
+            <span className="text-foreground font-semibold transition duration-500 ease-in-out hover:text-primary/60 ">
               Parzival
             </span>
           </Link>
           .
         </p>
+        <Divider className="h-[1.5px] w-[10px] bg-foreground rotate-90" />
+        <Link href="/pages/legal" passHref>
+          <p className="text-xs sm:text-sm text-foreground/70 transition duration-500 ease-in-out hover:text-primary/60">
+            Mentions légales
+          </p>
+        </Link>
       </div>
     </footer>
   );

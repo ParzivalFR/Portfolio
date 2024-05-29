@@ -2,6 +2,7 @@
 
 import { Toggle } from "@/components/ui/toggle";
 import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
+import Link from "next/link"; // Importez le composant Link de next/link
 import { useState } from "react";
 import { MdOutlineClose } from "react-icons/md";
 import { useTheme } from "../hooks/ThemeContext";
@@ -18,10 +19,8 @@ export const CurtainMenuPage = () => {
   };
 
   const handleLogout = () => {
-    logout(); // Utilisez la fonction logout du TokenContext pour déconnecter l'utilisateur
+    logout();
   };
-
-  // Vous pouvez maintenant utiliser l'userId pour des opérations spécifiques à l'utilisateur
 
   return (
     <>
@@ -76,11 +75,9 @@ export const CurtainMenuPage = () => {
           <MenuItem href="/#contact" onClick={toggle}>
             Contact
           </MenuItem>
-          <MenuItem>
-            <Toggle checked={checked} onClick={toggleTheme}>
-              {checked ? <SunIcon /> : <MoonIcon />}
-            </Toggle>
-          </MenuItem>
+          <Toggle checked={checked} onClick={toggleTheme}>
+            {checked ? <SunIcon /> : <MoonIcon />}
+          </Toggle>
         </MenuContainer>
       </Menu>
     </>
@@ -116,9 +113,9 @@ function MenuContainer({ children }) {
 function MenuItem({ children, href, onClick }) {
   return (
     <div className="p-2">
-      <a href={href} className={style.item} onClick={onClick}>
+      <Link href={href} className={style.item} onClick={onClick}>
         {children}
-      </a>
+      </Link>
     </div>
   );
 }

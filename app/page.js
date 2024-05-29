@@ -2,6 +2,7 @@ import { Divider } from "@nextui-org/divider";
 import CoffeeTime from "./_components/CoffeeTime";
 import ContactMe from "./_components/ContactMe";
 import { EasterEggAlert } from "./_components/EasterEggAlert";
+import Footer from "./_components/Footer";
 import Header from "./_components/Header";
 import InfiniFloat from "./_components/InfiniFloat";
 import Projects from "./_components/Projects";
@@ -22,7 +23,6 @@ export default function Home() {
         </CoffeeTime>
         <Spacing size={20} />
         <TypeWrite />
-
         <SectionHome />
         <Spacing size={40} />
         <Divider className="w-2/3 h-px m-auto bg-current rounded" />
@@ -42,6 +42,7 @@ export default function Home() {
         <ContactMe />
         <Spacing size={50} />
       </main>
+      <Footer />
     </>
   );
 }

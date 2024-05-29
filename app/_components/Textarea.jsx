@@ -2,6 +2,7 @@ import { cn } from "@/lib/utils";
 import { useState } from "react";
 
 const Textarea = ({
+  label,
   name,
   id,
   cols,
@@ -22,7 +23,7 @@ const Textarea = ({
   return (
     <div className="relative w-full flex flex-col items-center m-auto gap-1">
       <label htmlFor={id} className="w-full text-left text-sm">
-        <span className="text-red-600">*</span> Message
+        <span className="text-red-600">*</span> {label}
       </label>
       <textarea
         name={name}
@@ -39,7 +40,7 @@ const Textarea = ({
         onChange={handleChange}
         required
       ></textarea>
-      <span className="absolute right-2 bottom-0 w-full text-xs text-end ">
+      <span className="absolute right-2 bottom-2 w-full text-xs text-end ">
         {numbText < maxLength / 2 ? (
           <span className="text-green-500">
             {numbText}/{maxLength}

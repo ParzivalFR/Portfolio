@@ -1,4 +1,5 @@
 "use client";
+import Footer from "@/app/_components/Footer";
 import Header from "@/app/_components/Header";
 import { useToken } from "@/app/hooks/TokenContext";
 import { Button } from "@/components/ui/button";
@@ -77,9 +78,9 @@ const Login = () => {
   };
 
   return (
-    <>
+    <main className="flex flex-col justify-center items-center w-full h-svh">
       <Header />
-      <main className="w-full h-svh sm:w-4/5 m-auto flex justify-center items-center">
+      <section className="flex flex-col justify-center items-center h-full w-full">
         <Tabs defaultValue="Connexion" className="w-4/5 md:w-[400px]">
           <TabsList className="grid w-full grid-cols-2 border border-foreground/10">
             <TabsTrigger value="Connexion">Connexion</TabsTrigger>
@@ -181,8 +182,9 @@ const Login = () => {
             </form>
           </TabsContent>
         </Tabs>
-      </main>
-    </>
+      </section>
+      <Footer />
+    </main>
   );
 };
 

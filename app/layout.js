@@ -2,7 +2,6 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Poppins } from "next/font/google";
 import CursorLight from "./_components/CursorLight";
-import Footer from "./_components/Footer";
 import ScrollToTop from "./_components/ScrollToTop";
 import "./globals.css";
 import { ThemeProvider } from "./hooks/ThemeContext";
@@ -24,7 +23,7 @@ export const metadata = {
     description:
       "Développeur Web Fullstack, je suis passionné par le développement web. Je suis spécialisé dans la création de sites web avec pour but de satisfaires les besoins de mes clients.",
     type: "website",
-    url: "https://parzival-portfolio.vercel.app",
+    url: "https://https://gael-dev.fr",
     images: [
       {
         type: "image/jpeg",
@@ -44,7 +43,7 @@ export const metadata = {
     description:
       "Développeur Web Fullstack, je suis passionné par le développement web. Je suis spécialisé dans la création de sites web avec pour but de satisfaires les besoins de mes clients.",
     type: "website",
-    url: "https://parzival-portfolio.vercel.app",
+    url: "https://https://gael-dev.fr",
     images: [
       "https://res.cloudinary.com/dbmjyltpp/image/upload/v1716816576/IMG_1883_o6atab.jpg",
     ],
@@ -53,20 +52,21 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <TokenProvider>
-      <html lang="fr" suppressHydrationWarning>
-        <WindowSizeProvider>
-          <body className={`${poppins.className}`}>
-            <CursorLight>
-              <ThemeProvider>{children}</ThemeProvider>
-              <Footer />
-              <ScrollToTop />
-            </CursorLight>
-            <Analytics />
-            <SpeedInsights />
-          </body>
-        </WindowSizeProvider>
-      </html>
-    </TokenProvider>
+    <ThemeProvider>
+      <TokenProvider>
+        <html lang="fr" suppressHydrationWarning>
+          <WindowSizeProvider>
+            <body className={`${poppins.className}`}>
+              <CursorLight>
+                {children}
+                <ScrollToTop />
+              </CursorLight>
+              <Analytics />
+              <SpeedInsights />
+            </body>
+          </WindowSizeProvider>
+        </html>
+      </TokenProvider>
+    </ThemeProvider>
   );
 }

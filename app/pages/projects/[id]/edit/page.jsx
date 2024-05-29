@@ -1,5 +1,6 @@
 "use client";
 
+import Footer from "@/app/_components/Footer";
 import Header from "@/app/_components/Header";
 import Spacing from "@/app/_components/Spacing";
 import { Button } from "@/components/ui/button";
@@ -359,6 +360,7 @@ const EditProjectForm = () => {
         </Button>
       </form>
       <Spacing size={100} />
+      <Footer />
     </>
   );
 };

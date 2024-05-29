@@ -1,14 +1,15 @@
 "use client";
 
-import Textarea from "@/app/_components/Textarea";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@mui/material";
 import ky from "ky";
 import { useEffect, useRef, useState } from "react";
 import Swal from "sweetalert2";
+import DotPulse from "./DotPulse";
 
 const ContactMe = () => {
   const [isDisabled, setIsDisabled] = useState(true);
@@ -68,6 +69,7 @@ const ContactMe = () => {
         setName("");
         setEmail("");
         setMessage("");
+        setIsChecked(false); // Assure-toi que l'état est réinitialisé
       } catch (error) {
         Swal.fire({
           position: "center",
@@ -94,12 +96,15 @@ const ContactMe = () => {
 
   return (
     <section id="contact" className="m-2">
-      <Card className="w-full p-5 sm:p-10 sm:w-4/5 lg:w-3/5 m-auto bg-primary/5 rounded-lg shadow-pxl">
+      <Card className="relative w-full p-5 sm:p-10 sm:w-4/5 lg:w-3/5 m-auto bg-primary/5 rounded-lg shadow-pxl">
         <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center">
           Contact
         </h3>
-        <p className="text-center text-xs sm:text-sm md:text-md m-4 text-foreground/40">
-          Veuillez entrer vos informations de contact & cliquez sur "Envoyer".
+        <DotPulse size={3} color="primary" />
+        <p className="text-center text-xs m-4 text-foreground/40">
+          Les informations envoyées via ce formulaire sont utilisées pour vous
+          recontacter. Elles ne sont pas stockées dans une base de données et ne
+          sont pas utilisées à des fins commerciales ou publicitaires.
         </p>
         <form ref={form} className="grid gap-2 md:gap-4 py-4">
           <div className="grid grid-cols-1 gap-2 md:gap-4 md:grid-cols-2">
@@ -153,6 +158,7 @@ const ContactMe = () => {
             />
           </div>
           <Textarea
+            label={"Message"}
             name={"message"}
             id={"message-2"}
             cols={50}
@@ -163,12 +169,13 @@ const ContactMe = () => {
             className={"w-full bg-secondary/20"}
             onChange={(e) => setMessage(e.target.value)}
           />
-          <div className="w-full flex gap-2 justify-start flex-row-reverse items-center ">
+          <div className="w-full flex gap-2 justify-start flex-row-reverse items-center">
             <Checkbox
               style={{ color: "#8A2BE2" }}
               type="checkbox"
               id="data-consent"
               name="data-consent"
+              checked={isChecked} // Utilisation de checked au lieu de defaultChecked
               onChange={(e) => setIsChecked(e.target.checked)}
               required
             />
@@ -176,8 +183,8 @@ const ContactMe = () => {
               htmlFor="data-consent"
               className="text-xs italic min-w-[300px]"
             >
-              J'accepte la politique de confidentialité et les conditions
-              d'utilisation.
+              J'accepte de soumettre mes informations personnelles via ce
+              formulaire.
             </label>
           </div>
           <Button
@@ -190,6 +197,7 @@ const ContactMe = () => {
             Envoyez
           </Button>
         </form>
+        <DotPulse size={3} color="primary" />
       </Card>
     </section>
   );
