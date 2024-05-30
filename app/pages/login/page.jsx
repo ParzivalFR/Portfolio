@@ -1,7 +1,6 @@
 "use client";
 import Footer from "@/app/_components/Footer";
 import Header from "@/app/_components/Header";
-import Spacing from "@/app/_components/Spacing";
 import { useToken } from "@/app/hooks/TokenContext";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -79,7 +78,7 @@ const Login = () => {
   };
 
   return (
-    <main className="flex flex-col justify-center items-center w-full h-svh">
+    <main className="flex flex-col justify-center items-center gap-20 w-full h-svh">
       <Header />
       <section className="flex flex-col justify-center items-center h-full w-full">
         <Tabs defaultValue="Connexion" className="w-4/5 md:w-[400px]">
