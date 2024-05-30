@@ -78,7 +78,7 @@ const Login = () => {
   };
 
   return (
-    <main className="flex flex-col justify-center items-center gap-20 w-full h-svh">
+    <main className="flex flex-col justify-center items-center gap-10 w-full min-h-svh">
       <Header />
       <section className="flex flex-col justify-center items-center h-full w-full">
         <Tabs defaultValue="Connexion" className="w-4/5 md:w-[400px]">
