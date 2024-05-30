@@ -2,7 +2,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Poppins } from "next/font/google";
 import CursorLight from "./_components/CursorLight";
-import ScrollToTop from "./_components/ScrollToTop";
+// import ScrollToTop from "./_components/ScrollToTop";
 import "./globals.css";
 import { ThemeProvider } from "./hooks/ThemeContext";
 import { TokenProvider } from "./hooks/TokenContext";
@@ -59,10 +59,14 @@ export default function RootLayout({ children }) {
             <body className={`${poppins.className}`}>
               <CursorLight>
                 {children}
-                <ScrollToTop />
+                {/* <ScrollToTop /> */}
               </CursorLight>
               <Analytics />
               <SpeedInsights />
+              <script
+                src="//code.tidio.co/dgumn98jlsxskgkumviht97jcn1bsnvy.js"
+                async
+              ></script>
             </body>
           </WindowSizeProvider>
         </html>
