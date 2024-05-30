@@ -157,18 +157,26 @@ const ContactMe = () => {
               required
             />
           </div>
-          <Textarea
-            label={"Message"}
-            name={"message"}
-            id={"message-2"}
-            cols={50}
-            rows={6}
-            placeholder={"Votre message..."}
-            value={message}
-            maxLength={300}
-            className={"w-full bg-secondary/20"}
-            onChange={(e) => setMessage(e.target.value)}
-          />
+          <div className="flex flex-col items-center gap-1 md:gap-4">
+            <Label
+              htmlFor="message-2"
+              className="w-full text-center sm:text-left"
+            >
+              <span className="text-red-600">*</span> Message
+            </Label>
+            <Textarea
+              label={"Message"}
+              name={"message"}
+              id={"message-2"}
+              cols={50}
+              rows={6}
+              placeholder={"Votre message..."}
+              value={message}
+              maxLength={300}
+              // className={"w-full bg-secondary/20"}
+              onChange={(e) => setMessage(e.target.value)}
+            />
+          </div>
           <div className="w-full flex gap-2 justify-start flex-row-reverse items-center">
             <Checkbox
               style={{ color: "#8A2BE2" }}

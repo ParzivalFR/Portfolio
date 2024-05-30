@@ -252,7 +252,7 @@ const Projects = () => {
               </Alert>
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 3xl:grid-cols-4 gap-10 p-4 w-4/5 m-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 3xl:grid-cols-4 gap-10 p-4 w-full sm:w-4/5 m-auto">
               {fetchedData.slice(0, showProjects).map((project) => (
                 <article
                   key={project._id}
