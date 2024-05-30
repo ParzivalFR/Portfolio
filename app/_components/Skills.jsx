@@ -10,16 +10,17 @@ import {
 
 import {
   FaCheck,
-  FaGitAlt,
+  // FaGitAlt,
   FaGithub,
-  FaHtml5,
+  // FaHtml5,
   FaNodeJs,
   FaReact,
   FaSass,
 } from "react-icons/fa";
-import { IoLogoCss3 } from "react-icons/io";
+// import { IoLogoCss3 } from "react-icons/io";
+
 import {
-  RiJavascriptFill,
+  // RiJavascriptFill,
   RiNextjsFill,
   RiTailwindCssFill,
 } from "react-icons/ri";
