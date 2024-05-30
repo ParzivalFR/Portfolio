@@ -187,10 +187,7 @@ const ContactMe = () => {
               onChange={(e) => setIsChecked(e.target.checked)}
               required
             />
-            <label
-              htmlFor="data-consent"
-              className="text-xs italic min-w-[300px]"
-            >
+            <label htmlFor="data-consent" className="text-xs italic ">
               J'accepte de soumettre mes informations personnelles via ce
               formulaire.
             </label>

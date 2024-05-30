@@ -8,7 +8,7 @@ const Footer = () => {
   const currentDate = new Date().getFullYear();
 
   return (
-    <footer className="w-full bg-foreground/5 py-4">
+    <footer className="w-full mt-auto bg-foreground/5 py-4">
       <div className="flex justify-center">
         <VercelIcon size={150} />
       </div>

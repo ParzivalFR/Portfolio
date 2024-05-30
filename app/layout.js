@@ -1,8 +1,8 @@
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Poppins } from "next/font/google";
+import Script from "next/script"; // Importation de Script pour Next.js
 import CursorLight from "./_components/CursorLight";
-// import ScrollToTop from "./_components/ScrollToTop";
 import "./globals.css";
 import { ThemeProvider } from "./hooks/ThemeContext";
 import { TokenProvider } from "./hooks/TokenContext";
@@ -55,20 +55,36 @@ export default function RootLayout({ children }) {
     <ThemeProvider>
       <TokenProvider>
         <html lang="fr" suppressHydrationWarning>
-          <WindowSizeProvider>
-            <body className={`${poppins.className}`}>
+          <head>
+            <Script
+              async
+              src="https://www.googletagmanager.com/gtag/js?id=G-1P0ENQYV95"
+              strategy="afterInteractive"
+            />
+            <Script id="google-analytics" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'G-1P0ENQYV95');
+              `}
+            </Script>
+            <Script
+              src="//code.tidio.co/dgumn98jlsxskgkumviht97jcn1bsnvy.js"
+              async
+              strategy="afterInteractive"
+            />
+          </head>
+          <body className={`${poppins.className}`}>
+            <WindowSizeProvider>
               <CursorLight>
                 {children}
                 {/* <ScrollToTop /> */}
               </CursorLight>
               <Analytics />
               <SpeedInsights />
-              <script
-                src="//code.tidio.co/dgumn98jlsxskgkumviht97jcn1bsnvy.js"
-                async
-              ></script>
-            </body>
-          </WindowSizeProvider>
+            </WindowSizeProvider>
+          </body>
         </html>
       </TokenProvider>
     </ThemeProvider>

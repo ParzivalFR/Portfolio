@@ -18,7 +18,7 @@ const SectionHome = () => {
           j'incarne la transition d'un boulanger vers un développeur passionné.
           Ma philosophie ?
         </blockquote>
-        <cite className="text-xs text-nowrap">
+        <cite className="w-full flex justify-center items-center text-xs">
           “ De la boulangerie à la programmation, il n’y a qu’un pas. ”
           <span className="flex justify-center not-italic">🍞💻</span>
         </cite>
