@@ -81,7 +81,6 @@ const Login = () => {
   return (
     <main className="flex flex-col justify-center items-center w-full h-svh">
       <Header />
-      <Spacing size={40} />
       <section className="flex flex-col justify-center items-center h-full w-full">
         <Tabs defaultValue="Connexion" className="w-4/5 md:w-[400px]">
           <TabsList className="grid w-full grid-cols-2 border border-foreground/10">
@@ -185,7 +184,6 @@ const Login = () => {
           </TabsContent>
         </Tabs>
       </section>
-      <Spacing size={40} />
       <Footer />
     </main>
   );
