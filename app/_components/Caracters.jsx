@@ -23,7 +23,7 @@ const Caracters = ({ title, content }) => {
   ];
 
   return (
-    <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10 p-2 w-full md:w-4/5 m-auto">
+    <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10 p-2 w-4/5 m-auto">
       {caractersData.map((caracter, index) => (
         <div
           key={index}
