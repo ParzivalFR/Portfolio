@@ -156,10 +156,10 @@ const Projects = () => {
               />
             </div>
           ) : error ? (
-            <div className="size-full flex justify-center items-center">
+            <div className="w-full flex justify-center items-center">
               <Alert
                 severity="error"
-                className="w-4/5 m-auto border-foreground/50 bg-red-600/40 shadow-pxl"
+                className="min-w-[300px] m-auto border-foreground/50 bg-red-600/40 shadow-pxl"
               >
                 <RiErrorWarningFill className="text-2xl md:text-xl" />
                 <AlertTitle className="font-bold text-xs underline md:text-base">

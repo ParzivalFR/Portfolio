@@ -1,7 +1,7 @@
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Poppins } from "next/font/google";
-import Script from "next/script"; // Importation de Script pour Next.js
+import Script from "next/script";
 import CursorLight from "./_components/CursorLight";
 import "./globals.css";
 import { ThemeProvider } from "./hooks/ThemeContext";
