@@ -38,7 +38,7 @@ const EditProjectForm = () => {
         if (!token) throw new Error("No token available.");
 
         const project = await ky
-          .get(`https://parzival.fun/api/projects/${id}`, {
+          .get(`http://localhost:3000/api/projects/${id}`, {
             headers: {
               Authorization: `Bearer ${token}`,
             },
@@ -127,7 +127,7 @@ const EditProjectForm = () => {
       if (!token) throw new Error("No token available.");
 
       const response = await ky
-        .put(`https://parzival.fun/api/projects/${id}`, {
+        .put(`http://localhost:3000/api/projects/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
