@@ -21,6 +21,7 @@ const TypeWrite = () => {
         speed={1}
         className="text-4xl lg:text-6xl font-bold text-center bg-gradient-to-l from-fuchsia-500 to-cyan-500 bg-clip-text text-transparent"
         repeat={Infinity}
+        wrapper="h1"
       />
     </div>
   );

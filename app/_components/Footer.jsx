@@ -16,6 +16,7 @@ const Footer = () => {
         <Link
           href={"https://github.com/parzivalfr"}
           target="_blank"
+          title="GitHub"
           className="transition duration-500 ease-in-out hover:scale-110 "
         >
           <FaGithubSquare size={20} />
@@ -24,6 +25,7 @@ const Footer = () => {
           href={"https://www.linkedin.com/in/ga%C3%ABl-richard-680b8a263/"}
           target="_blank"
           className="transition duration-500 ease-in-out hover:scale-110"
+          title="LinkedIn"
           passHref
         >
           <FaLinkedin size={20} />
@@ -36,6 +38,7 @@ const Footer = () => {
           <Link
             href={"https://discord.com/users/1017721923259613234"}
             target="_blank"
+            title="Parzival"
             passHref
           >
             <span className="text-foreground font-semibold transition duration-500 ease-in-out hover:text-primary/60 ">

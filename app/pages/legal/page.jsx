@@ -12,7 +12,7 @@ const Legal = () => {
       <section className="flex flex-col justify-center items-center h-full w-full p-6">
         <div className="w-full lg:w-3/5 flex flex-col jusitfy-center items-center gap-10 p-6 rounded-xl shadow-pxl">
           <div className="relative flex justify-center items-center gap-2 p-4 rounded-lg">
-            <h1 className="text-3xl lg:text-5xl font-bold text-primary/80 text-center mb-4 underline underline-offset-4 transition hover:scale-95 duration-500 ease-in-out cursor-default">
+            <h1 className="text-2xl sm:text-3xl lg:text-5xl font-bold text-primary/80 text-center mb-4 underline underline-offset-4 transition hover:scale-95 duration-500 ease-in-out cursor-default">
               Mentions Légales
             </h1>
             <LuMousePointer2 className="absolute top-8 -right-4 w-8 h-8 text-primary" />
@@ -138,7 +138,7 @@ const Legal = () => {
               </p>
             </Card>
           </div>
-          <Card className="flex justify-center items-center gap-4 p-8 bg-foreground/5 transition hover:scale-[1.02] duration-500 ease-in-out">
+          <Card className="flex flex-col justify-between gap-2 p-4 bg-foreground/5 transition hover:scale-[1.02] duration-500 ease-in-out">
             <h2 className="inline-flex items-center gap-2 underline underline-offset-2 font-bold text-primary">
               <RocketIcon className="w-4 h-4 text-primary" />
               Crédits :

@@ -141,10 +141,7 @@ const ContactMe = () => {
             </div>
           </div>
           <div className="flex flex-col items-center gap-1 md:gap-4">
-            <Label
-              htmlFor="username"
-              className="w-full text-center sm:text-left"
-            >
+            <Label htmlFor="email" className="w-full text-center sm:text-left">
               <span className="text-red-600">*</span> Email
             </Label>
             <Input
