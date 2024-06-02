@@ -1,7 +1,7 @@
 "use client";
 
 import { Toggle } from "@/components/ui/toggle";
-import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
+import { FiMoon, FiSun } from "react-icons/fi";
 import { useTheme } from "../hooks/ThemeContext";
 import { useWindowSize } from "../hooks/WindowSizeContext";
 import { CurtainMenuPage } from "./CurtainMenu";
@@ -18,7 +18,7 @@ const Header = () => {
           <CurtainMenuPage />
           {WindowSizeContext > 768 ? (
             <Toggle checked={checked} onClick={toggleTheme}>
-              {theme === "dark" ? <SunIcon /> : <MoonIcon />}
+              {theme === "dark" ? <FiSun /> : <FiMoon />}
             </Toggle>
           ) : null}
         </div>

@@ -9,6 +9,7 @@ export default function UserAvatar() {
         description="Développeur Web Fullstack"
         avatarProps={{
           src: "/logoP.jpg",
+          alt: "Logo professionnel de Gael Richard",
         }}
         classNames={{
           name: "text-md md:text-lg font-medium text-current",

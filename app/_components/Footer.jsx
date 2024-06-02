@@ -2,8 +2,8 @@ import { Divider } from "@nextui-org/divider";
 import Link from "next/link";
 import { FaGithubSquare, FaLinkedin } from "react-icons/fa";
 import VercelIcon from "../icons/VercelIcon";
-import Spacing from "./Spacing";
 import ScrollToTop from "./ScrollToTop";
+import Spacing from "./Spacing";
 
 const Footer = () => {
   const currentDate = new Date().getFullYear();
@@ -46,7 +46,6 @@ const Footer = () => {
               Parzival
             </span>
           </Link>
-          .
         </p>
         <Divider className="h-[1.5px] w-[10px] bg-foreground rotate-90" />
         <Link href="/pages/legal" passHref>

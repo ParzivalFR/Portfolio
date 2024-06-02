@@ -1,16 +1,15 @@
 import { Divider } from "@nextui-org/divider";
 import CoffeeTime from "./_components/CoffeeTime";
 import ContactMe from "./_components/ContactMe";
-import { EasterEggAlert } from "./_components/EasterEggAlert";
 import Footer from "./_components/Footer";
 import Header from "./_components/Header";
 import InfiniFloat from "./_components/InfiniFloat";
 import Projects from "./_components/Projects";
 import SectionHome from "./_components/SectionHome";
 // import Skills from "./_components/Skills";
+import Caracters from "./_components/Caracters";
 import Spacing from "./_components/Spacing";
 import TypeWrite from "./_components/TypeWrite";
-import Caracters from "./_components/Caracters";
 
 export default function Home() {
   return (
@@ -18,7 +17,6 @@ export default function Home() {
       <Header />
       <main className="min-h-svh">
         <Spacing size={20} />
-        <EasterEggAlert />
         <CoffeeTime>
           Le code, c’est ma tasse de thé… ou plutôt, ma tasse de café !
         </CoffeeTime>

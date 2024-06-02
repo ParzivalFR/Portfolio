@@ -1,12 +1,28 @@
-import { EasterEggAlert } from "../_components/EasterEggAlert";
+"use client";
+
+import Swal from "sweetalert2";
 
 const Blob = ({ width, className }) => {
+  const handleClick = () => {
+    Swal.fire({
+      title: "👻 Boooooooooh !",
+      text: "Tu viens de trouver un easter egg ! 🥚🐣🐰🌷🍫🎉🎊🎈🎁🎀🎃👻",
+      icon: "success",
+      confirmButtonText: "👍🏼 Cool !",
+      animation: true,
+      customClass: {
+        popup: "animated tada",
+      },
+    });
+  };
+
   return (
-    <EasterEggAlert>
+    <>
       <svg
         viewBox="0 0 200 200"
         xmlns="http://www.w3.org/2000/svg"
         className={className}
+        onClick={handleClick}
       >
         {/* Votre chemin de blob ici */}
         <path
@@ -32,7 +48,7 @@ const Blob = ({ width, className }) => {
           mask="url(#blob-mask)"
         />
       </svg>
-    </EasterEggAlert>
+    </>
   );
 };
 
