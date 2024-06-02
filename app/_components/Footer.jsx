@@ -3,12 +3,13 @@ import Link from "next/link";
 import { FaGithubSquare, FaLinkedin } from "react-icons/fa";
 import VercelIcon from "../icons/VercelIcon";
 import Spacing from "./Spacing";
+import ScrollToTop from "./ScrollToTop";
 
 const Footer = () => {
   const currentDate = new Date().getFullYear();
 
   return (
-    <footer className="w-full mt-auto bg-foreground/5 py-4">
+    <footer className="relative w-full mt-auto bg-foreground/5 py-4">
       <div className="flex justify-center">
         <VercelIcon size={150} />
       </div>
@@ -54,6 +55,7 @@ const Footer = () => {
           </p>
         </Link>
       </div>
+      <ScrollToTop />
     </footer>
   );
 };

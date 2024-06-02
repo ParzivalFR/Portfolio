@@ -69,11 +69,6 @@ export default function RootLayout({ children }) {
                 gtag('config', 'G-1P0ENQYV95');
               `}
             </Script>
-            <Script
-              src="//code.tidio.co/dgumn98jlsxskgkumviht97jcn1bsnvy.js"
-              async
-              strategy="afterInteractive"
-            />
           </head>
           <body className={`${poppins.className}`}>
             <WindowSizeProvider>

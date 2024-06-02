@@ -1,5 +1,7 @@
 "use client";
 
+import { FaArrowUp } from "react-icons/fa";
+
 const ScrollToTop = () => {
   const scrollToTop = () => {
     window.scrollTo({
@@ -10,24 +12,11 @@ const ScrollToTop = () => {
 
   return (
     <button
-      className={`scroll-to-top fixed z-50 bottom-4 right-4 md:bottom-8 md:right-8 bg-foreground text-background rounded-full border-none w-10 h-10 flex justify-center items-center cursor-pointer hover:bg-foreground hover:opacity-60 transition duration-300 `}
+      className={`scroll-to-top absolute z-10 -top-3 right-4 bg-foreground text-background rounded-sm border-none w-8 h-8 md:w-10 md:h-10 flex justify-center items-center cursor-pointer hover:bg-foreground hover:opacity-60 transition duration-300 `}
       aria-label="Scroll to top"
       onClick={scrollToTop}
     >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        className="w-6 h-6"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M5 11l7-7 7 7M5 19l7-7 7 7"
-        />
-      </svg>
+      <FaArrowUp className="w-4 h-4 md:w-6 md:h-6" />
     </button>
   );
 };
