@@ -69,8 +69,8 @@ export const CurtainMenuPage = () => {
           <MenuItem href="/#projects" onClick={toggle}>
             Projets
           </MenuItem>
-          <MenuItem href="/#skills" onClick={toggle}>
-            Skills
+          <MenuItem href="/#qualities" onClick={toggle}>
+            Qualités
           </MenuItem>
           <MenuItem href="/#contact" onClick={toggle}>
             Contact

@@ -1,5 +1,6 @@
 "use client";
 
+import Footer from "@/app/_components/Footer";
 import Header from "@/app/_components/Header";
 import Spacing from "@/app/_components/Spacing";
 import { Button } from "@/components/ui/button";
@@ -10,10 +11,9 @@ import { Divider } from "@nextui-org/divider";
 import ky from "ky";
 import { marked } from "marked";
 import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
-import Swal from "sweetalert2";
+import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
-import Footer from "@/app/_components/Footer";
+import Swal from "sweetalert2";
 
 const AddProjectForm = () => {
   const router = useRouter();

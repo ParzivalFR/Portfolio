@@ -1,7 +1,5 @@
 "use client";
 
-import Footer from "@/app/_components/Footer";
-import Header from "@/app/_components/Header";
 import ImageModal from "@/app/_components/ImageModal";
 import Spacing from "@/app/_components/Spacing";
 import {

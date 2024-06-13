@@ -3,7 +3,7 @@ const DotPulse = ({ size, color }) => {
   const colorClass = `bg-${color}`;
 
   return (
-    <div className="flex justify-center items-center z-10 absolute -top-1 -right-1">
+    <div className="flex justify-center items-center z-[2] absolute -top-1 -right-1">
       <div className="relative inline-flex">
         <span className={`${sizeClass} ${colorClass} rounded-full`}></span>
         <span

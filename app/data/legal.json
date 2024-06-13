@@ -1,0 +1,189 @@
+[
+  {
+    "title": "Propriétaire :",
+    "icon": "RocketIcon",
+    "content": [
+      {
+        "type": "text",
+        "className": "text-justify text-xs font-semibold",
+        "text": "Gaël RICHARD"
+      },
+      {
+        "type": "address",
+        "content": [
+          {
+            "type": "text",
+            "className": "text-justify text-xs",
+            "text": "7 rue du pré de la ramée"
+          },
+          {
+            "type": "text",
+            "className": "text-justify text-xs",
+            "text": "44550 Montoir De Bretagne"
+          },
+          {
+            "type": "text",
+            "className": "text-justify text-xs",
+            "text": "France."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Contact :",
+    "icon": "RocketIcon",
+    "content": [
+      {
+        "type": "text",
+        "className": "text-justify text-xs",
+        "text": "Pour toute demande d'information, vous pouvez me contacter à n'importe quel moment via le ",
+        "link": {
+          "href": "/#contact",
+          "className": "text-justify text-primary font-semibold underline underline-offset-2",
+          "text": "formulaire"
+        },
+        "textEnd": " de contact disponible sur le site."
+      }
+    ]
+  },
+  {
+    "title": "Hébergeurs :",
+    "icon": "RocketIcon",
+    "content": [
+      {
+        "type": "text",
+        "className": "text-justify text-xs font-semibold",
+        "text": "Vercel Inc."
+      },
+      {
+        "type": "address",
+        "content": [
+          {
+            "type": "text",
+            "className": "text-justify text-xs",
+            "text": "340 S Lemon Ave #4133"
+          },
+          {
+            "type": "text",
+            "className": "text-justify text-xs",
+            "text": "Walnut, CA 91789"
+          },
+          {
+            "type": "text",
+            "className": "text-justify text-xs",
+            "text": "United States."
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "className": "text-justify text-xs font-semibold",
+        "text": "InovaPerf ( Be1host )"
+      },
+      {
+        "type": "address",
+        "content": [
+          {
+            "type": "text",
+            "className": "text-justify text-xs",
+            "text": "14 rue Charles-V"
+          },
+          {
+            "type": "text",
+            "className": "text-justify text-xs",
+            "text": "75004 Paris"
+          },
+          {
+            "type": "text",
+            "className": "text-justify text-xs",
+            "text": "France."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Données personnelles :",
+    "icon": "RocketIcon",
+    "content": [
+      {
+        "type": "text",
+        "className": "text-justify text-xs",
+        "text": "Les informations envoyées via le formulaire de contact sont utilisées pour vous recontacter. Elles ne sont pas stockées dans une base de données et ne sont pas utilisées à des fins commerciales ou publicitaires. Pour plus d'informations, vous pouvez me contacter via le ",
+        "link": {
+          "href": "/#contact",
+          "className": "text-justify text-primary font-semibold underline underline-offset-2",
+          "text": "formulaire"
+        },
+        "textEnd": " de contact."
+      }
+    ]
+  },
+  {
+    "title": "Cookies :",
+    "icon": "RocketIcon",
+    "content": [
+      {
+        "type": "text",
+        "className": "text-justify text-xs",
+        "text": "Ce site utilise des cookies pour améliorer votre expérience utilisateur. En poursuivant votre navigation sur ce site, vous acceptez l'utilisation de cookies."
+      }
+    ]
+  },
+  {
+    "title": "Propriété intellectuelle :",
+    "icon": "RocketIcon",
+    "content": [
+      {
+        "type": "text",
+        "className": "text-justify text-xs",
+        "text": "L'ensemble des éléments de ce site sont protégés par les lois françaises et internationales relatives à la propriété intellectuelle. Tous les droits de reproduction sont réservés, y compris pour les documents téléchargeables et les représentations iconographiques et photographiques."
+      }
+    ]
+  },
+  {
+    "title": "Liens hypertextes :",
+    "icon": "RocketIcon",
+    "content": [
+      {
+        "type": "text",
+        "className": "text-justify text-xs",
+        "text": "Les liens hypertextes mis en place dans le cadre du présent site web en direction d'autres ressources présentes sur le réseau Internet ne sauraient engager ma responsabilité."
+      }
+    ]
+  },
+  {
+    "title": "Droit applicable :",
+    "icon": "RocketIcon",
+    "content": [
+      {
+        "type": "text",
+        "className": "text-justify text-xs",
+        "text": "Tout litige en relation avec l'utilisation du site ",
+        "link": {
+          "href": "/",
+          "className": "text-justify text-primary font-semibold underline underline-offset-2",
+          "text": "Portfolio"
+        },
+        "textEnd": " est soumis au droit français. Il est fait attribution exclusive de juridiction aux tribunaux compétents."
+      }
+    ]
+  },
+  {
+    "title": "Crédits :",
+    "icon": "RocketIcon",
+    "content": [
+      {
+        "type": "text",
+        "className": "text-justify text-xs",
+        "text": "Conception et développement du site : ",
+        "link": {
+          "href": "https://www.linkedin.com/in/ga%C3%ABl-richard-680b8a263/",
+          "className": "text-justify text-primary font-semibold underline underline-offset-2",
+          "text": "Gaël RICHARD."
+        }
+      }
+    ]
+  }
+]

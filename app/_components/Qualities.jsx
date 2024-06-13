@@ -1,6 +1,6 @@
 import { BiCheckShield } from "react-icons/bi";
 
-const Caracters = ({ title, content }) => {
+const Qualities = ({ title, content }) => {
   const caractersData = [
     {
       title: "Passionné",
@@ -23,7 +23,10 @@ const Caracters = ({ title, content }) => {
   ];
 
   return (
-    <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10 p-2 w-4/5 m-auto">
+    <section
+      id="qualities"
+      className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10 p-2 w-4/5 m-auto"
+    >
       {caractersData.map((caracter, index) => (
         <div
           key={index}
@@ -42,4 +45,4 @@ const Caracters = ({ title, content }) => {
   );
 };
 
-export default Caracters;
+export default Qualities;

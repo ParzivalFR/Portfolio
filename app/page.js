@@ -6,11 +6,10 @@ import Footer from "./_components/Footer";
 import Header from "./_components/Header";
 import InfiniFloat from "./_components/InfiniFloat";
 import Projects from "./_components/Projects";
+import Qualities from "./_components/Qualities";
 import SectionHome from "./_components/SectionHome";
-// import Skills from "./_components/Skills";
 import Spacing from "./_components/Spacing";
 import TypeWrite from "./_components/TypeWrite";
-import Caracters from "./_components/Caracters";
 
 export default function Home() {
   return (
@@ -32,8 +31,7 @@ export default function Home() {
         <Spacing size={100} />
         <Divider className="w-2/3 h-[0.5px] m-auto bg-current rounded" />
         <Spacing size={50} />
-        {/* <Skills /> */}
-        <Caracters />
+        <Qualities />
         <Spacing size={50} />
         <Divider className="w-2/3 h-[0.5px] m-auto bg-current rounded" />
         <Spacing size={50} />

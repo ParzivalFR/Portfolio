@@ -78,9 +78,9 @@ const Login = () => {
   };
 
   return (
-    <main className="flex flex-col justify-center bg-black items-center gap-10 w-full min-h-svh">
+    <main className="flex flex-col justify-center items-center gap-10 w-full min-h-svh">
       <Header />
-      <section className="bg-white flex flex-col justify-center items-center h-full w-full">
+      <section className="flex flex-col justify-center items-center h-full w-full">
         <Tabs defaultValue="Connexion" className="w-4/5 md:w-[400px]">
           <TabsList className="grid w-full grid-cols-2 border border-foreground/10">
             <TabsTrigger value="Connexion">Connexion</TabsTrigger>
