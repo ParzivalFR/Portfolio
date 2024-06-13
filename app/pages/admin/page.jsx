@@ -236,7 +236,7 @@ const AddProjectForm = () => {
           "description",
           "Description",
           "Description du projet (longue)",
-          "1000"
+          "5000"
         )}
         <div className="flex flex-col gap-2">
           <Label htmlFor="year">Prévisualisation</Label>

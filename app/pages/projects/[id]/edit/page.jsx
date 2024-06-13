@@ -193,7 +193,7 @@ const EditProjectForm = () => {
     </div>
   );
 
-  const renderTextareaField = (name, label, placeholder = "") => (
+  const renderTextareaField = (name, label, placeholder = "", maxLength) => (
     <div className="flex flex-col gap-2">
       <Label htmlFor={name}>{label}</Label>
       <Textarea
@@ -202,6 +202,7 @@ const EditProjectForm = () => {
         value={formData[name]}
         onChange={handleChange}
         placeholder={placeholder}
+        maxLength={maxLength}
       />
     </div>
   );
@@ -320,12 +321,14 @@ const EditProjectForm = () => {
         {renderTextareaField(
           "shortDescription",
           "Description courte",
-          "Description du projet (courte)"
+          "Description du projet (courte)",
+          "200"
         )}
         {renderTextareaField(
           "description",
           "Description",
-          "Description du projet (longue)"
+          "Description du projet (longue)",
+          "5000"
         )}
         <div className="flex flex-col gap-2">
           <Label htmlFor="year">Prévisualisation</Label>
