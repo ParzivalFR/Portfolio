@@ -34,7 +34,7 @@ const Textarea = ({
         maxLength={maxLength}
         value={value}
         className={cn(
-          "w-full rounded-md border border-input bg-secondary/80 px-3 py-2 text-sm shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50",
+          "w-full rounded-md border border-input bg-secondary/80 px-3 py-2 text-sm shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 break-words",
           className
         )}
         onChange={handleChange}

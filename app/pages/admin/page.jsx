@@ -28,6 +28,8 @@ const AddProjectForm = () => {
     year: "",
     skills: "",
     url: "",
+    longMaxLength: 1000,
+    shortMaxLength: 200,
   });
 
   useEffect(() => {
@@ -143,7 +145,7 @@ const AddProjectForm = () => {
     </div>
   );
 
-  const renderTextareaField = (name, label, placeholder = "") => (
+  const renderTextareaField = (name, label, placeholder = "", maxLength) => (
     <div className="flex flex-col gap-2">
       <Label htmlFor={name}>{label}</Label>
       <Textarea
@@ -152,6 +154,7 @@ const AddProjectForm = () => {
         value={formData[name]}
         onChange={handleChange}
         placeholder={placeholder}
+        maxLength={maxLength}
         required
       />
     </div>
@@ -226,19 +229,22 @@ const AddProjectForm = () => {
         {renderTextareaField(
           "shortDescription",
           "Description courte",
-          "Description du projet (courte)"
+          "Description du projet (courte)",
+          "200"
         )}
         {renderTextareaField(
           "description",
           "Description",
-          "Description du projet (longue)"
+          "Description du projet (longue)",
+          "1000"
         )}
         <div className="flex flex-col gap-2">
           <Label htmlFor="year">Prévisualisation</Label>
-          <ReactMarkdown className="bg-secondary/50 min-h-24 text-current p-2 rounded-lg">
+          <ReactMarkdown className="bg-secondary/50 min-h-24 text-current p-2 rounded-lg overflow-auto break-words">
             {formData.description}
           </ReactMarkdown>
         </div>
+
         <div className="flex flex-col gap-4 lg:grid lg:grid-cols-2 lg:gap-10">
           {renderInputField(
             "year",
