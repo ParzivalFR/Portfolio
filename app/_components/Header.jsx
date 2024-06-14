@@ -6,6 +6,7 @@ import { useTheme } from "../hooks/ThemeContext";
 import { useWindowSize } from "../hooks/WindowSizeContext";
 import { CurtainMenuPage } from "./CurtainMenu";
 import UserAvatar from "./UserAvatar";
+
 const Header = () => {
   const { theme, toggleTheme, checked } = useTheme();
   const WindowSizeContext = useWindowSize();

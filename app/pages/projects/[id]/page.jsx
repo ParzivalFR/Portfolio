@@ -1,5 +1,7 @@
 "use client";
 
+import Footer from "@/app/_components/Footer";
+import Header from "@/app/_components/Header";
 import ImageModal from "@/app/_components/ImageModal";
 import Spacing from "@/app/_components/Spacing";
 import {
@@ -151,6 +153,7 @@ export default function Project({ params }) {
 
   return (
     <>
+      <Header />
       <main className=" min-h-svh">
         <Spacing size={40} />
         {isLoading ? (
@@ -318,6 +321,7 @@ export default function Project({ params }) {
           <ImageModal imageUrl={selectedImage} onClose={handleCloseModal} />
         )}
       </main>
+      <Footer />
     </>
   );
 }
