@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function UserAvatar() {
   return (
-    <Link href="/">
+    <Link href="/" className="flex item-center">
       <User
         name="Gael Richard"
         description="Développeur Web Fullstack"

@@ -4,9 +4,9 @@
     "display": "standalone",
     "scope": "/",
     "start_url": "/",
-    "name": "Gael Richard - Portfolio",
-    "short_name": "Gael - D\u00e9veloppeur ",
-    "description": "Progressive Web App du portfolio de Gael Richard",
+    "name": "Gael Richard - D\u00e9veloppeur Fullstack",
+    "short_name": "Gael Dev",
+    "description": "D\u00e9veloppeur Web Fullstack, je suis passionn\u00e9 par le d\u00e9veloppement web. Je suis sp\u00e9cialis\u00e9 dans la cr\u00e9ation de sites web avec pour but de satisfaire les besoins de mes clients.",
     "icons": [
         {
             "src": "/icon-192x192.png",
