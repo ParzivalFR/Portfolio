@@ -56,6 +56,8 @@ export default function RootLayout({ children }) {
       <TokenProvider>
         <html lang="fr" suppressHydrationWarning>
           <head>
+            <link rel="manifest" href="/manifest.json" />
+
             <Script
               async
               src="https://www.googletagmanager.com/gtag/js?id=G-1P0ENQYV95"
