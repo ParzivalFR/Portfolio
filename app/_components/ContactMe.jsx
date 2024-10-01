@@ -53,7 +53,7 @@ const ContactMe = () => {
 
     if (result.isConfirmed) {
       try {
-        await ky.post("https://parzival.fun/api/contact", {
+        await ky.post(`${process.env.API_URL}/api/contact`, {
           json: { firstName, name, email, message },
         });
 

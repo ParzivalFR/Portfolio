@@ -27,7 +27,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const response = await ky
-        .post("https://parzival.fun/api/auth/signup", {
+        .post(`${process.env.API_URL}/api/auth/signup`, {
           json: { email, password },
         })
         .json();
@@ -54,7 +54,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const response = await ky
-        .post("https://parzival.fun/api/auth/login", {
+        .post(`${process.env.API_URL}/api/auth/login`, {
           json: { email, password },
         })
         .json();

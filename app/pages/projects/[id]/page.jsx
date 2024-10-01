@@ -44,7 +44,7 @@ export default function Project({ params }) {
 
     const fetchData = async () => {
       try {
-        const response = await ky.get("https://parzival.fun/api/projects");
+        const response = await ky.get(`${process.env.API_URL}/api/projects`);
         const data = await response.json();
         const filteredData = data.filter(
           (project) => project._id === params.id
@@ -61,7 +61,7 @@ export default function Project({ params }) {
     const fetchLikes = async () => {
       try {
         const response = await ky.get(
-          `https://parzival.fun/api/likes/${params.id}`
+          `${process.env.API_URL}/api/likes/${params.id}`
         );
         const data = await response.json();
         setLikes((prevLikes) => ({
@@ -99,7 +99,7 @@ export default function Project({ params }) {
 
     if (confirmation.isConfirmed) {
       try {
-        await ky.delete(`https://parzival.fun/api/projects/${id}`, {
+        await ky.delete(`${process.env.API_URL}/api/projects/${id}`, {
           json: { userId },
           headers: {
             Authorization: `Bearer ${token}`,

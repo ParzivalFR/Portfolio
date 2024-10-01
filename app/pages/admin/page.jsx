@@ -78,7 +78,7 @@ const AddProjectForm = () => {
       if (!token) throw new Error("No token available.");
 
       const response = await ky
-        .post("https://parzival.fun/api/projects", {
+        .post(`${process.env.API_URL}/api/projects`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
