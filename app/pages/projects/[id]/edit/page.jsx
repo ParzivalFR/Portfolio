@@ -38,7 +38,7 @@ const EditProjectForm = () => {
         if (!token) throw new Error("No token available.");
 
         const project = await ky
-          .get(`${process.env.API_URL}/api/projects/${id}`, {
+          .get(`${process.env.NEXT_PUBLIC_API_URL}/api/projects/${id}`, {
             headers: {
               Authorization: `Bearer ${token}`,
             },
@@ -127,7 +127,7 @@ const EditProjectForm = () => {
       if (!token) throw new Error("No token available.");
 
       const response = await ky
-        .put(`${process.env.API_URL}/api/projects/${id}`, {
+        .put(`${process.env.NEXT_PUBLIC_API_URL}/api/projects/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

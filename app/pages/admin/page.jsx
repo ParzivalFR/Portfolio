@@ -78,7 +78,7 @@ const AddProjectForm = () => {
       if (!token) throw new Error("No token available.");
 
       const response = await ky
-        .post(`${process.env.API_URL}/api/projects`, {
+        .post(`${process.env.NEXT_PUBLIC_API_URL}/api/projects`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

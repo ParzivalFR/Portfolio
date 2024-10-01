@@ -53,7 +53,7 @@ const ContactMe = () => {
 
     if (result.isConfirmed) {
       try {
-        await ky.post(`${process.env.API_URL}/api/contact`, {
+        await ky.post(`${process.env.NEXT_PUBLIC_NEXT_PUBLIC_API_URL}/api/contact`, {
           json: { firstName, name, email, message },
         });
 

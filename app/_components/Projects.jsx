@@ -35,7 +35,9 @@ const Projects = () => {
 
     const fetchData = async () => {
       try {
-        const response = await ky.get(`${process.env.API_URL}/api/projects`);
+        const response = await ky.get(
+          `${process.env.NEXT_PUBLIC_API_URL}/api/projects`
+        );
         const data = await response.json();
 
         const sortedData = data.sort(
@@ -46,7 +48,7 @@ const Projects = () => {
         const likesData = await Promise.all(
           data.map(async (project) => {
             const response = await ky.get(
-              `${process.env.API_URL}/api/likes/${project._id}`
+              `${process.env.NEXT_PUBLIC_API_URL}/api/likes/${project._id}`
             );
             const likes = await response.json();
             return { id: project._id, count: likes.length };
@@ -76,8 +78,8 @@ const Projects = () => {
 
     try {
       const likeEndpoint = heartStates[id]
-        ? `${process.env.API_URL}/api/likes/${id}`
-        : `${process.env.API_URL}/api/likes/${id}`;
+        ? `${process.env.NEXT_PUBLIC_API_URL}/api/likes/${id}`
+        : `${process.env.NEXT_PUBLIC_API_URL}/api/likes/${id}`;
       const method = heartStates[id] ? "DELETE" : "POST";
 
       await ky(likeEndpoint, {
@@ -93,7 +95,9 @@ const Projects = () => {
         });
       }
 
-      const response = await ky.get(`${process.env.API_URL}/api/likes/${id}`);
+      const response = await ky.get(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/likes/${id}`
+      );
       const data = await response.json();
       setLikes((prevLikes) => ({ ...prevLikes, [id]: data.length }));
     } catch (error) {
