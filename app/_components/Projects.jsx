@@ -136,7 +136,7 @@ const Projects = () => {
         defaultValue="descending"
         className="w-full flex flex-col justify-center items-center p-4"
       >
-        <TabsList>
+        <TabsList className="gap-2 md:gap-4">
           <TabsTrigger
             value="descending"
             onClick={() => handleSort("descending")}
