@@ -3,6 +3,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Poppins } from "next/font/google";
 import Script from "next/script";
 import CursorLight from "./_components/CursorLight";
+import ScrollToTop from "./_components/ScrollToTop";
 import "./globals.css";
 import { ThemeProvider } from "./hooks/ThemeContext";
 import { TokenProvider } from "./hooks/TokenContext";
@@ -71,7 +72,7 @@ export default function RootLayout({ children }) {
                 gtag('config', 'G-1P0ENQYV95');
               `}
             </Script>
-            <Script>
+            {/* <Script>
               {`
             window.axeptioSettings = {
               clientId: "66619834d925dc4a6a7e757b",
@@ -93,13 +94,13 @@ export default function RootLayout({ children }) {
               t.parentNode.insertBefore(e, t);
             })(document, "script");
           `}
-            </Script>
+            </Script> */}
           </head>
           <body className={`${poppins.className}`}>
             <WindowSizeProvider>
               <CursorLight>
                 {children}
-                {/* <ScrollToTop /> */}
+                <ScrollToTop />
               </CursorLight>
               <Analytics />
               <SpeedInsights />
