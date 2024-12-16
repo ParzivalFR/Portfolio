@@ -179,7 +179,7 @@ const Projects = () => {
               {fetchedData.slice(0, showProjects).map((project) => (
                 <article
                   key={project._id}
-                  className="relative flex flex-col justify-between h-full gap-5 p-4 bg-foreground/5 rounded-lg transition-transform transform hover:scale-105 duration-700 shadow-pxl"
+                  className="relative flex flex-col justify-between h-full gap-5 p-4 bg-foreground/5 rounded-lg transition-transform transform hover:scale-[1.01] duration-700 shadow-pxl"
                 >
                   <Link href={`/pages/projects/${project._id}`}>
                     <div className="shadow-pxl w-full h-36 m-auto  rounded-xl flex justify-center items-center object-cover overflow-hidden">
