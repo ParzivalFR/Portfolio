@@ -3,7 +3,6 @@ import Link from "next/link";
 import { FaGithubSquare, FaLinkedin } from "react-icons/fa";
 import VercelIcon from "../icons/VercelIcon";
 import Spacing from "./Spacing";
-import ScrollToTop from "./ScrollToTop";
 
 const Footer = () => {
   const currentDate = new Date().getFullYear();
@@ -55,7 +54,6 @@ const Footer = () => {
           </p>
         </Link>
       </div>
-      <ScrollToTop />
     </footer>
   );
 };
